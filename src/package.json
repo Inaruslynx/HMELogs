@@ -8,6 +8,9 @@
   "version": "1.0.0",
   "description": "Web App to log data for HME",
   "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon ./src/index.js"
+  },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
