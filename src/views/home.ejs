@@ -1,136 +1,128 @@
 <%- include('partials/head') %>
 <%- include('partials/nav') %>
 
-<form action="/daily" method="post" class="row g-3">
-        <h1>Finish Mill</h1>
+<form action="/daily" method="post" class="row">
+    <div class="container text-center">
+        <div>
+            <h1>Finish Mill</h1>
+        </div>
         <h5>IMS Gauge</h5>
+        <div class="container pt-3">
+            <p>Frame Temperature</p>
 
-        <p>Frame Temperature</p>
-
-        <div class="col-md-6">
-            <label for="imsTopBeam" class="col-sm-2 col-form-label">Top Beam</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS Top Beam" id="imsTopBeam">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="imsVertPart" class="col-sm-2 col-form-label">Vertical Part</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS Vertical Part" id="imsVertPart">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="imsBotBeam" class="col-sm-2 col-form-label">Bottom Beam</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS Bottom Beam" id="imsBotBeam">
+            <div class="row p-3">
+                <div class="form-floating pb-3 col-sm">
+                    <input type="number" class="form-control" placeholder="Top Beam" name="IMS Top Beam" id="imsTopBeam">
+                    <label for="imsTopBeam">Top Beam</label>
+                </div>
+                <div class="form-floating pb-3 col-sm">
+                    <input type="number" class="form-control" placeholder="Vertical Part" name="IMS Vertical Part" id="imsVertPart">
+                    <label for="imsVertPart" class="col-sm col-form-label">Vertical Part</label>
+                </div>
+                <div class="form-floating pb-3 col-sm">
+                    <input type="number" class="form-control" placeholder="Bottom Beam" name="IMS Bottom Beam" id="imsBotBeam">
+                    <label for="imsBotBeam" class="col-sm col-form-label">Bottom Beam</label>
+                </div>
             </div>
         </div>
 
         <p>Water Flow Monitoring</p>
         
-        <div class="row mb-3">
-            <label for="imsFlowCframe" class="col-sm-2 col-form-label">C-Frame</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS C-Frame Flow" id="imsFlowCframe">
+        <div class="row p-3">
+            <div class="form-floating pb-3 col-sm">
+                <input type="number" class="form-control" placeholder="C-Frame" name="IMS C-Frame Flow" id="imsFlowCframe">
+                <label for="imsFlowCframe" class="col-sm col-form-label">C-Frame</label>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="imsFlowXTube1" class="col-sm-2 col-form-label">X-Ray Tube 1</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS X-Ray Tube 1 Flow" id="imsFlowXTube1">
+            <div class="form-floating pb-3 col-sm">
+                <input type="number" class="form-control" placeholder="X-Ray Tube 1" name="IMS X-Ray Tube 1 Flow" id="imsFlowXTube1">
+                <label for="imsFlowXTube1" class="col-sm col-form-label">X-Ray Tube 1</label>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="imsFlowXTube2" class="col-sm-2 col-form-label">X-Ray Tube 2</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS X-Ray Tube 2 Flow" id="imsFlowXTube2">
+            <div class="form-floating pb-3 col-sm">
+                <input type="number" class="form-control" placeholder="X-Ray Tube 2" name="IMS X-Ray Tube 2 Flow" id="imsFlowXTube2">
+                <label for="imsFlowXTube2" class="col-sm col-form-label">X-Ray Tube 2</label>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="imsFlowHeatExchng" class="col-sm-2 col-form-label">Heat Exchanger/Lasers</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS Heat Exchanger/Lasers Flow" id="imsFlowHeatExchng">
+            <div class="form-floating pb-3 col-sm">
+                <input type="number" class="form-control" placeholder="Heat Exchanger/Lasers" name="IMS Heat Exchanger/Lasers Flow" id="imsFlowHeatExchng">
+                <label for="imsFlowHeatExchng" class="col-sm col-form-label">Heat Exchanger/Lasers</label>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="imsFlowCamera" class="col-sm-2 col-form-label">Camera Housing</label>
-            <div class="col-sm-10">
-                <input type="number" name="IMS Camera Housing Flow" id="imsFlowCamera">
+            <div class="form-floating pb-3 col-sm">
+                <input type="number" class="form-control" placeholder="Camera Housing" name="IMS Camera Housing Flow" id="imsFlowCamera">
+                <label for="imsFlowCamera" class="col-sm col-form-label">Camera Housing</label>
             </div>
         </div>
 
         <p>Water Temp Monitoring</p>
         
 
-        <div class="row mb-3">
-            <label for="imsTempCframe" class="col-sm-2 col-form-label">C-Frame</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsTempCframe" class="col-sm col-form-label">C-Frame</label>
+            <div class="col-sm">
                 <input type="number" name="IMS C-Frame Temp" id="imsTempCframe">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsTempXTube1" class="col-sm-2 col-form-label">X-Ray Tube 1</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsTempXTube1" class="col-sm col-form-label">X-Ray Tube 1</label>
+            <div class="col-sm">
                 <input type="number" name="IMS X-Ray Tube 1 Temp" id="imsTempXTube1">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsTempXTube2" class="col-sm-2 col-form-label">X-Ray Tube 2</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsTempXTube2" class="col-sm col-form-label">X-Ray Tube 2</label>
+            <div class="col-sm">
                 <input type="number" name="IMS X-Ray Tube 2 Temp" id="imsTempXTube2">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsTempHeatExchng" class="col-sm-2 col-form-label">Heat Exchanger/Lasers</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsTempHeatExchng" class="col-sm col-form-label">Heat Exchanger/Lasers</label>
+            <div class="col-sm">
                 <input type="number" name="IMS Heat Exchanger/Lasers Temp" id="imsTempHeatExchng">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsTempCamera" class="col-sm-2 col-form-label">Camera Housing</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsTempCamera" class="col-sm col-form-label">Camera Housing</label>
+            <div class="col-sm">
                 <input type="number" name="IMS Camera Housing Temp" id="imsTempCamera">
             </div>
         </div>
 
         <p>Customer Water Monitoring</p>
 
-        <div class="row mb-3">
-            <label for="imsCustFlow" class="col-sm-2 col-form-label">Flow</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsCustFlow" class="col-sm col-form-label">Flow</label>
+            <div class="col-sm">
                 <input type="number" name="IMS Customer Water Flow" id="imsCustFlow">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsCustTemp" class="col-sm-2 col-form-label">Temperature</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsCustTemp" class="col-sm col-form-label">Temperature</label>
+            <div class="col-sm">
                 <input type="number" name="IMS Customer Water Temperature" id="imsCustTemp">
             </div>
         </div>
 
         <p>Pressure Monitoring</p>
 
-        <div class="row mb-3">
-            <label for="imsPressCframe" class="col-sm-2 col-form-label">Coolant C-Frame</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsPressCframe" class="col-sm col-form-label">Coolant C-Frame</label>
+            <div class="col-sm">
                 <input type="number" name="IMS C-Frame Coolant Pressure" id="imsPressCframe">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsPressPeriphery" class="col-sm-2 col-form-label">Coolant Periphery</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsPressPeriphery" class="col-sm col-form-label">Coolant Periphery</label>
+            <div class="col-sm">
                 <input type="number" name="IMS Periphery Coolant Pressure" id="imsPressPeriphery">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsPressOpAir" class="col-sm-2 col-form-label">Operating Air</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsPressOpAir" class="col-sm col-form-label">Operating Air</label>
+            <div class="col-sm">
                 <input type="number" name="IMS Operating Air Pressure" id="imsPressOpAir">
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="imsPressPurgeAir" class="col-sm-2 col-form-label">Purge Air</label>
-            <div class="col-sm-10">
+        <div class="col-sm">
+            <label for="imsPressPurgeAir" class="col-sm col-form-label">Purge Air</label>
+            <div class="col-sm">
                 <input type="number" name="IMS Purge Air Pressure" id="imsPressPurgeAir">
             </div>
         </div>
@@ -150,6 +142,7 @@
   <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
 </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
     </form>    
 
 <%- include('partials/footer') %>
