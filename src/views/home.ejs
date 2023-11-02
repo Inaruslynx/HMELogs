@@ -1,19 +1,19 @@
 <%- include('partials/head') %>
 <%- include('partials/nav') %>
 
-<form action="/daily" method="post">
+<form action="/daily" method="post" class="row g-3">
         <h1>Finish Mill</h1>
         <h5>IMS Gauge</h5>
 
         <p>Frame Temperature</p>
 
-        <div class="row mb-3">
+        <div class="col-md-6">
             <label for="imsTopBeam" class="col-sm-2 col-form-label">Top Beam</label>
             <div class="col-sm-10">
                 <input type="number" name="IMS Top Beam" id="imsTopBeam">
             </div>
         </div>
-        <div class="row mb-3">
+        <div class="col-md-6">
             <label for="imsVertPart" class="col-sm-2 col-form-label">Vertical Part</label>
             <div class="col-sm-10">
                 <input type="number" name="IMS Vertical Part" id="imsVertPart">
