@@ -8,6 +8,10 @@ const User = new Schema(
             type: String,
             required: true,
             unique: true,
+        },
+        admin: {
+            type: Schema.Types.Boolean,
+            default: false
         }
     }
 )

@@ -18,3 +18,5 @@ const DataPoint = new Schema(
         }
     }
 )
+
+module.exports = mongoose.model("DataPoint", DataPoint)

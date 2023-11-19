@@ -1,17 +1,25 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme='dark'"> <!-- data-bs-theme='dark'" -->
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme='dark'"> <!-- data-bs-theme='dark'" -->
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">HME Daily Log</a>
+    <a class="navbar-brand" href="/">HM Daily Log</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
+          <a class="nav-link" aria-current="page" href="/HME_Walkthrough/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
       </ul>
+    </div>
+    <div class="navbar-nav ms-auto">
+      <% if (!currentUser) { %>
+      <a href="/HME_Walkthrough/login" class="nav-link">Login</a>
+      <a href="/HME_Walkthrough/register" class="nav-link">Register</a>
+      <% } else { %>
+      <a href="/HME_Walkthrough/logout" class="nav-link">Logout</a>
+      <% } %>
     </div>
   </div>
 </nav>

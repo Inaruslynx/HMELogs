@@ -4,13 +4,11 @@ const Schema = mongoose.Schema
 
 const PasswordReset = new Schema(
     {
-    user: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-            required: true
-        }
-    ],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     token: {
         type: Schema.Types.String,
         required: true

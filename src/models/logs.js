@@ -8,11 +8,13 @@ const Log = new Schema(
             ref: "User",
             require: true
         },
-        Data: {
+        data: [{
             type: Schema.Types.Array,
             require: true
-        }
+        }]
     }, {
         timestamps: true
     }
 )
+
+module.exports = mongoose.model("Log", Log)

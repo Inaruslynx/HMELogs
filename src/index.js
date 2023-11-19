@@ -18,44 +18,33 @@ const Log = require("./models/logs")
 const userRoutes = require("./routes/users")
 
 const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@localhost:27017/?authMechanism=DEFAULT`
-mongoose.connect(uri)
+const options = {dbName: "Logs"}
+mongoose.connect(uri, options)
 
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "connection error:"))
 db.once("open", () => {
   console.log("Database connected")
 })
-const store = MongoStore.create({
-  mongoUrl: uri,
-  touchAfter: 24 * 60 * 60,
-  crypto: {
-    secret: process.env.SESSION_SECRET,
-  },
-})
-store.on("error", function (err) {
-  console.log("Store Session Error", err)
-})
-const sessionConfig = {
-  store,
-  name: "Walkthrough user",
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    //                    ms     s    m    h    d
-    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
-    // secure: true,
-  },
-};
 
 const app = express()
 
 // Settings for Express
 const port = 3000
 const path = require('path')
-app.use(session(sessionConfig))
+
+// This doesn't work
+// app.use(session({
+//   saveUninitialized: true,
+//   resave: false,
+//   store: new MongoStore({
+//     url: `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@localhost:27017/?authMechanism=DEFAULT`,
+//     dbName: "Logs",
+//     secret: process.env.SESSION_SECRET,
+//     touchAfter: 24 * 60 * 60
+//   })
+// }))
+
 app.use(express.static(path.join(__dirname, '/public')))
 app.engine("ejs", ejsMate)
 app.set('view engine', 'ejs')

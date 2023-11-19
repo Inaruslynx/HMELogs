@@ -14,9 +14,12 @@ const Area = new Schema(
                 ref: "Area"
             }
         ],
-        DataPoint: {
-            type: Schema.Types.ObjectId
-        }
+        DataPoint: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "DataPoint"
+            }
+        ]
     }
 )
 
