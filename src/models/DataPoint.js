@@ -5,10 +5,17 @@ const DataPoint = new Schema(
     {
         tag: {
             type: String,
+            index: true,
+            unique: true,
+            require: true
+        },
+        name: {
+            type: String,
             require: true
         },
         type: {
             type: String,
+            enum: ['Text', 'Number', 'Boolean'],
             require: true
         },
         area: {

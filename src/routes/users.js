@@ -21,7 +21,7 @@ router
   .post(
     passport.authenticate("local", {
       failureFlash: true,
-      failureRedirect: "/login",
+      failureRedirect: `${process.env.DOMAIN}login`,
     }),
     users.loginUser
   );

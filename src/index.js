@@ -1,8 +1,8 @@
 // /HME_Walthrough/
-// mysql JoshEdwards jedwards
 
 require('dotenv').config()
 const express = require('express')
+const bodyParser = require('body-parser')
 const ejsMate = require('ejs-mate')
 const session = require("express-session")
 const mongoose = require("mongoose")
@@ -17,7 +17,8 @@ const Log = require("./models/logs")
 
 const userRoutes = require("./routes/users")
 
-const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@localhost:27017/?authMechanism=DEFAULT`
+const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`
+const session_uri = `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`
 const options = {dbName: "Logs"}
 mongoose.connect(uri, options)
 
@@ -27,23 +28,30 @@ db.once("open", () => {
   console.log("Database connected")
 })
 
+// const sessionConnection = mongoose.createConnection(session_uri, options)
+// sessionConnection.on("error", console.error.bind(console, "Session connection error:"))
+// sessionConnection.once("open", () => {
+//   console.log("Session Database connected")
+// })
 const app = express()
 
 // Settings for Express
 const port = 3000
 const path = require('path')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
 // This doesn't work
-// app.use(session({
-//   saveUninitialized: true,
-//   resave: false,
-//   store: new MongoStore({
-//     url: `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@localhost:27017/?authMechanism=DEFAULT`,
-//     dbName: "Logs",
-//     secret: process.env.SESSION_SECRET,
-//     touchAfter: 24 * 60 * 60
-//   })
-// }))
+app.use(session({
+  saveUninitialized: true,
+  resave: false,
+  secret: process.env.SESSION_SECRET,
+  store: MongoStore.create({
+    mongoUrl: session_uri,
+    dbName: "Logs",
+    touchAfter: 24 * 60 * 60
+  })
+}))
 
 app.use(express.static(path.join(__dirname, '/public')))
 app.engine("ejs", ejsMate)

@@ -3,12 +3,12 @@
   <div class="row">
     <div class="col">
       <div class="card shadow">
-        <img src="/HME_Walkthrough/steeldynamicslogo.png"
+        <img src="<%- process.env.DOMAIN %>steeldynamicslogo.png"
                     alt="" class="rounded mx-auto d-block m-3" />
         <div class="card-body">
           <h5 class="card-title">Login</h5>
           <form
-            action="/login"
+            action="<%- process.env.DOMAIN %>login"
             method="post"
             class="needs-validation"
             novalidate

@@ -3,29 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/HME_Walkthrough/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<%- process.env.DOMAIN %>css/bootstrap.min.css" />
     <title>HM Walkthrough</title>
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/HME_Walkthrough/apple-touch-icon.png"
+      href="<%- process.env.DOMAIN %>apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/HME_Walkthrough/favicon-32x32.png"
+      href="<%- process.env.DOMAIN %>favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/HME_Walkthrough/favicon-16x16.png"
+      href="<%- process.env.DOMAIN %>favicon-16x16.png"
     />
-    <link rel="manifest" href="/HME_Walkthrough/site.webmanifest" />
+    <link rel="manifest" href="<%- process.env.DOMAIN %>site.webmanifest" />
     <link
       rel="mask-icon"
-      href="/HME_Walkthrough/safari-pinned-tab.svg"
+      href="<%- process.env.DOMAIN %>safari-pinned-tab.svg"
       color="#5bbad5"
     />
     <meta name="msapplication-TileColor" content="#da532c" />
@@ -39,7 +39,7 @@
 
     <%- include('../partials/footer')%>
 
-    <script src="/HME_Walkthrough/js/bootstrap.min.js"></script>
-    <script src="/HME_Walkthrough/js/validateForms.js"></script>
+    <script src="<%- process.env.DOMAIN %>js/bootstrap.min.js"></script>
+    <script src="<%- process.env.DOMAIN %>js/validateForms.js"></script>
   </body>
 </html>
