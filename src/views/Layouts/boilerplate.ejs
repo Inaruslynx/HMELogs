@@ -31,7 +31,7 @@
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body class="d-flex flex-column vh-100">
+  <body data-bs-theme="dark" class="d-flex flex-column vh-100">
     <%- include('../partials/navbar')%>
     <main class="container mt-5">
       <%- include('../partials/flash') %> <%- body %>
@@ -41,5 +41,6 @@
 
     <script src="<%- process.env.DOMAIN %>js/bootstrap.min.js"></script>
     <script src="<%- process.env.DOMAIN %>js/validateForms.js"></script>
+    <script src="<%- process.env.DOMAIN %>js/toggleMode.js"></script>
   </body>
 </html>

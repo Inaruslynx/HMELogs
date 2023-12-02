@@ -44,12 +44,15 @@ app.use(bodyParser.urlencoded({extended: false}))
 // This doesn't work
 app.use(session({
   saveUninitialized: true,
+  rolling: true,
   resave: false,
   secret: process.env.SESSION_SECRET,
+  //                ms    s    m    h    d
+  cookie: {httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7},
   store: MongoStore.create({
     mongoUrl: session_uri,
     dbName: "Logs",
-    touchAfter: 24 * 60 * 60
+    //touchAfter: 24 * 60 * 60
   })
 }))
 

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+
 const { tryAsync } = require("../utils/tryAsync");
 const users = require("../controllers/users");
 
@@ -19,8 +20,12 @@ router
   .get(users.renderLogin)
   // Attempts to login user
   .post(
+    function (req, res, next) {
+      console.log(res.locals)
+      next()
+    },
     passport.authenticate("local", {
-      failureFlash: true,
+      failureFlash: 'Problem with login. Check username and password',
       failureRedirect: `${process.env.DOMAIN}login`,
     }),
     users.loginUser
@@ -28,5 +33,12 @@ router
 
 // Logout user
 router.get("/logout", users.logoutUser);
+
+// User forgot password
+router
+  .route("/forgotpassword")
+  // renders the forgot password page
+  .get(users.renderForgotPassword)
+  .post(users.forgotPassword)
 
 module.exports = router;
