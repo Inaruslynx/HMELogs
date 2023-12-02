@@ -1,6 +1,13 @@
 $(document).ready(function () {
+    var element = document.body
     if (localStorage.hasOwnProperty('Mode')) {
-        
+        if (localStorage.getItem('Mode') === "dark") {
+            element.dataset.bsTheme = "dark"
+            $("flexSwitchCheckChecked").prop("checked")
+        } else if (localStorage.getItem('Mode') === "light") {
+            element.dataset.bsTheme = "light"
+            $("flexSwitchCheckChecked").removeProp("checked")
+        }
     }
 })
 

@@ -66,8 +66,8 @@ module.exports.forgotPassword = async (req, res, next) => {
 module.exports.userDarkMode = async (req, res, next) => {
   try {
     const { darkMode } = req.body;
+    if (!res.locals.currentUser) throw new Error("No current user.")
     const { _id } = res.locals.currentUser;
-    if (!_id) throw new Error("No current user.")
     const userData = await User.findById(_id);
     if (!userData) {
       throw new Error("Didn't find user by an id search")

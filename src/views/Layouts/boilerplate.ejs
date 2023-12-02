@@ -36,6 +36,7 @@
   <% } else { %>
     <body data-bs-theme="light" class="d-flex flex-column vh-100">
   <% } %>
+    <script src="<%- process.env.DOMAIN %>js/jquery.min.js"></script>
     <%- include('../partials/navbar')%>
     <main class="container mt-5">
       <%- include('../partials/flash') %> <%- body %>
