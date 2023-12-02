@@ -31,7 +31,11 @@
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
   </head>
-  <body data-bs-theme="dark" class="d-flex flex-column vh-100">
+  <% if (!currentUser || currentUser.theme === "dark") { %>
+    <body data-bs-theme="dark" class="d-flex flex-column vh-100">
+  <% } else { %>
+    <body data-bs-theme="light" class="d-flex flex-column vh-100">
+  <% } %>
     <%- include('../partials/navbar')%>
     <main class="container mt-5">
       <%- include('../partials/flash') %> <%- body %>

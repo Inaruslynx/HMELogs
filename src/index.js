@@ -1,67 +1,70 @@
 // /HME_Walthrough/
 
-require('dotenv').config()
-const express = require('express')
-const bodyParser = require('body-parser')
-const ejsMate = require('ejs-mate')
-const session = require("express-session")
-const mongoose = require("mongoose")
-const MongoStore = require("connect-mongo")
-const mongoSanitize = require("express-mongo-sanitize")
-const passport = require("passport")
-const LocalStrategy = require("passport-local")
-const flash = require("connect-flash")
-const ExpressError = require("./utils/ExpressError")
-const User = require("./models/users")
-const Log = require("./models/logs")
+require("dotenv").config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const ejsMate = require("ejs-mate");
+const session = require("express-session");
+const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo");
+const mongoSanitize = require("express-mongo-sanitize");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const flash = require("connect-flash");
+const ExpressError = require("./utils/ExpressError");
+const User = require("./models/users");
+const Log = require("./models/logs");
 
-const userRoutes = require("./routes/users")
+const userRoutes = require("./routes/users");
+const walkthroughRoutes = require("./routes/walkthrough");
 
-const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`
-const session_uri = `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`
-const options = {dbName: "Logs"}
-mongoose.connect(uri, options)
+const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
+const session_uri = `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
+const options = { dbName: "Logs" };
+mongoose.connect(uri, options);
 
-const db = mongoose.connection
-db.on("error", console.error.bind(console, "connection error:"))
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-  console.log("Database connected")
-})
+  console.log("Database connected");
+});
 
 // const sessionConnection = mongoose.createConnection(session_uri, options)
 // sessionConnection.on("error", console.error.bind(console, "Session connection error:"))
 // sessionConnection.once("open", () => {
 //   console.log("Session Database connected")
 // })
-const app = express()
+const app = express();
 
 // Settings for Express
-const port = 3000
-const path = require('path')
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+const port = 3000;
+const path = require("path");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // This doesn't work
-app.use(session({
-  saveUninitialized: true,
-  rolling: true,
-  resave: false,
-  secret: process.env.SESSION_SECRET,
-  //                ms    s    m    h    d
-  cookie: {httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7},
-  store: MongoStore.create({
-    mongoUrl: session_uri,
-    dbName: "Logs",
-    //touchAfter: 24 * 60 * 60
+app.use(
+  session({
+    saveUninitialized: true,
+    rolling: true,
+    resave: false,
+    secret: process.env.SESSION_SECRET,
+    //                ms    s    m    h    d
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 },
+    store: MongoStore.create({
+      mongoUrl: session_uri,
+      dbName: "Logs",
+      //touchAfter: 24 * 60 * 60
+    }),
   })
-}))
+);
 
-app.use(express.static(path.join(__dirname, '/public')))
-app.engine("ejs", ejsMate)
-app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, '/views'))
-app.use(mongoSanitize())
-app.use(flash())
+app.use(express.static(path.join(__dirname, "/public")));
+app.engine("ejs", ejsMate);
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
+app.use(mongoSanitize());
+app.use(flash());
 
 // Setup passport module
 app.use(passport.initialize());
@@ -70,7 +73,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 // If there is a success or error message in res, add to req flash message
 app.use((req, res, next) => {
@@ -83,11 +85,12 @@ app.use((req, res, next) => {
 
 // Tell Express to use routes
 app.use("/", userRoutes);
+app.use("/walkthrough", walkthroughRoutes);
 
 // Got to home
-app.get('/', (req, res) => {
-  res.render('home')
-})
+app.get("/", (req, res) => {
+  res.render("home");
+});
 
 // If route wasn't found above then return an error
 app.all("*", (req, res, next) => {
@@ -102,5 +105,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`)
-})
+  console.log(`Express server listening on port ${port}`);
+});

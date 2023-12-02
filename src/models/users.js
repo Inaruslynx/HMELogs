@@ -12,6 +12,10 @@ const User = new Schema(
         admin: {
             type: Schema.Types.Boolean,
             default: false
+        },
+        theme: {
+            type: String,
+            default: 'dark'
         }
     }
 )

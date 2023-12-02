@@ -20,12 +20,8 @@ router
   .get(users.renderLogin)
   // Attempts to login user
   .post(
-    function (req, res, next) {
-      console.log(res.locals)
-      next()
-    },
     passport.authenticate("local", {
-      failureFlash: 'Problem with login. Check username and password',
+      failureFlash: 'Problem with login. Check username and password.',
       failureRedirect: `${process.env.DOMAIN}login`,
     }),
     users.loginUser
@@ -39,6 +35,8 @@ router
   .route("/forgotpassword")
   // renders the forgot password page
   .get(users.renderForgotPassword)
-  .post(users.forgotPassword)
+  .post(users.forgotPassword);
+
+router.post("/darkmode", users.userDarkMode);
 
 module.exports = router;
