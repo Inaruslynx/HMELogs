@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<form action="/daily" method="post" class="row">
+<form action="/walkthrough" method="post" class="row">
   <div class="container text-center">
     <div>
       <h1>Finish Mill</h1>
@@ -266,7 +266,7 @@
     <div class="container pt-3">
       <div class="row">
         <div class="col-md">
-          <p>Oil Flow</p>
+          <p class="form-label">Oil Flow</p>
           <div class="row">
             <div class="form-floating pb-3 col-sm">
               <input
@@ -347,7 +347,7 @@
           </div>
         </div>
         <div class="col-md">
-          <p>Water Flow</p>
+          <p class="form-label">Water Flow</p>
           <div class="row">
             <div class="form-floating pb-3 col-sm">
               <input
@@ -426,6 +426,136 @@
               >
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <h5>FM Drive DI Skids</h5>
+    <div class="container pt-3">
+      <div class="row">
+        <p class="form-label">F1</p>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Water Temp"
+            name="F1 Drive DI Water Temp"
+            id="F1DrvWtrTemp"
+          />
+          <label for="F1DrvWtrTemp" class="col-sm col-form-label"
+            >Water Temp</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F1 Drive Cooling Water Flow"
+            id="F1DrvCooWtrFlow"
+          />
+          <label for="F1DrvCooWtrFlow" class="col-sm col-form-label"
+            >Cooling Water Flow</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F1 Drive DI Water Flow"
+            id="F1DrvDiWtrFlow"
+          />
+          <label for="F1DrvDiWtrFlow" class="col-sm col-form-label"
+            >DI Water Flow</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F1 Drive Water Conductivity"
+            id="F1DrvWtrCond"
+          />
+          <label for="F1DrvWtrCond" class="col-sm col-form-label"
+            >Conductivity</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F1 Drive Water Pump"
+            id="F1DrvWtrPump"
+          />
+          <label for="F1DrvWtrPump" class="col-sm col-form-label"
+            >Pump in operation</label
+          >
+        </div>
+      </div>
+      <div class="row">
+        <p class="form-label">F2</p>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Water Temp"
+            name="F2 Drive DI Water Temp"
+            id="F2DrvWtrTemp"
+          />
+          <label for="F2DrvWtrTemp" class="col-sm col-form-label"
+            >Water Temp</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F2 Drive Cooling Water Flow"
+            id="F2DrvCooWtrFlow"
+          />
+          <label for="F2DrvCooWtrFlow" class="col-sm col-form-label"
+            >Cooling Water Flow</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F2 Drive DI Water Flow"
+            id="F2DrvDiWtrFlow"
+          />
+          <label for="F2DrvDiWtrFlow" class="col-sm col-form-label"
+            >DI Water Flow</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F2 Drive Water Conductivity"
+            id="F2DrvWtrCond"
+          />
+          <label for="F2DrvWtrCond" class="col-sm col-form-label"
+            >Conductivity</label
+          >
+        </div>
+        <div class="form-floating pb-3 col-sm">
+          <input
+            type="number"
+            class="form-control"
+            placeholder=""
+            name="F2 Drive Water Pump"
+            id="F2DrvWtrPump"
+          />
+          <label for="F2DrvWtrPump" class="col-sm col-form-label"
+            >Pump in operation</label
+          >
         </div>
       </div>
     </div>
