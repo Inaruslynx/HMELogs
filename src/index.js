@@ -3,6 +3,7 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser")
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const mongoose = require("mongoose");
@@ -65,6 +66,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 app.use(mongoSanitize());
 app.use(flash());
+app.set('trust proxy', 'loopback, linklocal, uniquelocal')
+app.use(cookieParser())
 
 // Setup passport module
 app.use(passport.initialize());
@@ -89,6 +92,10 @@ app.use("/walkthrough", walkthroughRoutes);
 
 // Got to home
 app.get("/", (req, res) => {
+  // using a cookie named logged in to let the browser know if it should send a theme check or not
+  if (!res.locals.currentUser) {
+    res.cookie('isLoggedIn', 'false', { httpOnly: true })
+  }
   res.render("home");
 });
 

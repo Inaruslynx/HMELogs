@@ -31,6 +31,9 @@ module.exports.renderLogin = (req, res) => {
 // Attempts to login user
 module.exports.loginUser = (req, res) => {
   req.flash("success", "Welcome to Walkthroughs!");
+  if (req.cookies.isLoggedIn) {
+    res.cookie('isLoggedIn', 'true', {httpOnly: true})
+  }
   const redirectURL = req.session.returnTo || process.env.DOMAIN;
   res.redirect(redirectURL);
 };
@@ -41,8 +44,10 @@ module.exports.logoutUser = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect(process.env.DOMAIN);
   });
+  if (req.cookies.isLoggedIn) {
+    res.cookie('isLoggedIn', 'false', {httpOnly: true})
+  }
   req.flash("success", "Goodbye!");
   res.redirect(process.env.DOMAIN);
 };
