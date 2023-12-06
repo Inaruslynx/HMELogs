@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<%- process.env.DOMAIN %>css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<%- process.env.DOMAIN %>css/custom.css">
     <title>HM Walkthrough</title>
     <link
       rel="apple-touch-icon"
@@ -30,23 +31,25 @@
     />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
+    <script src="<%- process.env.DOMAIN %>js/jquery.min.js"></script>
   </head>
   <% if (!currentUser || currentUser.theme === "dark") { %>
     <body data-bs-theme="dark" class="d-flex flex-column vh-100">
   <% } else { %>
     <body data-bs-theme="light" class="d-flex flex-column vh-100">
   <% } %>
-    <script src="<%- process.env.DOMAIN %>js/jquery.min.js"></script>
     <%- include('../partials/navbar')%>
-    <main class="container mt-5">
+    <main class="container-fluid mt-5 d-flex flex-column">
       <%- include('../partials/flash') %> <%- body %>
     </main>
 
     <%- include('../partials/footer')%>
 
-    <script src="<%- process.env.DOMAIN %>js/getCookie.js"></script>
     <script src="<%- process.env.DOMAIN %>js/bootstrap.min.js"></script>
+    <script src="<%- process.env.DOMAIN %>js/main.js"></script>
+    <!-- <script src="<%- process.env.DOMAIN %>js/getCookie.js"></script>
     <script src="<%- process.env.DOMAIN %>js/validateForms.js"></script>
     <script src="<%- process.env.DOMAIN %>js/toggleMode.js"></script>
+    <script src="<%- process.env.DOMAIN %>js/DynamicScrollspy.js"></script> -->
   </body>
 </html>

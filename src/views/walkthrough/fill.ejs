@@ -1,596 +1,899 @@
 <% layout('layouts/boilerplate') %>
-<form action="/walkthrough" method="post" class="row">
-  <div class="container text-center">
-    <div>
-      <h1>Finish Mill</h1>
-    </div>
-    <h5>IMS Gauge</h5>
-    <div class="container pt-3">
-      <p>Frame Temperature</p>
 
-      <div class="row p-3">
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Top Beam"
-            name="IMS Top Beam"
-            id="imsTopBeam"
-          />
-          <label for="imsTopBeam">Top Beam</label>
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Vertical Part"
-            name="IMS Vertical Part"
-            id="imsVertPart"
-          />
-          <label for="imsVertPart" class="col-sm col-form-label"
-            >Vertical Part</label
+  <div class="row">
+    <div class="col-12 col-lg-2 p-4">
+      <div id="toc" class="h-auto ps-lg-4 my-lg-4 text-center">
+        <strong class="h6 my-2">On this page</strong>
+        <hr class="w-auto my-2" />
+        <div id="tocContents" class="">
+          <nav
+            id="TableOfContents"
+            class="nav nav-pills flex-column"
           >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Bottom Beam"
-            name="IMS Bottom Beam"
-            id="imsBotBeam"
-          />
-          <label for="imsBotBeam" class="col-sm col-form-label"
-            >Bottom Beam</label
-          >
+            <a class="nav-link" href="#IMS-Gauge">IMS Guage</a>
+            <a class="nav-link" href="#FM-RGL">FM RGL</a>
+            <a class="nav-link" href="#FM-Drive-DI-Skids">FM Drive DI Skids</a>
+            <a class="nav-link" href="#FM-Motor-Room">FM Motor Room</a>
+          </nav>
         </div>
       </div>
     </div>
 
-    <div class="container pt-3">
-      <p>Water Flow Monitoring</p>
-      <div class="row p-3">
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="C-Frame"
-            name="IMS C-Frame Flow"
-            id="imsFlowCframe"
-          />
-          <label for="imsFlowCframe" class="col-sm col-form-label"
-            >C-Frame</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="X-Ray Tube 1"
-            name="IMS X-Ray Tube 1 Flow"
-            id="imsFlowXTube1"
-          />
-          <label for="imsFlowXTube1" class="col-sm col-form-label"
-            >X-Ray Tube 1</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="X-Ray Tube 2"
-            name="IMS X-Ray Tube 2 Flow"
-            id="imsFlowXTube2"
-          />
-          <label for="imsFlowXTube2" class="col-sm col-form-label"
-            >X-Ray Tube 2</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Heat Exchanger/Lasers"
-            name="IMS Heat Exchanger/Lasers Flow"
-            id="imsFlowHeatExchng"
-          />
-          <label for="imsFlowHeatExchng" class="col-sm col-form-label"
-            >Heat Exchanger/Lasers</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS Camera Housing Flow"
-            id="imsFlowCamera"
-          />
-          <label for="imsFlowCamera" class="col-sm col-form-label"
-            >Camera Housing</label
-          >
-        </div>
-      </div>
-    </div>
+    <div class="col-12 col-lg-10">
+      <form action="/walkthrough" method="post" class="row">
+        <div class="container text-center">
+          <div>
+            <h1>Finish Mill</h1>
+          </div>
+          <h5 id="IMS-Gauge">IMS Gauge</h5>
+          <div class="container border my-4">
+            <!-- IMS Frame Temperature -->
+            <div class="container pt-3">
+              <p>Frame Temperature</p>
 
-    <div class="container pt-3">
-      <p>Water Temp Monitoring</p>
-      <div class="row p-3">
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="C-Frame"
-            name="IMS C-Frame Temp"
-            id="imsTempCframe"
-          />
-          <label for="imsTempCframe" class="col-sm col-form-label"
-            >C-Frame</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="X-Ray Tube 1"
-            name="IMS X-Ray Tube 1 Temp"
-            id="imsTempXTube1"
-          />
-          <label for="imsTempXTube1" class="col-sm col-form-label"
-            >X-Ray Tube 1</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="X-Ray Tube 2"
-            name="IMS X-Ray Tube 2 Temp"
-            id="imsTempXTube2"
-          />
-          <label for="imsTempXTube2" class="col-sm col-form-label"
-            >X-Ray Tube 2</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Heat Exchanger/Lasers"
-            name="IMS Heat Exchanger/Lasers Temp"
-            id="imsTempHeatExchng"
-          />
-          <label for="imsTempHeatExchng" class="col-sm col-form-label"
-            >Heat Exchanger/Lasers</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-lg">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS Camera Housing Temp"
-            id="imsTempCamera"
-          />
-          <label for="imsTempCamera" class="col-sm col-form-label"
-            >Camera Housing</label
-          >
-        </div>
-      </div>
-    </div>
-
-    <div class="container pt-3">
-      <p>Customer Water Monitoring</p>
-
-      <div class="row p-3">
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS Customer Water Flow"
-            id="imsCustFlow"
-          />
-          <label for="imsCustFlow" class="col-sm col-form-label">Flow</label>
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS Customer Water Temperature"
-            id="imsCustTemp"
-          />
-          <label for="imsCustTemp" class="col-sm col-form-label"
-            >Temperature</label
-          >
-        </div>
-      </div>
-    </div>
-
-    <div class="container pt-3">
-      <p>Pressure Monitoring</p>
-
-      <div class="row p-3">
-        <div class="form-floating pb-3 col-md">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS C-Frame Coolant Pressure"
-            id="imsPressCframe"
-          />
-          <label for="imsPressCframe" class="col-sm col-form-label"
-            >Coolant C-Frame</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-md">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS Periphery Coolant Pressure"
-            id="imsPressPeriphery"
-          />
-          <label for="imsPressPeriphery" class="col-sm col-form-label"
-            >Coolant Periphery</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-md">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS Operating Air Pressure"
-            id="imsPressOpAir"
-          />
-          <label for="imsPressOpAir" class="col-sm col-form-label"
-            >Operating Air</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-md">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Camera Housing"
-            name="IMS Purge Air Pressure"
-            id="imsPressPurgeAir"
-          />
-          <label for="imsPressPurgeAir" class="col-sm col-form-label"
-            >Purge Air</label
-          >
-        </div>
-      </div>
-    </div>
-
-    <h5>FM RGL</h5>
-    <div class="container pt-3">
-      <div class="row">
-        <div class="col-md">
-          <p class="form-label">Oil Flow</p>
-          <div class="row">
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F1 Top"
-                name="FM RGL Oil Flow F1 Top"
-                id="F1RglOilTop"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F1 Top</label
-              >
+              <div class="row p-3">
+                <div class="form-floating pb-3 col-sm">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Top Beam"
+                    name="IMS Top Beam"
+                    id="imsTopBeam"
+                  />
+                  <label for="imsTopBeam" class="col-sm col-form-label">Top Beam</label>
+                </div>
+                <div class="form-floating pb-3 col-sm">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Vertical Part"
+                    name="IMS Vertical Part"
+                    id="imsVertPart"
+                  />
+                  <label for="imsVertPart" class="col-sm col-form-label"
+                    >Vertical Part</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-sm">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Bottom Beam"
+                    name="IMS Bottom Beam"
+                    id="imsBotBeam"
+                  />
+                  <label for="imsBotBeam" class="col-sm col-form-label"
+                    >Bottom Beam</label
+                  >
+                </div>
+              </div>
             </div>
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F1 Bottom"
-                name="FM RGL Oil Flow F1 Top"
-                id="F1RglOilBot"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F1 Bottom</label
-              >
+            <!-- IMS Water Flow -->
+            <div class="container pt-3">
+              <p>Water Flow</p>
+              <div class="row p-3">
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="C-Frame"
+                    name="IMS C-Frame Flow"
+                    id="imsFlowCframe"
+                  />
+                  <label for="imsFlowCframe" class="col-sm col-form-label"
+                    >C-Frame</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="X-Ray Tube 1"
+                    name="IMS X-Ray Tube 1 Flow"
+                    id="imsFlowXTube1"
+                  />
+                  <label for="imsFlowXTube1" class="col-sm col-form-label"
+                    >X-Ray Tube 1</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="X-Ray Tube 2"
+                    name="IMS X-Ray Tube 2 Flow"
+                    id="imsFlowXTube2"
+                  />
+                  <label for="imsFlowXTube2" class="col-sm col-form-label"
+                    >X-Ray Tube 2</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Heat Exchanger/Lasers"
+                    name="IMS Heat Exchanger/Lasers Flow"
+                    id="imsFlowHeatExchng"
+                  />
+                  <label for="imsFlowHeatExchng" class="col-sm col-form-label"
+                    >Heat Exchanger/Lasers</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS Camera Housing Flow"
+                    id="imsFlowCamera"
+                  />
+                  <label for="imsFlowCamera" class="col-sm col-form-label"
+                    >Camera Housing</label
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- IMS Water Temp -->
+            <div class="container pt-3">
+              <p>Water Temp</p>
+              <div class="row p-3">
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="C-Frame"
+                    name="IMS C-Frame Temp"
+                    id="imsTempCframe"
+                  />
+                  <label for="imsTempCframe" class="col-sm col-form-label"
+                    >C-Frame</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="X-Ray Tube 1"
+                    name="IMS X-Ray Tube 1 Temp"
+                    id="imsTempXTube1"
+                  />
+                  <label for="imsTempXTube1" class="col-sm col-form-label"
+                    >X-Ray Tube 1</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="X-Ray Tube 2"
+                    name="IMS X-Ray Tube 2 Temp"
+                    id="imsTempXTube2"
+                  />
+                  <label for="imsTempXTube2" class="col-sm col-form-label"
+                    >X-Ray Tube 2</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Heat Exchanger/Lasers"
+                    name="IMS Heat Exchanger/Lasers Temp"
+                    id="imsTempHeatExchng"
+                  />
+                  <label for="imsTempHeatExchng" class="col-sm col-form-label"
+                    >Heat Exchanger/Lasers</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS Camera Housing Temp"
+                    id="imsTempCamera"
+                  />
+                  <label for="imsTempCamera" class="col-sm col-form-label"
+                    >Camera Housing</label
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- IMS Customer Water -->
+            <div class="container pt-3">
+              <p>Customer Water</p>
+
+              <div class="row p-3">
+                <div class="form-floating pb-3 col-sm">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS Customer Water Flow"
+                    id="imsCustFlow"
+                  />
+                  <label for="imsCustFlow" class="col-sm col-form-label"
+                    >Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-sm">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS Customer Water Temperature"
+                    id="imsCustTemp"
+                  />
+                  <label for="imsCustTemp" class="col-sm col-form-label"
+                    >Temperature</label
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Pressure Monitoring -->
+            <div class="container pt-3">
+              <p>Pressure Monitoring</p>
+
+              <div class="row p-3">
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS C-Frame Coolant Pressure"
+                    id="imsPressCframe"
+                  />
+                  <label for="imsPressCframe" class="col-sm col-form-label"
+                    >Coolant C-Frame</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS Periphery Coolant Pressure"
+                    id="imsPressPeriphery"
+                  />
+                  <label for="imsPressPeriphery" class="col-sm col-form-label"
+                    >Coolant Periphery</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS Operating Air Pressure"
+                    id="imsPressOpAir"
+                  />
+                  <label for="imsPressOpAir" class="col-sm col-form-label"
+                    >Operating Air</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Camera Housing"
+                    name="IMS Purge Air Pressure"
+                    id="imsPressPurgeAir"
+                  />
+                  <label for="imsPressPurgeAir" class="col-sm col-form-label"
+                    >Purge Air</label
+                  >
+                </div>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F2 Top"
-                name="FM RGL Oil Flow F2 Top"
-                id="F2RglOilTop"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F2 Top</label
-              >
-            </div>
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F2 Bottom"
-                name="FM RGL Oil Flow F2 Bottom"
-                id="F2RglOilBot"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F2 Bottom</label
-              >
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F3 Top"
-                name="FM RGL Oil Flow F3 Top"
-                id="F3RglOilTop"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F3 Top</label
-              >
-            </div>
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F3 Bottom"
-                name="FM RGL Oil Flow F3 Bottom"
-                id="F3RglOilBot"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F3 Bottom</label
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md">
-          <p class="form-label">Water Flow</p>
-          <div class="row">
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F1 Top"
-                name="FM RGL Water Flow F1 Top"
-                id="F1RglWaterTop"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F1 Top</label
-              >
-            </div>
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F1 Bottom"
-                name="FM RGL Water Flow F1 Top"
-                id="F1RglWaterBot"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F1 Bottom</label
-              >
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F2 Top"
-                name="FM RGL Water Flow F2 Top"
-                id="F2RglWaterTop"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F2 Top</label
-              >
-            </div>
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F2 Bottom"
-                name="FM RGL Water Flow F2 Bottom"
-                id="F2RglWaterBot"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F2 Bottom</label
-              >
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F3 Top"
-                name="FM RGL Water Flow F3 Top"
-                id="F3RglWaterTop"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F3 Top</label
-              >
-            </div>
-            <div class="form-floating pb-3 col-sm">
-              <input
-                type="number"
-                class="form-control"
-                placeholder="F3 Bottom"
-                name="FM RGL Water Flow F3 Bottom"
-                id="F3RglWaterBot"
-              />
-              <label for="imsPressCframe" class="col-sm col-form-label"
-                >F3 Bottom</label
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <h5>FM Drive DI Skids</h5>
-    <div class="container pt-3">
-      <div class="row">
-        <p class="form-label">F1</p>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Water Temp"
-            name="F1 Drive DI Water Temp"
-            id="F1DrvWtrTemp"
-          />
-          <label for="F1DrvWtrTemp" class="col-sm col-form-label"
-            >Water Temp</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F1 Drive Cooling Water Flow"
-            id="F1DrvCooWtrFlow"
-          />
-          <label for="F1DrvCooWtrFlow" class="col-sm col-form-label"
-            >Cooling Water Flow</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F1 Drive DI Water Flow"
-            id="F1DrvDiWtrFlow"
-          />
-          <label for="F1DrvDiWtrFlow" class="col-sm col-form-label"
-            >DI Water Flow</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F1 Drive Water Conductivity"
-            id="F1DrvWtrCond"
-          />
-          <label for="F1DrvWtrCond" class="col-sm col-form-label"
-            >Conductivity</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F1 Drive Water Pump"
-            id="F1DrvWtrPump"
-          />
-          <label for="F1DrvWtrPump" class="col-sm col-form-label"
-            >Pump in operation</label
-          >
-        </div>
-      </div>
-      <div class="row">
-        <p class="form-label">F2</p>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Water Temp"
-            name="F2 Drive DI Water Temp"
-            id="F2DrvWtrTemp"
-          />
-          <label for="F2DrvWtrTemp" class="col-sm col-form-label"
-            >Water Temp</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F2 Drive Cooling Water Flow"
-            id="F2DrvCooWtrFlow"
-          />
-          <label for="F2DrvCooWtrFlow" class="col-sm col-form-label"
-            >Cooling Water Flow</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F2 Drive DI Water Flow"
-            id="F2DrvDiWtrFlow"
-          />
-          <label for="F2DrvDiWtrFlow" class="col-sm col-form-label"
-            >DI Water Flow</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F2 Drive Water Conductivity"
-            id="F2DrvWtrCond"
-          />
-          <label for="F2DrvWtrCond" class="col-sm col-form-label"
-            >Conductivity</label
-          >
-        </div>
-        <div class="form-floating pb-3 col-sm">
-          <input
-            type="number"
-            class="form-control"
-            placeholder=""
-            name="F2 Drive Water Pump"
-            id="F2DrvWtrPump"
-          />
-          <label for="F2DrvWtrPump" class="col-sm col-form-label"
-            >Pump in operation</label
-          >
-        </div>
-      </div>
-    </div>
+          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#IMSNotes">Toggle IMS Note</button>
+          <textarea class="collapse form-control" name="IMS Notes" id="IMSNotes" rows="3"></textarea>
 
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="inlineRadioOptions"
-        id="inlineRadio1"
-        value="option1"
-      />
-      <label class="form-check-label" for="inlineRadio1">1</label>
+          <h5 class="mt-4" id="FM-RGL">FM RGL</h5>
+          <div class="container border my-4">
+            <div class="row">
+              <div class="col-md">
+                <p class="form-label">Oil Flow</p>
+                <div class="row">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F1 Top"
+                      name="FM RGL Oil Flow F1 Top"
+                      id="F1RglOilTop"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F1 Top</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F1 Bottom"
+                      name="FM RGL Oil Flow F1 Top"
+                      id="F1RglOilBot"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F1 Bottom</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F2 Top"
+                      name="FM RGL Oil Flow F2 Top"
+                      id="F2RglOilTop"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F2 Top</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F2 Bottom"
+                      name="FM RGL Oil Flow F2 Bottom"
+                      id="F2RglOilBot"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F2 Bottom</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F3 Top"
+                      name="FM RGL Oil Flow F3 Top"
+                      id="F3RglOilTop"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F3 Top</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F3 Bottom"
+                      name="FM RGL Oil Flow F3 Bottom"
+                      id="F3RglOilBot"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F3 Bottom</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md">
+                <p class="form-label">Water Flow</p>
+                <div class="row">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F1 Top"
+                      name="FM RGL Water Flow F1 Top"
+                      id="F1RglWaterTop"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F1 Top</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F1 Bottom"
+                      name="FM RGL Water Flow F1 Top"
+                      id="F1RglWaterBot"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F1 Bottom</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F2 Top"
+                      name="FM RGL Water Flow F2 Top"
+                      id="F2RglWaterTop"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F2 Top</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F2 Bottom"
+                      name="FM RGL Water Flow F2 Bottom"
+                      id="F2RglWaterBot"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F2 Bottom</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F3 Top"
+                      name="FM RGL Water Flow F3 Top"
+                      id="F3RglWaterTop"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F3 Top</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="F3 Bottom"
+                      name="FM RGL Water Flow F3 Bottom"
+                      id="F3RglWaterBot"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >F3 Bottom</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FMRGLNotes">Toggle FM RGL Note</button>
+          <textarea class="collapse form-control" name="FM RGL Notes" id="FMRGLNotes" rows="3"></textarea>
+
+          <h5 class="mt-4" id="FM-Drive-DI-Skids">FM Drive DI Skids</h5>
+          <div class="container border my-4 pt-3">
+            <!-- F1 -->
+            <div class="row">
+              <p class="form-label">F1</p>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="F1 Drive DI Water Temp"
+                  id="F1DrvWtrTemp"
+                />
+                <label for="F1DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F1 Drive Cooling Water Flow"
+                  id="F1DrvCooWtrFlow"
+                />
+                <label for="F1DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F1 Drive DI Water Flow"
+                  id="F1DrvDiWtrFlow"
+                />
+                <label for="F1DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F1 Drive Water Conductivity"
+                  id="F1DrvWtrCond"
+                />
+                <label for="F1DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F1 Drive Water Pump"
+                  id="F1DrvWtrPump"
+                />
+                <label for="F1DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+            <!-- F2 -->
+            <div class="row">
+              <p class="form-label">F2</p>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="F2 Drive DI Water Temp"
+                  id="F2DrvWtrTemp"
+                />
+                <label for="F2DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F2 Drive Cooling Water Flow"
+                  id="F2DrvCooWtrFlow"
+                />
+                <label for="F2DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F2 Drive DI Water Flow"
+                  id="F2DrvDiWtrFlow"
+                />
+                <label for="F2DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F2 Drive Water Conductivity"
+                  id="F2DrvWtrCond"
+                />
+                <label for="F2DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F2 Drive Water Pump"
+                  id="F2DrvWtrPump"
+                />
+                <label for="F2DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+            <!-- F3 -->
+            <div class="row">
+              <p class="form-label">F3</p>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="F3 Drive DI Water Temp"
+                  id="F3DrvWtrTemp"
+                />
+                <label for="F3DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F3 Drive Cooling Water Flow"
+                  id="F3DrvCooWtrFlow"
+                />
+                <label for="F3DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F3 Drive DI Water Flow"
+                  id="F3DrvDiWtrFlow"
+                />
+                <label for="F3DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F3 Drive Water Conductivity"
+                  id="F3DrvWtrCond"
+                />
+                <label for="F3DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F3 Drive Water Pump"
+                  id="F3DrvWtrPump"
+                />
+                <label for="F3DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+            <!-- F4 -->
+            <div class="row">
+              <p class="form-label">F4</p>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="F4 Drive DI Water Temp"
+                  id="F4DrvWtrTemp"
+                />
+                <label for="F4DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F4 Drive Cooling Water Flow"
+                  id="F4DrvCooWtrFlow"
+                />
+                <label for="F4DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F4 Drive DI Water Flow"
+                  id="F4DrvDiWtrFlow"
+                />
+                <label for="F4DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F4 Drive Water Conductivity"
+                  id="F4DrvWtrCond"
+                />
+                <label for="F4DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F4 Drive Water Pump"
+                  id="F4DrvWtrPump"
+                />
+                <label for="F4DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+            <!-- F5 -->
+            <div class="row">
+              <p class="form-label">F5</p>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="F5 Drive DI Water Temp"
+                  id="F5DrvWtrTemp"
+                />
+                <label for="F5DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F5 Drive Cooling Water Flow"
+                  id="F5DrvCooWtrFlow"
+                />
+                <label for="F5DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F5 Drive DI Water Flow"
+                  id="F5DrvDiWtrFlow"
+                />
+                <label for="F5DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F5 Drive Water Conductivity"
+                  id="F5DrvWtrCond"
+                />
+                <label for="F5DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F5 Drive Water Pump"
+                  id="F5DrvWtrPump"
+                />
+                <label for="F5DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+            <!-- F6 -->
+            <div class="row">
+              <p class="form-label">F6</p>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="F6 Drive DI Water Temp"
+                  id="F6DrvWtrTemp"
+                />
+                <label for="F6DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F6 Drive Cooling Water Flow"
+                  id="F6DrvCooWtrFlow"
+                />
+                <label for="F6DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F6 Drive DI Water Flow"
+                  id="F6DrvDiWtrFlow"
+                />
+                <label for="F6DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F6 Drive Water Conductivity"
+                  id="F6DrvWtrCond"
+                />
+                <label for="F6DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="F6 Drive Water Pump"
+                  id="F6DrvWtrPump"
+                />
+                <label for="F6DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FMDriveDINotes">Toggle FM Drive DI Note</button>
+          <textarea class="collapse form-control" name="FM Drive DI Notes" id="FMDriveDINotes" rows="3"></textarea>
+
+          <h5 class="mt-4" id="FM-Motor-Room">FM Motor Room</h5>
+
+          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FMRoomNotes">Toggle FM Room Note</button>
+          <textarea class="collapse form-control" name="FM Motor Room Notes" id="FMRoomNotes" rows="3"></textarea>
+
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio1"
+              value="option1"
+            />
+            <label class="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio2"
+              value="option2"
+            />
+            <label class="form-check-label" for="inlineRadio2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              id="inlineRadio3"
+              value="option3"
+              disabled
+            />
+            <label class="form-check-label" for="inlineRadio3"
+              >3 (disabled)</label
+            >
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
     </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="inlineRadioOptions"
-        id="inlineRadio2"
-        value="option2"
-      />
-      <label class="form-check-label" for="inlineRadio2">2</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="inlineRadioOptions"
-        id="inlineRadio3"
-        value="option3"
-        disabled
-      />
-      <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-</form>
+
