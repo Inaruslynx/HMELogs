@@ -1,30 +1,29 @@
 <% layout('layouts/boilerplate') %>
 
-  <div class="row">
-    <div class="col-12 col-lg-2 p-4">
-      <div id="toc" class="h-auto ps-lg-4 my-lg-4 text-center">
-        <strong class="h6 my-2">On this page</strong>
-        <hr class="w-auto my-2" />
-        <div id="tocContents" class="">
-          <nav
-            id="TableOfContents"
-            class="nav nav-pills flex-column"
-          >
-            <a class="nav-link" href="#IMS-Gauge">IMS Guage</a>
-            <a class="nav-link" href="#FM-RGL">FM RGL</a>
-            <a class="nav-link" href="#FM-Drive-DI-Skids">FM Drive DI Skids</a>
-            <a class="nav-link" href="#FM-Motor-Room">FM Motor Room</a>
-          </nav>
-        </div>
+<div class="row">
+  <div class="col-12 col-lg-2 p-4">
+    <div id="toc" class="h-auto ps-lg-4 my-lg-4 text-center">
+      <strong class="h6 my-2">On this page</strong>
+      <hr class="w-auto my-2" />
+      <div id="tocContents" class="">
+        <nav id="TableOfContents" class="nav nav-pills flex-column">
+          <a class="nav-link" href="#IMS-Gauge">IMS Guage</a>
+          <a class="nav-link" href="#FM-RGL">FM RGL</a>
+          <a class="nav-link" href="#FM-Drive-DI-Skids">FM Drive DI Skids</a>
+          <a class="nav-link" href="#FM-Motor-Room">FM Motor Room</a>
+        </nav>
       </div>
     </div>
+  </div>
 
-    <div class="col-12 col-lg-10">
-      <form action="/walkthrough" method="post" class="row">
-        <div class="container text-center">
-          <div>
-            <h1>Finish Mill</h1>
-          </div>
+  <div class="col-12 col-lg-10">
+    <form action="/walkthrough" method="post" class="row">
+      <div class="container text-center">
+        <div>
+          <h1>Finish Mill</h1>
+        </div>
+        <!-- IMS Gauge -->
+        <div>
           <h5 id="IMS-Gauge">IMS Gauge</h5>
           <div class="container border my-4">
             <!-- IMS Frame Temperature -->
@@ -40,7 +39,9 @@
                     name="IMS Top Beam"
                     id="imsTopBeam"
                   />
-                  <label for="imsTopBeam" class="col-sm col-form-label">Top Beam</label>
+                  <label for="imsTopBeam" class="col-sm col-form-label"
+                    >Top Beam</label
+                  >
                 </div>
                 <div class="form-floating pb-3 col-sm">
                   <input
@@ -288,180 +289,218 @@
             </div>
           </div>
 
-          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#IMSNotes">Toggle IMS Note</button>
-          <textarea class="collapse form-control" name="IMS Notes" id="IMSNotes" rows="3"></textarea>
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#IMSNotes"
+          >
+            Toggle IMS Note
+          </button>
+          <div class="align-items-center d-flex justify-content-center">
+            <textarea
+              class="collapse form-control w-50"
+              name="IMS Notes"
+              id="IMSNotes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
 
+        <!-- FM RGL -->
+        <div>
           <h5 class="mt-4" id="FM-RGL">FM RGL</h5>
           <div class="container border my-4">
             <div class="row">
               <div class="col-md">
                 <p class="form-label">Oil Flow</p>
-                <div class="row">
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F1 Top"
-                      name="FM RGL Oil Flow F1 Top"
-                      id="F1RglOilTop"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F1 Top</label
-                    >
+                <div class="border px-2 pt-3 mb-3">
+                  <div class="row">
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F1 Top"
+                        name="FM RGL Oil Flow F1 Top"
+                        id="F1RglOilTop"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F1 Top</label
+                      >
+                    </div>
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F1 Bottom"
+                        name="FM RGL Oil Flow F1 Top"
+                        id="F1RglOilBot"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F1 Bottom</label
+                      >
+                    </div>
                   </div>
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F1 Bottom"
-                      name="FM RGL Oil Flow F1 Top"
-                      id="F1RglOilBot"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F1 Bottom</label
-                    >
+                  <div class="row">
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F2 Top"
+                        name="FM RGL Oil Flow F2 Top"
+                        id="F2RglOilTop"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F2 Top</label
+                      >
+                    </div>
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F2 Bottom"
+                        name="FM RGL Oil Flow F2 Bottom"
+                        id="F2RglOilBot"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F2 Bottom</label
+                      >
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F2 Top"
-                      name="FM RGL Oil Flow F2 Top"
-                      id="F2RglOilTop"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F2 Top</label
-                    >
-                  </div>
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F2 Bottom"
-                      name="FM RGL Oil Flow F2 Bottom"
-                      id="F2RglOilBot"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F2 Bottom</label
-                    >
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F3 Top"
-                      name="FM RGL Oil Flow F3 Top"
-                      id="F3RglOilTop"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F3 Top</label
-                    >
-                  </div>
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F3 Bottom"
-                      name="FM RGL Oil Flow F3 Bottom"
-                      id="F3RglOilBot"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F3 Bottom</label
-                    >
+                  <div class="row">
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F3 Top"
+                        name="FM RGL Oil Flow F3 Top"
+                        id="F3RglOilTop"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F3 Top</label
+                      >
+                    </div>
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F3 Bottom"
+                        name="FM RGL Oil Flow F3 Bottom"
+                        id="F3RglOilBot"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F3 Bottom</label
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="col-md">
                 <p class="form-label">Water Flow</p>
-                <div class="row">
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F1 Top"
-                      name="FM RGL Water Flow F1 Top"
-                      id="F1RglWaterTop"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F1 Top</label
-                    >
+                <div class="border px-2 pt-3 mb-3">
+                  <div class="row">
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F1 Top"
+                        name="FM RGL Water Flow F1 Top"
+                        id="F1RglWaterTop"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F1 Top</label
+                      >
+                    </div>
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F1 Bottom"
+                        name="FM RGL Water Flow F1 Top"
+                        id="F1RglWaterBot"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F1 Bottom</label
+                      >
+                    </div>
                   </div>
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F1 Bottom"
-                      name="FM RGL Water Flow F1 Top"
-                      id="F1RglWaterBot"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F1 Bottom</label
-                    >
+                  <div class="row">
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F2 Top"
+                        name="FM RGL Water Flow F2 Top"
+                        id="F2RglWaterTop"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F2 Top</label
+                      >
+                    </div>
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F2 Bottom"
+                        name="FM RGL Water Flow F2 Bottom"
+                        id="F2RglWaterBot"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F2 Bottom</label
+                      >
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F2 Top"
-                      name="FM RGL Water Flow F2 Top"
-                      id="F2RglWaterTop"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F2 Top</label
-                    >
-                  </div>
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F2 Bottom"
-                      name="FM RGL Water Flow F2 Bottom"
-                      id="F2RglWaterBot"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F2 Bottom</label
-                    >
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F3 Top"
-                      name="FM RGL Water Flow F3 Top"
-                      id="F3RglWaterTop"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F3 Top</label
-                    >
-                  </div>
-                  <div class="form-floating pb-3 col-sm">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="F3 Bottom"
-                      name="FM RGL Water Flow F3 Bottom"
-                      id="F3RglWaterBot"
-                    />
-                    <label for="imsPressCframe" class="col-sm col-form-label"
-                      >F3 Bottom</label
-                    >
+                  <div class="row">
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F3 Top"
+                        name="FM RGL Water Flow F3 Top"
+                        id="F3RglWaterTop"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F3 Top</label
+                      >
+                    </div>
+                    <div class="form-floating pb-3 col-sm">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="F3 Bottom"
+                        name="FM RGL Water Flow F3 Bottom"
+                        id="F3RglWaterBot"
+                      />
+                      <label for="imsPressCframe" class="col-sm col-form-label"
+                        >F3 Bottom</label
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FMRGLNotes">Toggle FM RGL Note</button>
-          <textarea class="collapse form-control" name="FM RGL Notes" id="FMRGLNotes" rows="3"></textarea>
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#FMRGLNotes"
+          >
+            Toggle FM RGL Note
+          </button>
+          <div class="align-items-center d-flex justify-content-center">
+            <textarea
+              class="collapse form-control w-50"
+              name="FM RGL Notes"
+              id="FMRGLNotes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
 
+        <!-- FM Drive DI Skids -->
+        <div>
           <h5 class="mt-4" id="FM-Drive-DI-Skids">FM Drive DI Skids</h5>
           <div class="container border my-4 pt-3">
             <!-- F1 -->
@@ -850,50 +889,248 @@
             </div>
           </div>
 
-          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FMDriveDINotes">Toggle FM Drive DI Note</button>
-          <textarea class="collapse form-control" name="FM Drive DI Notes" id="FMDriveDINotes" rows="3"></textarea>
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#FMDriveDINotes"
+          >
+            Toggle FM Drive DI Note
+          </button>
+          <div class="align-items-center d-flex justify-content-center">
+            <textarea
+              class="collapse form-control w-50"
+              name="FM Drive DI Notes"
+              id="FMDriveDINotes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
 
+        <!-- FM Motor Room -->
+        <div>
           <h5 class="mt-4" id="FM-Motor-Room">FM Motor Room</h5>
 
-          <button class="mb-4 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#FMRoomNotes">Toggle FM Room Note</button>
-          <textarea class="collapse form-control" name="FM Motor Room Notes" id="FMRoomNotes" rows="3"></textarea>
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="FMMotorRoomLighting"
+              />
+              <label for="FMMotorRoomLighting" class="form-check-label">
+                Check overhead lighting is working and note discrepancies
+              </label>
+            </div>
+          </div>
 
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="option1"
-            />
-            <label class="form-check-label" for="inlineRadio1">1</label>
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#FMMotorRoomNotes"
+          >
+            Toggle FM Motor Room Note
+          </button>
+          <div class="align-items-center justify-content-center d-flex">
+            <textarea
+              class="collapse form-control w-50"
+              name="FM Motor Room Notes"
+              id="FMMotorRoomNotes"
+              rows="3"
+            ></textarea>
           </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              value="option2"
-            />
-            <label class="form-check-label" for="inlineRadio2">2</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio3"
-              value="option3"
-              disabled
-            />
-            <label class="form-check-label" for="inlineRadio3"
-              >3 (disabled)</label
-            >
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-      </form>
-    </div>
-  </div>
 
+        <!-- FM Basement -->
+        <div>
+          <h5 class="mt-4" id="FM-Basement">FM Basement</h5>
+
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="FMBasementAlarm"
+              />
+              <label for="FMBasementAlarm" class="form-check-label">
+                Check for proper operation of flood alarm
+              </label>
+            </div>
+          </div>
+
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#FMBasementNotes"
+          >
+            Toggle FM Basement Note
+          </button>
+          <div class="align-items-center justify-content-center d-flex">
+            <textarea
+              class="collapse form-control w-50"
+              name="FM Basement Notes"
+              id="FMBasementNotes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- FM Entry Area -->
+        <div>
+          <h5 class="mt-4" id="FM-Entry-Area">FM Entry Area</h5>
+
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="FMEntryArea"
+              />
+              <label for="FMEntryArea" class="form-check-label">
+                Check to make sure rolls are turning and note discrepancies
+              </label>
+            </div>
+          </div>
+
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#FMEntryNotes"
+          >
+            Toggle FM Entry Note
+          </button>
+          <div class="align-items-center justify-content-center d-flex">
+            <textarea
+              class="collapse form-control w-50"
+              name="FM Entry Notes"
+              id="FMEntryNotes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- FM Area Lighting -->
+        <div>
+          <h5 class="mt-4" id="FM-Motor-Room">FM Area Lighting</h5>
+
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="FMAreaLighting"
+              />
+              <label for="FMAreaLighting" class="form-check-label">
+                Check that overhead lighting is working and note discrepancies
+              </label>
+            </div>
+          </div>
+
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#FMAreaLightingNotes"
+          >
+            Toggle FM Entry Note
+          </button>
+          <div class="align-items-center justify-content-center d-flex">
+            <textarea
+              class="collapse form-control w-50"
+              name="FM Area Lighting Notes"
+              id="FMAreaLightingNotes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- TF2 -->
+        <div>
+          <h5 class="mt-4" id="TF2">TF2</h5>
+
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="TF2LightBarriers"
+              />
+              <label for="TF2LightBarriers" class="form-check-label">
+                Check for any disabled light barriers and replace/repair. Note
+                light barriers that are not working.
+              </label>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="TF2Burners"
+              />
+              <label for="TF2Burners" class="form-check-label">
+                Check burners and note discrepancies. fix or replace if
+                possible.
+              </label>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="TF2Thermocouples"
+              />
+              <label for="TF2Thermocouples" class="form-check-label">
+                Check for disabled thermocouples. Replace if necessary and mark
+                discrepancies in notes.
+              </label>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center m-4">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                value=""
+                id="TF2Camber"
+              />
+              <label for="TF2Camber" class="form-check-label">
+                Make sure camber laser is clean and operating.
+              </label>
+            </div>
+          </div>
+
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#TF2Notes"
+          >
+            Toggle TF2 Notes
+          </button>
+          <div class="align-items-center justify-content-center d-flex">
+            <textarea
+              class="collapse form-control w-50"
+              name="TF2 Notes"
+              id="TF2Notes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
