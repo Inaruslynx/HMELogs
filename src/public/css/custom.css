@@ -6,3 +6,7 @@
   height: calc(100vh - 7rem);
   overflow-y: auto;
 }
+
+h5 {
+  text-decoration-line: underline;
+}

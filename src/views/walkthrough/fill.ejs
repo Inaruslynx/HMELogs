@@ -1,34 +1,44 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="row">
+  <!-- Nav in left column -->
   <div class="col-12 col-lg-2 p-4">
     <div id="toc" class="h-auto ps-lg-4 my-lg-4 text-center">
       <strong class="h6 my-2">On this page</strong>
       <hr class="w-auto my-2" />
       <div id="tocContents" class="">
-        <nav id="TableOfContents" class="nav nav-pills flex-column">
-          <a class="nav-link" href="#IMS-Gauge">IMS Guage</a>
-          <a class="nav-link" href="#FM-RGL">FM RGL</a>
-          <a class="nav-link" href="#FM-Drive-DI-Skids">FM Drive DI Skids</a>
-          <a class="nav-link" href="#FM-Motor-Room">FM Motor Room</a>
+        <nav id="TableOfContents" class="nav nav-pills flex-column align-items-start pe-4">
+          <a class="nav-link" href="#FM">FM</a>
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link ms-3" href="#IMS-Gauge">IMS Guage</a>
+            <a class="nav-link ms-3" href="#FM-RGL">FM RGL</a>
+            <a class="nav-link ms-3" href="#FM-Drive-DI-Skids">FM Drive DI Skids</a>
+            <a class="nav-link ms-3" href="#FM-Misc">FM Miscellaneous</a>
+          </nav>
+          <a class="nav-link" href="#TF2">TF2</a>
+          <a class="nav-link" href="#RM">RM</a>
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link ms-3" href="#RM-Drive-DI-Skids">RM Drive DI Skids</a>
+          </nav>
         </nav>
       </div>
     </div>
   </div>
 
+  <!-- Main body -->
   <div class="col-12 col-lg-10">
     <form action="/walkthrough" method="post" class="row">
       <div class="container text-center">
         <div>
-          <h1>Finish Mill</h1>
+          <h1 id="FM">Finish Mill</h1>
         </div>
         <!-- IMS Gauge -->
+        <h4 class="mt-4" id="IMS-Gauge">IMS Gauge</h4>
         <div>
-          <h5 id="IMS-Gauge">IMS Gauge</h5>
           <div class="container border my-4">
             <!-- IMS Frame Temperature -->
             <div class="container pt-3">
-              <p>Frame Temperature</p>
+              <h5>Frame Temperature</h5>
 
               <div class="row p-3">
                 <div class="form-floating pb-3 col-sm">
@@ -71,7 +81,7 @@
             </div>
             <!-- IMS Water Flow -->
             <div class="container pt-3">
-              <p>Water Flow</p>
+              <h5>Water Flow</h5>
               <div class="row p-3">
                 <div class="form-floating pb-3 col-lg">
                   <input
@@ -137,7 +147,7 @@
             </div>
             <!-- IMS Water Temp -->
             <div class="container pt-3">
-              <p>Water Temp</p>
+              <h5>Water Temp</h5>
               <div class="row p-3">
                 <div class="form-floating pb-3 col-lg">
                   <input
@@ -203,7 +213,7 @@
             </div>
             <!-- IMS Customer Water -->
             <div class="container pt-3">
-              <p>Customer Water</p>
+              <h5>Customer Water</h5>
 
               <div class="row p-3">
                 <div class="form-floating pb-3 col-sm">
@@ -234,7 +244,7 @@
             </div>
             <!-- Pressure Monitoring -->
             <div class="container pt-3">
-              <p>Pressure Monitoring</p>
+              <h5>Pressure Monitoring</h5>
 
               <div class="row p-3">
                 <div class="form-floating pb-3 col-md">
@@ -308,12 +318,12 @@
         </div>
 
         <!-- FM RGL -->
+        <h4 class="mt-4" id="FM-RGL">FM RGL</h4>
         <div>
-          <h5 class="mt-4" id="FM-RGL">FM RGL</h5>
           <div class="container border my-4">
-            <div class="row">
+            <div class="row my-4">
               <div class="col-md">
-                <p class="form-label">Oil Flow</p>
+                <h5 class="form-label">Oil Flow</h5>
                 <div class="border px-2 pt-3 mb-3">
                   <div class="row">
                     <div class="form-floating pb-3 col-sm">
@@ -396,7 +406,7 @@
                 </div>
               </div>
               <div class="col-md">
-                <p class="form-label">Water Flow</p>
+                <h5 class="form-label">Water Flow</h5>
                 <div class="border px-2 pt-3 mb-3">
                   <div class="row">
                     <div class="form-floating pb-3 col-sm">
@@ -500,12 +510,12 @@
         </div>
 
         <!-- FM Drive DI Skids -->
+        <h4 class="mt-4" id="FM-Drive-DI-Skids">FM Drive DI Skids</h4>
         <div>
-          <h5 class="mt-4" id="FM-Drive-DI-Skids">FM Drive DI Skids</h5>
-          <div class="container border my-4 pt-3">
+          <div class="container border my-4 py-3">
             <!-- F1 -->
             <div class="row">
-              <p class="form-label">F1</p>
+              <h5 class="form-label">F1</h5>
               <div class="form-floating pb-3 col-sm">
                 <input
                   type="number"
@@ -569,7 +579,7 @@
             </div>
             <!-- F2 -->
             <div class="row">
-              <p class="form-label">F2</p>
+              <h5 class="form-label">F2</h5>
               <div class="form-floating pb-3 col-sm">
                 <input
                   type="number"
@@ -633,7 +643,7 @@
             </div>
             <!-- F3 -->
             <div class="row">
-              <p class="form-label">F3</p>
+              <h5 class="form-label">F3</h5>
               <div class="form-floating pb-3 col-sm">
                 <input
                   type="number"
@@ -697,7 +707,7 @@
             </div>
             <!-- F4 -->
             <div class="row">
-              <p class="form-label">F4</p>
+              <h5 class="form-label">F4</h5>
               <div class="form-floating pb-3 col-sm">
                 <input
                   type="number"
@@ -761,7 +771,7 @@
             </div>
             <!-- F5 -->
             <div class="row">
-              <p class="form-label">F5</p>
+              <h5 class="form-label">F5</h5>
               <div class="form-floating pb-3 col-sm">
                 <input
                   type="number"
@@ -825,7 +835,7 @@
             </div>
             <!-- F6 -->
             <div class="row">
-              <p class="form-label">F6</p>
+              <h5 class="form-label">F6</h5>
               <div class="form-floating pb-3 col-sm">
                 <input
                   type="number"
@@ -907,207 +917,212 @@
           </div>
         </div>
 
-        <!-- FM Motor Room -->
-        <div>
-          <h5 class="mt-4" id="FM-Motor-Room">FM Motor Room</h5>
+        <!-- FM Miscellaneous -->
+        <h4 class="mt-4" id="FM-Misc">FM Miscellaneous</h4>
+        <div class="container border mt-4">
+          <!-- FM Motor Room -->
+          <div>
+            <h5 class="mt-4" id="FM-Motor-Room">FM Motor Room</h5>
 
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="FMMotorRoomLighting"
-              />
-              <label for="FMMotorRoomLighting" class="form-check-label">
-                Check overhead lighting is working and note discrepancies
-              </label>
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="FMMotorRoomLighting"
+                />
+                <label for="FMMotorRoomLighting" class="form-check-label">
+                  Check overhead lighting is working and note discrepancies
+                </label>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#FMMotorRoomNotes"
+            >
+              Toggle FM Motor Room Note
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="FM Motor Room Notes"
+                id="FMMotorRoomNotes"
+                rows="3"
+              ></textarea>
             </div>
           </div>
 
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#FMMotorRoomNotes"
-          >
-            Toggle FM Motor Room Note
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="FM Motor Room Notes"
-              id="FMMotorRoomNotes"
-              rows="3"
-            ></textarea>
-          </div>
-        </div>
+          <!-- FM Basement -->
+          <div>
+            <h5 class="mt-4" id="FM-Basement">FM Basement</h5>
 
-        <!-- FM Basement -->
-        <div>
-          <h5 class="mt-4" id="FM-Basement">FM Basement</h5>
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="FMBasementAlarm"
+                />
+                <label for="FMBasementAlarm" class="form-check-label">
+                  Check for proper operation of flood alarm
+                </label>
+              </div>
+            </div>
 
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="FMBasementAlarm"
-              />
-              <label for="FMBasementAlarm" class="form-check-label">
-                Check for proper operation of flood alarm
-              </label>
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#FMBasementNotes"
+            >
+              Toggle FM Basement Note
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="FM Basement Notes"
+                id="FMBasementNotes"
+                rows="3"
+              ></textarea>
             </div>
           </div>
 
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#FMBasementNotes"
-          >
-            Toggle FM Basement Note
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="FM Basement Notes"
-              id="FMBasementNotes"
-              rows="3"
-            ></textarea>
-          </div>
-        </div>
+          <!-- FM Entry Area -->
+          <div>
+            <h5 class="mt-4" id="FM-Entry-Area">FM Entry Area</h5>
 
-        <!-- FM Entry Area -->
-        <div>
-          <h5 class="mt-4" id="FM-Entry-Area">FM Entry Area</h5>
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="FMEntryArea"
+                />
+                <label for="FMEntryArea" class="form-check-label">
+                  Check to make sure rolls are turning and note discrepancies
+                </label>
+              </div>
+            </div>
 
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="FMEntryArea"
-              />
-              <label for="FMEntryArea" class="form-check-label">
-                Check to make sure rolls are turning and note discrepancies
-              </label>
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#FMEntryNotes"
+            >
+              Toggle FM Entry Note
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="FM Entry Notes"
+                id="FMEntryNotes"
+                rows="3"
+              ></textarea>
             </div>
           </div>
 
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#FMEntryNotes"
-          >
-            Toggle FM Entry Note
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="FM Entry Notes"
-              id="FMEntryNotes"
-              rows="3"
-            ></textarea>
-          </div>
-        </div>
+          <!-- FM Area Lighting -->
+          <div>
+            <h5 class="mt-4" id="FM-Motor-Room">FM Area Lighting</h5>
 
-        <!-- FM Area Lighting -->
-        <div>
-          <h5 class="mt-4" id="FM-Motor-Room">FM Area Lighting</h5>
-
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="FMAreaLighting"
-              />
-              <label for="FMAreaLighting" class="form-check-label">
-                Check that overhead lighting is working and note discrepancies
-              </label>
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="FMAreaLighting"
+                />
+                <label for="FMAreaLighting" class="form-check-label">
+                  Check that overhead lighting is working and note discrepancies
+                </label>
+              </div>
             </div>
-          </div>
 
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#FMAreaLightingNotes"
-          >
-            Toggle FM Entry Note
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="FM Area Lighting Notes"
-              id="FMAreaLightingNotes"
-              rows="3"
-            ></textarea>
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#FMAreaLightingNotes"
+            >
+              Toggle FM Entry Note
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="FM Area Lighting Notes"
+                id="FMAreaLightingNotes"
+                rows="3"
+              ></textarea>
+            </div>
           </div>
         </div>
 
         <!-- TF2 -->
+        <h4 class="mt-4" id="TF2">TF2</h4>
         <div>
-          <h5 class="mt-4" id="TF2">TF2</h5>
-
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="TF2LightBarriers"
-              />
-              <label for="TF2LightBarriers" class="form-check-label">
-                Check for any disabled light barriers and replace/repair. Note
-                light barriers that are not working.
-              </label>
+          <div class="container border my-4">
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="TF2LightBarriers"
+                />
+                <label for="TF2LightBarriers" class="form-check-label">
+                  Check for any disabled light barriers and replace/repair. Note
+                  light barriers that are not working.
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="TF2Burners"
-              />
-              <label for="TF2Burners" class="form-check-label">
-                Check burners and note discrepancies. fix or replace if
-                possible.
-              </label>
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="TF2Burners"
+                />
+                <label for="TF2Burners" class="form-check-label">
+                  Check burners and note discrepancies. fix or replace if
+                  possible.
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="TF2Thermocouples"
-              />
-              <label for="TF2Thermocouples" class="form-check-label">
-                Check for disabled thermocouples. Replace if necessary and mark
-                discrepancies in notes.
-              </label>
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="TF2Thermocouples"
+                />
+                <label for="TF2Thermocouples" class="form-check-label">
+                  Check for disabled thermocouples. Replace if necessary and
+                  mark discrepancies in notes.
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="d-flex align-items-center justify-content-center m-4">
-            <div class="form-check">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                value=""
-                id="TF2Camber"
-              />
-              <label for="TF2Camber" class="form-check-label">
-                Make sure camber laser is clean and operating.
-              </label>
+            <div class="d-flex align-items-center justify-content-center m-4">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  value=""
+                  id="TF2Camber"
+                />
+                <label for="TF2Camber" class="form-check-label">
+                  Make sure camber laser is clean and operating.
+                </label>
+              </div>
             </div>
           </div>
 
@@ -1126,6 +1141,166 @@
               id="TF2Notes"
               rows="3"
             ></textarea>
+          </div>
+        </div>
+
+        <h1 id="RM">Roughing Mill</h1>
+        <!-- RM Drive DI Skids -->
+        <h4 class="mt-4" id="RM-Drive-DI-Skids">RM Drive DI Skids</h4>
+        <div>
+          <div class="container border my-4 pt-3">
+            <!-- R1 -->
+            <div class="row">
+              <h5 class="form-label">R1</h5>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="R1 Drive DI Water Temp"
+                  id="R1DrvWtrTemp"
+                />
+                <label for="R1DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R1 Drive Cooling Water Flow"
+                  id="R1DrvCooWtrFlow"
+                />
+                <label for="R1DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R1 Drive DI Water Flow"
+                  id="R1DrvDiWtrFlow"
+                />
+                <label for="R1DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R1 Drive Water Conductivity"
+                  id="R1DrvWtrCond"
+                />
+                <label for="R1DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R1 Drive Water Pump"
+                  id="R1DrvWtrPump"
+                />
+                <label for="R1DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+            <!-- R2 -->
+            <div class="row">
+              <h5 class="form-label">R2</h5>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Water Temp"
+                  name="R2 Drive DI Water Temp"
+                  id="R2DrvWtrTemp"
+                />
+                <label for="R2DrvWtrTemp" class="col-sm col-form-label"
+                  >Water Temp</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R2 Drive Cooling Water Flow"
+                  id="R2DrvCooWtrFlow"
+                />
+                <label for="R2DrvCooWtrFlow" class="col-sm col-form-label"
+                  >Cooling Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R2 Drive DI Water Flow"
+                  id="R2DrvDiWtrFlow"
+                />
+                <label for="R2DrvDiWtrFlow" class="col-sm col-form-label"
+                  >DI Water Flow</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R2 Drive Water Conductivity"
+                  id="R2DrvWtrCond"
+                />
+                <label for="R2DrvWtrCond" class="col-sm col-form-label"
+                  >Conductivity</label
+                >
+              </div>
+              <div class="form-floating pb-3 col-sm">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="R2 Drive Water Pump"
+                  id="R2DrvWtrPump"
+                />
+                <label for="R2DrvWtrPump" class="col-sm col-form-label"
+                  >Pump in operation</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="mb-4 btn btn-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#RMDriveDINotes"
+          >
+            Toggle RM Drive DI Note
+          </button>
+          <div class="align-items-center d-flex justify-content-center">
+            <textarea
+              class="collapse form-control w-50"
+              name="RM Drive DI Notes"
+              id="RMDriveDINotes"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+
+        <h4 class="mt-4" id="TF2-CEMS">TF2 CEMS Unit</h4>
+        <div>
+          <div class="container border my-4 pt-3">
+
           </div>
         </div>
 
