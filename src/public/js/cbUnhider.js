@@ -1,3 +1,0 @@
-function cbUnhider(params) {
-    
-}

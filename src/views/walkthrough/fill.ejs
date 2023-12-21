@@ -30,9 +30,9 @@
             <a class="nav-link ms-3" href="#RM-Misc">RM Miscellaneous</a>
           </nav>
           <a class="nav-link" href="#TF1">TF1</a>
-          
-            <a class="nav-link" href="#TF1-Basement">TF Basements</a>
-          
+
+          <a class="nav-link" href="#TF1-Basement">TF Basements</a>
+
           <a class="nav-link" href="#DC">DC</a>
         </nav>
       </div>
@@ -41,7 +41,12 @@
 
   <!-- Main body -->
   <div class="col-12 col-lg-10">
-    <form action="/walkthrough" method="post" class="row">
+    <form
+      action="<%- process.env.DOMAIN %>/walkthrough"
+      method="post"
+      class="row"
+      id="electricalWalkthrough"
+    >
       <div class="container text-center">
         <div>
           <h1 id="FM">Finish Mill</h1>
@@ -58,10 +63,12 @@
                 <div class="form-floating pb-3 col-sm">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Top Beam"
                     name="IMS Top Beam"
                     id="imsTopBeam"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsTopBeam" class="col-sm col-form-label"
                     >Top Beam</label
@@ -70,10 +77,12 @@
                 <div class="form-floating pb-3 col-sm">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Vertical Part"
                     name="IMS Vertical Part"
                     id="imsVertPart"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsVertPart" class="col-sm col-form-label"
                     >Vertical Part</label
@@ -82,10 +91,12 @@
                 <div class="form-floating pb-3 col-sm">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Bottom Beam"
                     name="IMS Bottom Beam"
                     id="imsBotBeam"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsBotBeam" class="col-sm col-form-label"
                     >Bottom Beam</label
@@ -100,10 +111,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="C-Frame"
                     name="IMS C-Frame Flow"
                     id="imsFlowCframe"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsFlowCframe" class="col-sm col-form-label"
                     >C-Frame</label
@@ -112,10 +125,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="X-Ray Tube 1"
                     name="IMS X-Ray Tube 1 Flow"
                     id="imsFlowXTube1"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsFlowXTube1" class="col-sm col-form-label"
                     >X-Ray Tube 1</label
@@ -124,10 +139,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="X-Ray Tube 2"
                     name="IMS X-Ray Tube 2 Flow"
                     id="imsFlowXTube2"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsFlowXTube2" class="col-sm col-form-label"
                     >X-Ray Tube 2</label
@@ -136,10 +153,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Heat Exchanger/Lasers"
                     name="IMS Heat Exchanger/Lasers Flow"
                     id="imsFlowHeatExchng"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsFlowHeatExchng" class="col-sm col-form-label"
                     >Heat Exchanger/Lasers</label
@@ -148,10 +167,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS Camera Housing Flow"
                     id="imsFlowCamera"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsFlowCamera" class="col-sm col-form-label"
                     >Camera Housing</label
@@ -166,10 +187,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="C-Frame"
                     name="IMS C-Frame Temp"
                     id="imsTempCframe"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsTempCframe" class="col-sm col-form-label"
                     >C-Frame</label
@@ -178,10 +201,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="X-Ray Tube 1"
                     name="IMS X-Ray Tube 1 Temp"
                     id="imsTempXTube1"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsTempXTube1" class="col-sm col-form-label"
                     >X-Ray Tube 1</label
@@ -190,10 +215,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="X-Ray Tube 2"
                     name="IMS X-Ray Tube 2 Temp"
                     id="imsTempXTube2"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsTempXTube2" class="col-sm col-form-label"
                     >X-Ray Tube 2</label
@@ -202,10 +229,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Heat Exchanger/Lasers"
                     name="IMS Heat Exchanger/Lasers Temp"
                     id="imsTempHeatExchng"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsTempHeatExchng" class="col-sm col-form-label"
                     >Heat Exchanger/Lasers</label
@@ -214,10 +243,12 @@
                 <div class="form-floating pb-3 col-lg">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS Camera Housing Temp"
                     id="imsTempCamera"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsTempCamera" class="col-sm col-form-label"
                     >Camera Housing</label
@@ -233,10 +264,12 @@
                 <div class="form-floating pb-3 col-sm">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS Customer Water Flow"
                     id="imsCustFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsCustFlow" class="col-sm col-form-label"
                     >Flow</label
@@ -245,10 +278,12 @@
                 <div class="form-floating pb-3 col-sm">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS Customer Water Temperature"
                     id="imsCustTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsCustTemp" class="col-sm col-form-label"
                     >Temperature</label
@@ -264,10 +299,12 @@
                 <div class="form-floating pb-3 col-md">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS C-Frame Coolant Pressure"
                     id="imsPressCframe"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsPressCframe" class="col-sm col-form-label"
                     >Coolant C-Frame</label
@@ -276,10 +313,12 @@
                 <div class="form-floating pb-3 col-md">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS Periphery Coolant Pressure"
                     id="imsPressPeriphery"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsPressPeriphery" class="col-sm col-form-label"
                     >Coolant Periphery</label
@@ -288,10 +327,12 @@
                 <div class="form-floating pb-3 col-md">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS Operating Air Pressure"
                     id="imsPressOpAir"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsPressOpAir" class="col-sm col-form-label"
                     >Operating Air</label
@@ -300,10 +341,12 @@
                 <div class="form-floating pb-3 col-md">
                   <input
                     type="number"
+                    step="any"
                     class="form-control"
                     placeholder="Camera Housing"
                     name="IMS Purge Air Pressure"
                     id="imsPressPurgeAir"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="imsPressPurgeAir" class="col-sm col-form-label"
                     >Purge Air</label
@@ -327,6 +370,7 @@
               name="IMS Notes"
               id="IMSNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -343,10 +387,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F1 Top"
                         name="FM RGL Oil Flow F1 Top"
                         id="F1RglOilTop"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F1 Top</label
@@ -355,10 +401,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F1 Bottom"
-                        name="FM RGL Oil Flow F1 Top"
+                        name="FM RGL Oil Flow F1 Bottom"
                         id="F1RglOilBot"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F1 Bottom</label
@@ -369,10 +417,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F2 Top"
                         name="FM RGL Oil Flow F2 Top"
                         id="F2RglOilTop"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F2 Top</label
@@ -381,10 +431,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F2 Bottom"
                         name="FM RGL Oil Flow F2 Bottom"
                         id="F2RglOilBot"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F2 Bottom</label
@@ -395,10 +447,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F3 Top"
                         name="FM RGL Oil Flow F3 Top"
                         id="F3RglOilTop"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F3 Top</label
@@ -407,10 +461,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F3 Bottom"
                         name="FM RGL Oil Flow F3 Bottom"
                         id="F3RglOilBot"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F3 Bottom</label
@@ -426,10 +482,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F1 Top"
                         name="FM RGL Water Flow F1 Top"
                         id="F1RglWaterTop"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F1 Top</label
@@ -438,10 +496,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F1 Bottom"
-                        name="FM RGL Water Flow F1 Top"
+                        name="FM RGL Water Flow F1 Bottom"
                         id="F1RglWaterBot"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F1 Bottom</label
@@ -452,10 +512,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F2 Top"
                         name="FM RGL Water Flow F2 Top"
                         id="F2RglWaterTop"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F2 Top</label
@@ -464,10 +526,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F2 Bottom"
                         name="FM RGL Water Flow F2 Bottom"
                         id="F2RglWaterBot"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F2 Bottom</label
@@ -478,10 +542,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F3 Top"
                         name="FM RGL Water Flow F3 Top"
                         id="F3RglWaterTop"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F3 Top</label
@@ -490,10 +556,12 @@
                     <div class="form-floating pb-3 col-sm">
                       <input
                         type="number"
+                        step="any"
                         class="form-control"
                         placeholder="F3 Bottom"
                         name="FM RGL Water Flow F3 Bottom"
                         id="F3RglWaterBot"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
                       />
                       <label for="imsPressCframe" class="col-sm col-form-label"
                         >F3 Bottom</label
@@ -519,6 +587,7 @@
               name="FM RGL Notes"
               id="FMRGLNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -533,10 +602,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="F1 Drive DI Water Temp"
                   id="F1DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F1DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -545,10 +616,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F1 Drive Cooling Water Flow"
                   id="F1DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F1DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -557,10 +630,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F1 Drive DI Water Flow"
                   id="F1DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F1DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -569,10 +644,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F1 Drive Water Conductivity"
                   id="F1DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F1DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -581,10 +658,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F1 Drive Water Pump"
                   id="F1DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F1DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -597,10 +676,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="F2 Drive DI Water Temp"
                   id="F2DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F2DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -609,10 +690,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F2 Drive Cooling Water Flow"
                   id="F2DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F2DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -621,10 +704,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F2 Drive DI Water Flow"
                   id="F2DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F2DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -633,10 +718,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F2 Drive Water Conductivity"
                   id="F2DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F2DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -645,10 +732,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F2 Drive Water Pump"
                   id="F2DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F2DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -661,10 +750,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="F3 Drive DI Water Temp"
                   id="F3DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F3DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -673,10 +764,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F3 Drive Cooling Water Flow"
                   id="F3DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F3DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -685,10 +778,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F3 Drive DI Water Flow"
                   id="F3DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F3DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -697,10 +792,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F3 Drive Water Conductivity"
                   id="F3DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F3DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -709,10 +806,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F3 Drive Water Pump"
                   id="F3DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F3DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -725,10 +824,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="F4 Drive DI Water Temp"
                   id="F4DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F4DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -737,10 +838,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F4 Drive Cooling Water Flow"
                   id="F4DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F4DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -749,10 +852,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F4 Drive DI Water Flow"
                   id="F4DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F4DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -761,10 +866,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F4 Drive Water Conductivity"
                   id="F4DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F4DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -773,10 +880,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F4 Drive Water Pump"
                   id="F4DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F4DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -789,10 +898,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="F5 Drive DI Water Temp"
                   id="F5DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F5DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -801,10 +912,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F5 Drive Cooling Water Flow"
                   id="F5DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F5DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -813,10 +926,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F5 Drive DI Water Flow"
                   id="F5DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F5DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -825,10 +940,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F5 Drive Water Conductivity"
                   id="F5DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F5DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -837,10 +954,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F5 Drive Water Pump"
                   id="F5DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F5DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -853,10 +972,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="F6 Drive DI Water Temp"
                   id="F6DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F6DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -865,10 +986,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F6 Drive Cooling Water Flow"
                   id="F6DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F6DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -877,10 +1000,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F6 Drive DI Water Flow"
                   id="F6DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F6DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -889,10 +1014,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F6 Drive Water Conductivity"
                   id="F6DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F6DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -901,10 +1028,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="F6 Drive Water Pump"
                   id="F6DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="F6DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -927,6 +1056,7 @@
               name="FM Drive DI Notes"
               id="FMDriveDINotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -942,9 +1072,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="FMMotorRoomLighting"
+                  name="FM Motor Room Lighting"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="FMMotorRoomLighting" class="form-check-label">
                   Check overhead lighting is working and note discrepancies.
@@ -966,6 +1099,7 @@
                 name="FM Motor Room Notes"
                 id="FMMotorRoomNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
@@ -984,9 +1118,12 @@
                   <div class="form-check">
                     <input
                       type="checkbox"
+                      onclick="handleCheckboxClick.call(this)"
                       class="form-check-input"
-                      value=""
+                      value="false"
                       id="FMBasementLighting"
+                      name="FM Basement Lighting"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
                     />
                     <label for="FMBasementLighting" class="form-check-label">
                       Check basement lighting and check for flooding.
@@ -1001,9 +1138,12 @@
                   <div class="form-check">
                     <input
                       type="checkbox"
+                      onclick="handleCheckboxClick.call(this)"
                       class="form-check-input"
-                      value=""
+                      value="false"
                       id="FMBasementAlarm"
+                      name="FM Basement Flood Alarm"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
                     />
                     <label for="FMBasementAlarm" class="form-check-label">
                       Check for proper operation of flood alarm.
@@ -1027,6 +1167,7 @@
                 name="FM Basement Notes"
                 id="FMBasementNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
@@ -1039,9 +1180,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="FMEntryArea"
+                  name="FM Entry Area Rolls"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="FMEntryArea" class="form-check-label">
                   Check to make sure rolls are turning.
@@ -1063,6 +1207,7 @@
                 name="FM Entry Notes"
                 id="FMEntryNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
@@ -1075,9 +1220,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="FMAreaLighting"
+                  name="FM Area Lighting"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="FMAreaLighting" class="form-check-label">
                   Check that overhead lighting is working.
@@ -1099,6 +1247,7 @@
                 name="FM Area Lighting Notes"
                 id="FMAreaLightingNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
@@ -1112,9 +1261,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF2LightBarriers"
+                  name="TF2 Light Barriers"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2LightBarriers" class="form-check-label">
                   Check for any disabled light barriers and replace/repair.
@@ -1125,9 +1277,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF2Burners"
+                  name="TF2 Burners"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2Burners" class="form-check-label">
                   Check burners and fix or replace if possible.
@@ -1138,9 +1293,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF2Thermocouples"
+                  name="TF2 Thermocouples"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2Thermocouples" class="form-check-label">
                   Check for disabled thermocouples. Replace if necessary.
@@ -1151,12 +1309,15 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF2Camber"
+                  name="TF2 Camber Lasers"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2Camber" class="form-check-label">
-                  Make sure camber laser is clean and operating.
+                  Make sure camber lasers are clean and operating.
                 </label>
               </div>
             </div>
@@ -1176,6 +1337,7 @@
               name="TF2 Notes"
               id="TF2Notes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1191,10 +1353,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="R1 Drive DI Water Temp"
                   id="R1DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R1DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -1203,10 +1367,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R1 Drive Cooling Water Flow"
                   id="R1DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R1DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -1215,10 +1381,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R1 Drive DI Water Flow"
                   id="R1DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R1DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -1227,10 +1395,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R1 Drive Water Conductivity"
                   id="R1DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R1DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -1239,10 +1409,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R1 Drive Water Pump"
                   id="R1DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R1DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -1255,10 +1427,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder="Water Temp"
                   name="R2 Drive DI Water Temp"
                   id="R2DrvWtrTemp"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R2DrvWtrTemp" class="col-md col-form-label"
                   >Water Temp</label
@@ -1267,10 +1441,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R2 Drive Cooling Water Flow"
                   id="R2DrvCooWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R2DrvCooWtrFlow" class="col-md col-form-label"
                   >Cooling Water Flow</label
@@ -1279,10 +1455,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R2 Drive DI Water Flow"
                   id="R2DrvDiWtrFlow"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R2DrvDiWtrFlow" class="col-md col-form-label"
                   >DI Water Flow</label
@@ -1291,10 +1469,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R2 Drive Water Conductivity"
                   id="R2DrvWtrCond"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R2DrvWtrCond" class="col-md col-form-label"
                   >Conductivity</label
@@ -1303,10 +1483,12 @@
               <div class="form-floating pb-3 col-md">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="R2 Drive Water Pump"
                   id="R2DrvWtrPump"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="R2DrvWtrPump" class="col-md col-form-label"
                   >Pump in operation</label
@@ -1341,10 +1523,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF2 CEMS Cem-cal Zero, daily"
                   id="TF2CEMSZeroDaily"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2CEMSZeroDaily" class="col-lg col-form-label"
                   >TF2 CEMS Cem-cal Zero (99% N2), daily</label
@@ -1353,10 +1537,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF2 CEMS 180PPM NO, daily"
                   id="TF2CEMS180Daily"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2CEMS180Daily" class="col-lg col-form-label"
                   >TF2 CEMS (180PPM NO), daily</label
@@ -1365,10 +1551,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF2 CEMS 50PPM NO, monthly"
                   id="TF2CEMS50Monthly"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2CEMS50Monthly" class="col-lg col-form-label"
                   >TF2 CEMS (50PPM NO), monthly</label
@@ -1377,10 +1565,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF2 CEMS 110PPM NO, monthly"
                   id="TF2CEMS110Monthly"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2CEMS110Monthly" class="col-lg col-form-label"
                   >TF2 CEMS (110PPM NO), monthly</label
@@ -1392,9 +1582,12 @@
                 <div class="form-check">
                   <input
                     type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
                     class="form-check-input"
-                    value=""
+                    value="false"
                     id="TF2CCEMSCal"
+                    name="TF2 CEMS Cal Passed"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="TF2CCEMSCal" class="form-check-label">
                     Did the unit pass calibration today?
@@ -1417,6 +1610,7 @@
               name="TF2 CEMS Notes"
               id="TF2CEMSNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1432,9 +1626,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="RMMotorRoomLighting"
+                  name="RM Motor Room Lighting"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="RMMotorRoomLighting" class="form-check-label">
                   Check overhead lighting is working.
@@ -1456,6 +1653,7 @@
                 name="RM Motor Room Notes"
                 id="RMMotorRoomNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
@@ -1474,9 +1672,12 @@
                   <div class="form-check">
                     <input
                       type="checkbox"
+                      onclick="handleCheckboxClick.call(this)"
                       class="form-check-input"
-                      value=""
+                      value="false"
                       id="RMBasementLighting"
+                      name="RM Basement Lighting"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
                     />
                     <label for="RMBasementLighting" class="form-check-label">
                       Check basement lighting and check for flooding.
@@ -1491,9 +1692,12 @@
                   <div class="form-check">
                     <input
                       type="checkbox"
+                      onclick="handleCheckboxClick.call(this)"
                       class="form-check-input"
-                      value=""
+                      value="false"
                       id="RMBasementAlarm"
+                      name="RM Basement Flood Alarm"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
                     />
                     <label for="RMBasementAlarm" class="form-check-label">
                       Check for proper operation of flood alarm.
@@ -1517,21 +1721,25 @@
                 name="RM Basement Notes"
                 id="RMBasementNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
 
           <!-- RM Entry Area -->
           <div>
-            <h5 class="mt-4" id="RM-Entry-Area">RM Entry Area</h5>
+            <h5 class="mt-4" id="RM-Entry-Area">RM Entry Area and TBC Rolls</h5>
 
             <div class="d-flex align-items-center justify-content-center m-4">
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="RMEntryArea"
+                  name="RM Entry and TBC Rolls"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="RMEntryArea" class="form-check-label">
                   Check to make sure rolls are turning.
@@ -1553,6 +1761,7 @@
                 name="RM Entry Notes"
                 id="RMEntryNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
@@ -1565,9 +1774,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="RMAreaLighting"
+                  name="TM Area Lighting"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="RMAreaLighting" class="form-check-label">
                   Check that overhead lighting is working.
@@ -1589,6 +1801,7 @@
                 name="RM Area Lighting Notes"
                 id="RMAreaLightingNotes"
                 rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
@@ -1602,9 +1815,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF1LightBarriers"
+                  name="TF1 Light Barriers"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1LightBarriers" class="form-check-label">
                   Check for any disabled light barriers and replace/repair.
@@ -1615,9 +1831,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF1Burners"
+                  name="TF1 Burners"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1Burners" class="form-check-label">
                   Check burners and fix or replace if possible.
@@ -1628,9 +1847,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF1Thermocouples"
+                  name="TF1 Thermocouples"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1Thermocouples" class="form-check-label">
                   Check for disabled thermocouples. Replace if necessary.
@@ -1641,9 +1863,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF1Camber"
+                  name="TF1 Camber Lasers"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1Camber" class="form-check-label">
                   Make sure camber laser is clean and operating.
@@ -1666,6 +1891,7 @@
               name="TF1 Notes"
               id="TF1Notes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1678,10 +1904,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF1 CEMS Cem-cal Zero, daily"
                   id="TF1CEMSZeroDaily"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1CEMSZeroDaily" class="col-lg col-form-label"
                   >TF1 CEMS Cem-cal Zero (99% N2), daily</label
@@ -1690,10 +1918,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF1 CEMS 180PPM NO, daily"
                   id="TF1CEMS180Daily"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1CEMS180Daily" class="col-lg col-form-label"
                   >TF1 CEMS (180PPM NO), daily</label
@@ -1702,10 +1932,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF1 CEMS 50PPM NO, monthly"
                   id="TF1CEMS50Monthly"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1CEMS50Monthly" class="col-lg col-form-label"
                   >TF1 CEMS (50PPM NO), monthly</label
@@ -1714,10 +1946,12 @@
               <div class="form-floating pb-3 col-lg">
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   placeholder=""
                   name="TF1 CEMS 110PPM NO, monthly"
                   id="TF1CEMS110Monthly"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1CEMS110Monthly" class="col-lg col-form-label"
                   >TF1 CEMS (110PPM NO), monthly</label
@@ -1729,9 +1963,12 @@
                 <div class="form-check">
                   <input
                     type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
                     class="form-check-input"
-                    value=""
+                    value="false"
                     id="TF1CCEMSCal"
+                    name="TF1 CEMS Passed Cal"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="TF1CCEMSCal" class="form-check-label">
                     Did the unit pass calibration today?
@@ -1754,6 +1991,7 @@
               name="TF1 CEMS Notes"
               id="TF1CEMSNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1766,9 +2004,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF1Basement"
+                  name="TF1 Basement Lighting"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF1Basement" class="form-check-label">
                   Check that basement lighting is working.
@@ -1791,6 +2032,7 @@
               name="TF1 Basement Notes"
               id="TF1BasementNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1803,9 +2045,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="TF2Basement"
+                  name="TF2 Basement Lighting"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="TF2Basement" class="form-check-label">
                   Check that basement lighting is working.
@@ -1828,6 +2073,7 @@
               name="TF2 Basement Notes"
               id="TF2BasementNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1841,9 +2087,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="ROTRolls"
+                  name="ROT Rolls"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="ROTRolls" class="form-check-label">
                   Check if rolls are spinning.
@@ -1866,6 +2115,7 @@
               name="ROT Rolls Notes"
               id="ROTRollsNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1878,9 +2128,12 @@
               <div class="form-check">
                 <input
                   type="checkbox"
+                  onclick="handleCheckboxClick.call(this)"
                   class="form-check-input"
-                  value=""
+                  value="false"
                   id="DCLighting"
+                  name="DC Lighting"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
                 />
                 <label for="DCLighting" class="form-check-label">
                   Check overhead lighting.
@@ -1903,6 +2156,7 @@
               name="DC Lighting Notes"
               id="DCLightingNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1916,9 +2170,12 @@
                 <div class="form-check">
                   <input
                     type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
                     class="form-check-input"
-                    value=""
+                    value="false"
                     id="DCBasementLighting"
+                    name="DC Basement Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="DCBasementLighting" class="form-check-label">
                     Check basement lighting.
@@ -1931,9 +2188,12 @@
                 <div class="form-check">
                   <input
                     type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
                     class="form-check-input"
-                    value=""
+                    value="false"
                     id="DCBasementFlood"
+                    name="DC Basement Flood Alarm"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
                   />
                   <label for="DCBasementFlood" class="form-check-label">
                     Check for proper operation of flood alarm.
@@ -1957,6 +2217,7 @@
               name="DC Basement Notes"
               id="DCBasementNotes"
               rows="3"
+              oninput="saveToLocalStorage(electricalWalkthrough)"
             ></textarea>
           </div>
         </div>
@@ -1966,3 +2227,52 @@
     </form>
   </div>
 </div>
+
+<script>
+  function getFormIds(parent) {
+    const form = document.getElementById(parent);
+    const elementIds = [];
+
+    for (let i = 0; i < form.elements.length; i++) {
+      const element = form.elements[i];
+      if (element.id) {
+        elementIds.push(element.id);
+      }
+    }
+    return elementIds;
+  }
+
+  function saveToLocalStorage(parent) {
+    const elementIds = getFormIds(parent.id);
+    const formData = [];
+    for (let i = 0; i < elementIds.length; i++) {
+      const idx = elementIds[i];
+      const value = document.getElementById(elementIds[i]).value;
+      formData.push({ [idx]: value });
+    }
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }
+
+  function loadFromLocalStorage(parent) {
+    const formDataString = localStorage.getItem("formData");
+    const elementIds = getFormIds(parent.id);
+    if (formDataString) {
+      const formData = {}
+      const keyedFormData = JSON.parse(formDataString); // JSON.parse outputs 1: {key: value}
+      for (let i = 0; i < keyedFormData.length; i++){
+        const obj = keyedFormData[i]
+        formData[Object.keys(obj)] = Object.values(obj)
+      }
+      for (let i = 0; i < elementIds.length; i++) {
+        const id = elementIds[i]
+        document.getElementById(id).value = formData[id];
+      }
+    }
+  }
+
+  function removeFromLocalStorage() {
+    localStorage.removeItem("formData");
+  }
+
+  window.onload = loadFromLocalStorage(electricalWalkthrough)
+</script>

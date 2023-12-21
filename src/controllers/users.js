@@ -64,7 +64,7 @@ module.exports.forgotPassword = async (req, res, next) => {
     req.flash("error", "Email not found");
     res.redirect(process.env.DOMAIN + "forgotpassword");
   } else {
-    // email/user exists so send off an email to reset password
+    //TODO email/user exists so send off an email to reset password
   }
 };
 

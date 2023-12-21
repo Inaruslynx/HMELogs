@@ -8,10 +8,10 @@ const Log = new Schema(
             ref: "User",
             require: true
         },
-        data: [{
-            type: Schema.Types.Array,
+        data: {
+            type: Schema.Types.Mixed,
             require: true
-        }]
+        }
     }, {
         timestamps: true
     }
