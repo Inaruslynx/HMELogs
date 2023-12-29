@@ -21,7 +21,7 @@ router
   // Attempts to login user
   .post(
     passport.authenticate("local", {
-      failureFlash: 'Problem with login. Check username and password.',
+      failureFlash: "Problem with login. Check username and password.",
       failureRedirect: `${process.env.DOMAIN}login`,
     }),
     users.loginUser
@@ -36,6 +36,12 @@ router
   // renders the forgot password page
   .get(users.renderForgotPassword)
   .post(users.forgotPassword);
+
+// Email link to reset password for user and should come with code in link.
+router
+  .route("/passwordReset")
+  .get(users.renderPasswordReset)
+  .post(users.passwordReset);
 
 router.post("/darkmode", users.userDarkMode);
 
