@@ -6,7 +6,8 @@ $(document).ready(function () {
     "getCookie.js",
     "toggleMode.js",
     "validateForms.js",
-    "handleCheckboxClick.js"
+    "handleCheckboxClick.js",
+    "logUtils.js"
   ];
 
   ListOfScripts.forEach((element) => {

@@ -41,1047 +41,351 @@
 
   <!-- Main body -->
   <div class="col-12 col-lg-10 pb-4">
+    <!-- Log Picker -->
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-4 justify-content-center">
+          <button type="button" class="btn btn-secondary" onclick="prevLog()">
+            Previous
+          </button>
+        </div>
+        <div class="col-4 justify-content-center">
+          <form id="dateForm">
+            <input
+              type="date"
+              name="logDate"
+              id="logDate"
+              min="2023-12-19"
+              required
+            /><button
+              type="button"
+              class="btn mx-2 btn-secondary"
+              onclick="submitDate()"
+            >
+              Load
+            </button>
+          </form>
+        </div>
+        <div class="col-4 justify-content-end">
+          <button type="button" class="btn btn-secondary" onclick="nextLog()">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
     <form
       action="<%- process.env.DOMAIN %>/walkthrough"
       method="post"
       class="row"
       id="electricalWalkthrough"
     >
-      <div class="container text-center">
-        <div>
-          <h1 id="FM">Finish Mill</h1>
-        </div>
-        <!-- IMS Gauge -->
-        <h4 class="mt-4" id="IMS-Gauge">IMS Gauge</h4>
-        <div>
-          <div class="container border my-4">
-            <!-- IMS Frame Temperature -->
-            <div class="container pt-3">
-              <h5>Frame Temperature</h5>
-
-              <div class="row p-3">
-                <div class="form-floating pb-3 col-sm">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Top Beam"
-                    name="IMS Top Beam"
-                    id="imsTopBeam"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsTopBeam" class="col-sm col-form-label"
-                    >Top Beam</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-sm">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Vertical Part"
-                    name="IMS Vertical Part"
-                    id="imsVertPart"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsVertPart" class="col-sm col-form-label"
-                    >Vertical Part</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-sm">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Bottom Beam"
-                    name="IMS Bottom Beam"
-                    id="imsBotBeam"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsBotBeam" class="col-sm col-form-label"
-                    >Bottom Beam</label
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- IMS Water Flow -->
-            <div class="container pt-3">
-              <h5>Water Flow</h5>
-              <div class="row p-3">
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="C-Frame"
-                    name="IMS C-Frame Flow"
-                    id="imsFlowCframe"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsFlowCframe" class="col-sm col-form-label"
-                    >C-Frame</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="X-Ray Tube 1"
-                    name="IMS X-Ray Tube 1 Flow"
-                    id="imsFlowXTube1"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsFlowXTube1" class="col-sm col-form-label"
-                    >X-Ray Tube 1</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="X-Ray Tube 2"
-                    name="IMS X-Ray Tube 2 Flow"
-                    id="imsFlowXTube2"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsFlowXTube2" class="col-sm col-form-label"
-                    >X-Ray Tube 2</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Heat Exchanger/Lasers"
-                    name="IMS Heat Exchanger/Lasers Flow"
-                    id="imsFlowHeatExchng"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsFlowHeatExchng" class="col-sm col-form-label"
-                    >Heat Exchanger/Lasers</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS Camera Housing Flow"
-                    id="imsFlowCamera"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsFlowCamera" class="col-sm col-form-label"
-                    >Camera Housing</label
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- IMS Water Temp -->
-            <div class="container pt-3">
-              <h5>Water Temp</h5>
-              <div class="row p-3">
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="C-Frame"
-                    name="IMS C-Frame Temp"
-                    id="imsTempCframe"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsTempCframe" class="col-sm col-form-label"
-                    >C-Frame</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="X-Ray Tube 1"
-                    name="IMS X-Ray Tube 1 Temp"
-                    id="imsTempXTube1"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsTempXTube1" class="col-sm col-form-label"
-                    >X-Ray Tube 1</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="X-Ray Tube 2"
-                    name="IMS X-Ray Tube 2 Temp"
-                    id="imsTempXTube2"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsTempXTube2" class="col-sm col-form-label"
-                    >X-Ray Tube 2</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Heat Exchanger/Lasers"
-                    name="IMS Heat Exchanger/Lasers Temp"
-                    id="imsTempHeatExchng"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsTempHeatExchng" class="col-sm col-form-label"
-                    >Heat Exchanger/Lasers</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-lg">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS Camera Housing Temp"
-                    id="imsTempCamera"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsTempCamera" class="col-sm col-form-label"
-                    >Camera Housing</label
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- IMS Customer Water -->
-            <div class="container pt-3">
-              <h5>Customer Water</h5>
-
-              <div class="row p-3">
-                <div class="form-floating pb-3 col-sm">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS Customer Water Flow"
-                    id="imsCustFlow"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsCustFlow" class="col-sm col-form-label"
-                    >Flow</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-sm">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS Customer Water Temperature"
-                    id="imsCustTemp"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsCustTemp" class="col-sm col-form-label"
-                    >Temperature</label
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- Pressure Monitoring -->
-            <div class="container pt-3">
-              <h5>Pressure Monitoring</h5>
-
-              <div class="row p-3">
-                <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS C-Frame Coolant Pressure"
-                    id="imsPressCframe"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsPressCframe" class="col-sm col-form-label"
-                    >Coolant C-Frame</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS Periphery Coolant Pressure"
-                    id="imsPressPeriphery"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsPressPeriphery" class="col-sm col-form-label"
-                    >Coolant Periphery</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS Operating Air Pressure"
-                    id="imsPressOpAir"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsPressOpAir" class="col-sm col-form-label"
-                    >Operating Air</label
-                  >
-                </div>
-                <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
-                    class="form-control"
-                    placeholder="Camera Housing"
-                    name="IMS Purge Air Pressure"
-                    id="imsPressPurgeAir"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="imsPressPurgeAir" class="col-sm col-form-label"
-                    >Purge Air</label
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#IMSNotes"
-          >
-            Toggle IMS Note
-          </button>
-          <div class="align-items-center d-flex justify-content-center">
-            <textarea
-              class="collapse form-control w-50"
-              name="IMS Notes"
-              id="IMSNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- FM RGL -->
-        <h4 class="mt-4" id="FM-RGL">FM RGL</h4>
-        <div>
-          <div class="container border my-4">
-            <div class="row my-4">
-              <div class="col-md">
-                <h5 class="form-label">Oil Flow</h5>
-                <div class="border px-2 pt-3 mb-3">
-                  <div class="row">
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F1 Top"
-                        name="FM RGL Oil Flow F1 Top"
-                        id="F1RglOilTop"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F1 Top</label
-                      >
-                    </div>
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F1 Bottom"
-                        name="FM RGL Oil Flow F1 Bottom"
-                        id="F1RglOilBot"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F1 Bottom</label
-                      >
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F2 Top"
-                        name="FM RGL Oil Flow F2 Top"
-                        id="F2RglOilTop"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F2 Top</label
-                      >
-                    </div>
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F2 Bottom"
-                        name="FM RGL Oil Flow F2 Bottom"
-                        id="F2RglOilBot"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F2 Bottom</label
-                      >
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F3 Top"
-                        name="FM RGL Oil Flow F3 Top"
-                        id="F3RglOilTop"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F3 Top</label
-                      >
-                    </div>
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F3 Bottom"
-                        name="FM RGL Oil Flow F3 Bottom"
-                        id="F3RglOilBot"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F3 Bottom</label
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md">
-                <h5 class="form-label">Water Flow</h5>
-                <div class="border px-2 pt-3 mb-3">
-                  <div class="row">
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F1 Top"
-                        name="FM RGL Water Flow F1 Top"
-                        id="F1RglWaterTop"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F1 Top</label
-                      >
-                    </div>
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F1 Bottom"
-                        name="FM RGL Water Flow F1 Bottom"
-                        id="F1RglWaterBot"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F1 Bottom</label
-                      >
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F2 Top"
-                        name="FM RGL Water Flow F2 Top"
-                        id="F2RglWaterTop"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F2 Top</label
-                      >
-                    </div>
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F2 Bottom"
-                        name="FM RGL Water Flow F2 Bottom"
-                        id="F2RglWaterBot"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F2 Bottom</label
-                      >
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F3 Top"
-                        name="FM RGL Water Flow F3 Top"
-                        id="F3RglWaterTop"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F3 Top</label
-                      >
-                    </div>
-                    <div class="form-floating pb-3 col-sm">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control"
-                        placeholder="F3 Bottom"
-                        name="FM RGL Water Flow F3 Bottom"
-                        id="F3RglWaterBot"
-                        oninput="saveToLocalStorage(electricalWalkthrough)"
-                      />
-                      <label for="imsPressCframe" class="col-sm col-form-label"
-                        >F3 Bottom</label
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#FMRGLNotes"
-          >
-            Toggle FM RGL Note
-          </button>
-          <div class="align-items-center d-flex justify-content-center">
-            <textarea
-              class="collapse form-control w-50"
-              name="FM RGL Notes"
-              id="FMRGLNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- FM Drive DI Skids -->
-        <h4 class="mt-4" id="FM-Drive-DI-Skids">FM Drive DI Skids</h4>
-        <div>
-          <div class="container border my-4 py-3">
-            <!-- F1 -->
-            <div class="row">
-              <h5 class="form-label">F1</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="F1 Drive DI Water Temp"
-                  id="F1DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F1DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F1 Drive Cooling Water Flow"
-                  id="F1DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F1DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F1 Drive DI Water Flow"
-                  id="F1DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F1DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F1 Drive Water Conductivity"
-                  id="F1DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F1DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F1 Drive Water Pump"
-                  id="F1DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F1DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-            <!-- F2 -->
-            <div class="row">
-              <h5 class="form-label">F2</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="F2 Drive DI Water Temp"
-                  id="F2DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F2DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F2 Drive Cooling Water Flow"
-                  id="F2DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F2DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F2 Drive DI Water Flow"
-                  id="F2DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F2DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F2 Drive Water Conductivity"
-                  id="F2DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F2DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F2 Drive Water Pump"
-                  id="F2DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F2DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-            <!-- F3 -->
-            <div class="row">
-              <h5 class="form-label">F3</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="F3 Drive DI Water Temp"
-                  id="F3DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F3DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F3 Drive Cooling Water Flow"
-                  id="F3DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F3DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F3 Drive DI Water Flow"
-                  id="F3DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F3DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F3 Drive Water Conductivity"
-                  id="F3DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F3DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F3 Drive Water Pump"
-                  id="F3DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F3DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-            <!-- F4 -->
-            <div class="row">
-              <h5 class="form-label">F4</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="F4 Drive DI Water Temp"
-                  id="F4DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F4DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F4 Drive Cooling Water Flow"
-                  id="F4DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F4DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F4 Drive DI Water Flow"
-                  id="F4DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F4DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F4 Drive Water Conductivity"
-                  id="F4DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F4DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F4 Drive Water Pump"
-                  id="F4DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F4DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-            <!-- F5 -->
-            <div class="row">
-              <h5 class="form-label">F5</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="F5 Drive DI Water Temp"
-                  id="F5DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F5DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F5 Drive Cooling Water Flow"
-                  id="F5DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F5DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F5 Drive DI Water Flow"
-                  id="F5DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F5DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F5 Drive Water Conductivity"
-                  id="F5DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F5DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F5 Drive Water Pump"
-                  id="F5DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F5DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-            <!-- F6 -->
-            <div class="row">
-              <h5 class="form-label">F6</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="F6 Drive DI Water Temp"
-                  id="F6DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F6DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F6 Drive Cooling Water Flow"
-                  id="F6DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F6DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F6 Drive DI Water Flow"
-                  id="F6DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F6DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F6 Drive Water Conductivity"
-                  id="F6DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F6DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="F6 Drive Water Pump"
-                  id="F6DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="F6DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#FMDriveDINotes"
-          >
-            Toggle FM Drive DI Note
-          </button>
-          <div class="align-items-center d-flex justify-content-center">
-            <textarea
-              class="collapse form-control w-50"
-              name="FM Drive DI Notes"
-              id="FMDriveDINotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- FM Miscellaneous -->
-        <h4 class="mt-4" id="FM-Misc">FM Miscellaneous</h4>
-        <div class="container border mt-4">
-          <!-- FM Motor Room -->
+      <fieldset id="formFieldset" disabled="<%- !formEnabled %>">
+        <div class="container text-center">
           <div>
-            <h5 class="mt-4" id="FM-Motor-Room">FM Motor Room</h5>
+            <h1 id="FM">Finish Mill</h1>
+          </div>
+          <!-- IMS Gauge -->
+          <h4 class="mt-4" id="IMS-Gauge">IMS Gauge</h4>
+          <div>
+            <div class="container border my-4">
+              <!-- IMS Frame Temperature -->
+              <div class="container pt-3">
+                <h5>Frame Temperature</h5>
 
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="FMMotorRoomLighting"
-                  name="FM Motor Room Lighting"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="FMMotorRoomLighting" class="form-check-label">
-                  Check overhead lighting is working and note discrepancies.
-                </label>
+                <div class="row p-3">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Top Beam"
+                      name="IMS Top Beam"
+                      id="imsTopBeam"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsTopBeam" class="col-sm col-form-label"
+                      >Top Beam</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Vertical Part"
+                      name="IMS Vertical Part"
+                      id="imsVertPart"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsVertPart" class="col-sm col-form-label"
+                      >Vertical Part</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Bottom Beam"
+                      name="IMS Bottom Beam"
+                      id="imsBotBeam"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsBotBeam" class="col-sm col-form-label"
+                      >Bottom Beam</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- IMS Water Flow -->
+              <div class="container pt-3">
+                <h5>Water Flow</h5>
+                <div class="row p-3">
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="C-Frame"
+                      name="IMS C-Frame Flow"
+                      id="imsFlowCframe"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsFlowCframe" class="col-sm col-form-label"
+                      >C-Frame</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="X-Ray Tube 1"
+                      name="IMS X-Ray Tube 1 Flow"
+                      id="imsFlowXTube1"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsFlowXTube1" class="col-sm col-form-label"
+                      >X-Ray Tube 1</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="X-Ray Tube 2"
+                      name="IMS X-Ray Tube 2 Flow"
+                      id="imsFlowXTube2"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsFlowXTube2" class="col-sm col-form-label"
+                      >X-Ray Tube 2</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Heat Exchanger/Lasers"
+                      name="IMS Heat Exchanger/Lasers Flow"
+                      id="imsFlowHeatExchng"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsFlowHeatExchng" class="col-sm col-form-label"
+                      >Heat Exchanger/Lasers</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS Camera Housing Flow"
+                      id="imsFlowCamera"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsFlowCamera" class="col-sm col-form-label"
+                      >Camera Housing</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- IMS Water Temp -->
+              <div class="container pt-3">
+                <h5>Water Temp</h5>
+                <div class="row p-3">
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="C-Frame"
+                      name="IMS C-Frame Temp"
+                      id="imsTempCframe"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsTempCframe" class="col-sm col-form-label"
+                      >C-Frame</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="X-Ray Tube 1"
+                      name="IMS X-Ray Tube 1 Temp"
+                      id="imsTempXTube1"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsTempXTube1" class="col-sm col-form-label"
+                      >X-Ray Tube 1</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="X-Ray Tube 2"
+                      name="IMS X-Ray Tube 2 Temp"
+                      id="imsTempXTube2"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsTempXTube2" class="col-sm col-form-label"
+                      >X-Ray Tube 2</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Heat Exchanger/Lasers"
+                      name="IMS Heat Exchanger/Lasers Temp"
+                      id="imsTempHeatExchng"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsTempHeatExchng" class="col-sm col-form-label"
+                      >Heat Exchanger/Lasers</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-lg">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS Camera Housing Temp"
+                      id="imsTempCamera"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsTempCamera" class="col-sm col-form-label"
+                      >Camera Housing</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- IMS Customer Water -->
+              <div class="container pt-3">
+                <h5>Customer Water</h5>
+
+                <div class="row p-3">
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS Customer Water Flow"
+                      id="imsCustFlow"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsCustFlow" class="col-sm col-form-label"
+                      >Flow</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-sm">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS Customer Water Temperature"
+                      id="imsCustTemp"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsCustTemp" class="col-sm col-form-label"
+                      >Temperature</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Pressure Monitoring -->
+              <div class="container pt-3">
+                <h5>Pressure Monitoring</h5>
+
+                <div class="row p-3">
+                  <div class="form-floating pb-3 col-md">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS C-Frame Coolant Pressure"
+                      id="imsPressCframe"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsPressCframe" class="col-sm col-form-label"
+                      >Coolant C-Frame</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-md">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS Periphery Coolant Pressure"
+                      id="imsPressPeriphery"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsPressPeriphery" class="col-sm col-form-label"
+                      >Coolant Periphery</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-md">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS Operating Air Pressure"
+                      id="imsPressOpAir"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsPressOpAir" class="col-sm col-form-label"
+                      >Operating Air</label
+                    >
+                  </div>
+                  <div class="form-floating pb-3 col-md">
+                    <input
+                      type="number"
+                      step="any"
+                      class="form-control"
+                      placeholder="Camera Housing"
+                      name="IMS Purge Air Pressure"
+                      id="imsPressPurgeAir"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="imsPressPurgeAir" class="col-sm col-form-label"
+                      >Purge Air</label
+                    >
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -1089,28 +393,1841 @@
               class="mb-4 btn btn-primary"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#FMMotorRoomNotes"
+              data-bs-target="#IMSNotes"
             >
-              Toggle FM Motor Room Note
+              Toggle IMS Note
             </button>
-            <div class="align-items-center justify-content-center d-flex">
+            <div class="align-items-center d-flex justify-content-center">
               <textarea
                 class="collapse form-control w-50"
-                name="FM Motor Room Notes"
-                id="FMMotorRoomNotes"
+                name="IMS Notes"
+                id="IMSNotes"
                 rows="3"
                 oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
 
-          <!-- FM Basement -->
+          <!-- FM RGL -->
+          <h4 class="mt-4" id="FM-RGL">FM RGL</h4>
           <div>
-            <h5 class="mt-4" id="FM-Basement">
-              FM Basement and Roll Change Alley
-            </h5>
+            <div class="container border my-4">
+              <div class="row my-4">
+                <div class="col-md">
+                  <h5 class="form-label">Oil Flow</h5>
+                  <div class="border px-2 pt-3 mb-3">
+                    <div class="row">
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F1 Top"
+                          name="FM RGL Oil Flow F1 Top"
+                          id="F1RglOilTop"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F1 Top</label
+                        >
+                      </div>
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F1 Bottom"
+                          name="FM RGL Oil Flow F1 Bottom"
+                          id="F1RglOilBot"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F1 Bottom</label
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F2 Top"
+                          name="FM RGL Oil Flow F2 Top"
+                          id="F2RglOilTop"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F2 Top</label
+                        >
+                      </div>
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F2 Bottom"
+                          name="FM RGL Oil Flow F2 Bottom"
+                          id="F2RglOilBot"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F2 Bottom</label
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F3 Top"
+                          name="FM RGL Oil Flow F3 Top"
+                          id="F3RglOilTop"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F3 Top</label
+                        >
+                      </div>
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F3 Bottom"
+                          name="FM RGL Oil Flow F3 Bottom"
+                          id="F3RglOilBot"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F3 Bottom</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <h5 class="form-label">Water Flow</h5>
+                  <div class="border px-2 pt-3 mb-3">
+                    <div class="row">
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F1 Top"
+                          name="FM RGL Water Flow F1 Top"
+                          id="F1RglWaterTop"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F1 Top</label
+                        >
+                      </div>
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F1 Bottom"
+                          name="FM RGL Water Flow F1 Bottom"
+                          id="F1RglWaterBot"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F1 Bottom</label
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F2 Top"
+                          name="FM RGL Water Flow F2 Top"
+                          id="F2RglWaterTop"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F2 Top</label
+                        >
+                      </div>
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F2 Bottom"
+                          name="FM RGL Water Flow F2 Bottom"
+                          id="F2RglWaterBot"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F2 Bottom</label
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F3 Top"
+                          name="FM RGL Water Flow F3 Top"
+                          id="F3RglWaterTop"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F3 Top</label
+                        >
+                      </div>
+                      <div class="form-floating pb-3 col-sm">
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control"
+                          placeholder="F3 Bottom"
+                          name="FM RGL Water Flow F3 Bottom"
+                          id="F3RglWaterBot"
+                          oninput="saveToLocalStorage(electricalWalkthrough)"
+                        />
+                        <label
+                          for="imsPressCframe"
+                          class="col-sm col-form-label"
+                          >F3 Bottom</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <div class="container m-4">
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#FMRGLNotes"
+            >
+              Toggle FM RGL Note
+            </button>
+            <div class="align-items-center d-flex justify-content-center">
+              <textarea
+                class="collapse form-control w-50"
+                name="FM RGL Notes"
+                id="FMRGLNotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- FM Drive DI Skids -->
+          <h4 class="mt-4" id="FM-Drive-DI-Skids">FM Drive DI Skids</h4>
+          <div>
+            <div class="container border my-4 py-3">
+              <!-- F1 -->
+              <div class="row">
+                <h5 class="form-label">F1</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="F1 Drive DI Water Temp"
+                    id="F1DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F1DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F1 Drive Cooling Water Flow"
+                    id="F1DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F1DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F1 Drive DI Water Flow"
+                    id="F1DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F1DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F1 Drive Water Conductivity"
+                    id="F1DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F1DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F1 Drive Water Pump"
+                    id="F1DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F1DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+              <!-- F2 -->
+              <div class="row">
+                <h5 class="form-label">F2</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="F2 Drive DI Water Temp"
+                    id="F2DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F2DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F2 Drive Cooling Water Flow"
+                    id="F2DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F2DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F2 Drive DI Water Flow"
+                    id="F2DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F2DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F2 Drive Water Conductivity"
+                    id="F2DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F2DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F2 Drive Water Pump"
+                    id="F2DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F2DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+              <!-- F3 -->
+              <div class="row">
+                <h5 class="form-label">F3</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="F3 Drive DI Water Temp"
+                    id="F3DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F3DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F3 Drive Cooling Water Flow"
+                    id="F3DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F3DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F3 Drive DI Water Flow"
+                    id="F3DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F3DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F3 Drive Water Conductivity"
+                    id="F3DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F3DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F3 Drive Water Pump"
+                    id="F3DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F3DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+              <!-- F4 -->
+              <div class="row">
+                <h5 class="form-label">F4</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="F4 Drive DI Water Temp"
+                    id="F4DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F4DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F4 Drive Cooling Water Flow"
+                    id="F4DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F4DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F4 Drive DI Water Flow"
+                    id="F4DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F4DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F4 Drive Water Conductivity"
+                    id="F4DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F4DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F4 Drive Water Pump"
+                    id="F4DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F4DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+              <!-- F5 -->
+              <div class="row">
+                <h5 class="form-label">F5</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="F5 Drive DI Water Temp"
+                    id="F5DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F5DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F5 Drive Cooling Water Flow"
+                    id="F5DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F5DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F5 Drive DI Water Flow"
+                    id="F5DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F5DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F5 Drive Water Conductivity"
+                    id="F5DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F5DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F5 Drive Water Pump"
+                    id="F5DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F5DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+              <!-- F6 -->
+              <div class="row">
+                <h5 class="form-label">F6</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="F6 Drive DI Water Temp"
+                    id="F6DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F6DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F6 Drive Cooling Water Flow"
+                    id="F6DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F6DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F6 Drive DI Water Flow"
+                    id="F6DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F6DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F6 Drive Water Conductivity"
+                    id="F6DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F6DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="F6 Drive Water Pump"
+                    id="F6DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="F6DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#FMDriveDINotes"
+            >
+              Toggle FM Drive DI Note
+            </button>
+            <div class="align-items-center d-flex justify-content-center">
+              <textarea
+                class="collapse form-control w-50"
+                name="FM Drive DI Notes"
+                id="FMDriveDINotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- FM Miscellaneous -->
+          <h4 class="mt-4" id="FM-Misc">FM Miscellaneous</h4>
+          <div class="container border mt-4">
+            <!-- FM Motor Room -->
+            <div>
+              <h5 class="mt-4" id="FM-Motor-Room">FM Motor Room</h5>
+
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="FMMotorRoomLighting"
+                    name="FM Motor Room Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="FMMotorRoomLighting" class="form-check-label">
+                    Check overhead lighting is working and note discrepancies.
+                  </label>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#FMMotorRoomNotes"
+              >
+                Toggle FM Motor Room Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="FM Motor Room Notes"
+                  id="FMMotorRoomNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- FM Basement -->
+            <div>
+              <h5 class="mt-4" id="FM-Basement">
+                FM Basement and Roll Change Alley
+              </h5>
+
+              <div class="container m-4">
+                <div class="row">
+                  <div
+                    class="col d-flex align-items-center justify-content-center"
+                  >
+                    <div class="form-check">
+                      <input
+                        type="checkbox"
+                        onclick="handleCheckboxClick.call(this)"
+                        class="form-check-input"
+                        value="false"
+                        id="FMBasementLighting"
+                        name="FM Basement Lighting"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
+                      />
+                      <label for="FMBasementLighting" class="form-check-label">
+                        Check basement lighting and check for flooding.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div
+                    class="col d-flex align-items-center justify-content-center"
+                  >
+                    <div class="form-check">
+                      <input
+                        type="checkbox"
+                        onclick="handleCheckboxClick.call(this)"
+                        class="form-check-input"
+                        value="false"
+                        id="FMBasementAlarm"
+                        name="FM Basement Flood Alarm"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
+                      />
+                      <label for="FMBasementAlarm" class="form-check-label">
+                        Check for proper operation of flood alarm.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#FMBasementNotes"
+              >
+                Toggle FM Basement Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="FM Basement Notes"
+                  id="FMBasementNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- FM Entry Area -->
+            <div>
+              <h5 class="mt-4" id="FM-Entry-Area">FM Entry Area</h5>
+
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="FMEntryArea"
+                    name="FM Entry Area Rolls"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="FMEntryArea" class="form-check-label">
+                    Check to make sure rolls are turning.
+                  </label>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#FMEntryNotes"
+              >
+                Toggle FM Entry Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="FM Entry Notes"
+                  id="FMEntryNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- FM Area Lighting -->
+            <div>
+              <h5 class="mt-4" id="FM-Motor-Room">FM Area Lighting</h5>
+
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="FMAreaLighting"
+                    name="FM Area Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="FMAreaLighting" class="form-check-label">
+                    Check that overhead lighting is working.
+                  </label>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#FMAreaLightingNotes"
+              >
+                Toggle FM Entry Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="FM Area Lighting Notes"
+                  id="FMAreaLightingNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- TF2 -->
+          <h4 class="mt-4" id="TF2">TF2</h4>
+          <div>
+            <div class="container border my-4">
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF2LightBarriers"
+                    name="TF2 Light Barriers"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2LightBarriers" class="form-check-label">
+                    Check for any disabled light barriers and replace/repair.
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF2Burners"
+                    name="TF2 Burners"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2Burners" class="form-check-label">
+                    Check burners and fix or replace if possible.
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF2Thermocouples"
+                    name="TF2 Thermocouples"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2Thermocouples" class="form-check-label">
+                    Check for disabled thermocouples. Replace if necessary.
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF2Camber"
+                    name="TF2 Camber Lasers"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2Camber" class="form-check-label">
+                    Make sure camber lasers are clean and operating.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#TF2Notes"
+            >
+              Toggle TF2 Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="TF2 Notes"
+                id="TF2Notes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- RM Drive DI Skids -->
+          <h1 id="RM">Roughing Mill</h1>
+          <h4 class="mt-4" id="RM-Drive-DI-Skids">RM Drive DI Skids</h4>
+          <div>
+            <div class="container border my-4 pt-3">
+              <!-- R1 -->
+              <div class="row">
+                <h5 class="form-label">R1</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="R1 Drive DI Water Temp"
+                    id="R1DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R1DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R1 Drive Cooling Water Flow"
+                    id="R1DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R1DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R1 Drive DI Water Flow"
+                    id="R1DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R1DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R1 Drive Water Conductivity"
+                    id="R1DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R1DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R1 Drive Water Pump"
+                    id="R1DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R1DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+              <!-- R2 -->
+              <div class="row">
+                <h5 class="form-label">R2</h5>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder="Water Temp"
+                    name="R2 Drive DI Water Temp"
+                    id="R2DrvWtrTemp"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R2DrvWtrTemp" class="col-md col-form-label"
+                    >Water Temp</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R2 Drive Cooling Water Flow"
+                    id="R2DrvCooWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R2DrvCooWtrFlow" class="col-md col-form-label"
+                    >Cooling Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R2 Drive DI Water Flow"
+                    id="R2DrvDiWtrFlow"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R2DrvDiWtrFlow" class="col-md col-form-label"
+                    >DI Water Flow</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R2 Drive Water Conductivity"
+                    id="R2DrvWtrCond"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R2DrvWtrCond" class="col-md col-form-label"
+                    >Conductivity</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-md">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="R2 Drive Water Pump"
+                    id="R2DrvWtrPump"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="R2DrvWtrPump" class="col-md col-form-label"
+                    >Pump in operation</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#RMDriveDINotes"
+            >
+              Toggle RM Drive DI Note
+            </button>
+            <div class="align-items-center d-flex justify-content-center">
+              <textarea
+                class="collapse form-control w-50"
+                name="RM Drive DI Notes"
+                id="RMDriveDINotes"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- TF2 CEMS Unit -->
+          <h4 class="mt-4" id="TF2-CEMS">TF2 CEMS Unit</h4>
+          <div>
+            <div class="container border my-4 pt-3">
+              <div class="row">
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF2 CEMS Cem-cal Zero, daily"
+                    id="TF2CEMSZeroDaily"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2CEMSZeroDaily" class="col-lg col-form-label"
+                    >TF2 CEMS Cem-cal Zero (99% N2), daily</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF2 CEMS 180PPM NO, daily"
+                    id="TF2CEMS180Daily"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2CEMS180Daily" class="col-lg col-form-label"
+                    >TF2 CEMS (180PPM NO), daily</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF2 CEMS 50PPM NO, monthly"
+                    id="TF2CEMS50Monthly"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2CEMS50Monthly" class="col-lg col-form-label"
+                    >TF2 CEMS (50PPM NO), monthly</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF2 CEMS 110PPM NO, monthly"
+                    id="TF2CEMS110Monthly"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2CEMS110Monthly" class="col-lg col-form-label"
+                    >TF2 CEMS (110PPM NO), monthly</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  class="d-flex align-items-center justify-content-center m-4"
+                >
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      onclick="handleCheckboxClick.call(this)"
+                      class="form-check-input"
+                      value="false"
+                      id="TF2CCEMSCal"
+                      name="TF2 CEMS Cal Passed"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="TF2CCEMSCal" class="form-check-label">
+                      Did the unit pass calibration today?
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#TF2CEMSNotes"
+            >
+              Toggle TF2 CEMS Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="TF2 CEMS Notes"
+                id="TF2CEMSNotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- RM Miscellaneous -->
+          <h4 class="mt-4" id="RM-Misc">RM Miscellaneous</h4>
+          <div class="container border mt-4">
+            <!-- RM Motor Room -->
+            <div>
+              <h5 class="mt-4" id="RM-Motor-Room">RM Motor Room</h5>
+
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="RMMotorRoomLighting"
+                    name="RM Motor Room Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="RMMotorRoomLighting" class="form-check-label">
+                    Check overhead lighting is working.
+                  </label>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#RMMotorRoomNotes"
+              >
+                Toggle RM Motor Room Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="RM Motor Room Notes"
+                  id="RMMotorRoomNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- RM Basement -->
+            <div>
+              <h5 class="mt-4" id="RM-Basement">
+                RM Basement and Roll Change Alley
+              </h5>
+
+              <div class="container m-4">
+                <div class="row">
+                  <div
+                    class="col d-flex align-items-center justify-content-center"
+                  >
+                    <div class="form-check">
+                      <input
+                        type="checkbox"
+                        onclick="handleCheckboxClick.call(this)"
+                        class="form-check-input"
+                        value="false"
+                        id="RMBasementLighting"
+                        name="RM Basement Lighting"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
+                      />
+                      <label for="RMBasementLighting" class="form-check-label">
+                        Check basement lighting and check for flooding.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div
+                    class="col d-flex align-items-center justify-content-center"
+                  >
+                    <div class="form-check">
+                      <input
+                        type="checkbox"
+                        onclick="handleCheckboxClick.call(this)"
+                        class="form-check-input"
+                        value="false"
+                        id="RMBasementAlarm"
+                        name="RM Basement Flood Alarm"
+                        oninput="saveToLocalStorage(electricalWalkthrough)"
+                      />
+                      <label for="RMBasementAlarm" class="form-check-label">
+                        Check for proper operation of flood alarm.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#RMBasementNotes"
+              >
+                Toggle RM Basement Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="RM Basement Notes"
+                  id="RMBasementNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- RM Entry Area -->
+            <div>
+              <h5 class="mt-4" id="RM-Entry-Area">
+                RM Entry Area and TBC Rolls
+              </h5>
+
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="RMEntryArea"
+                    name="RM Entry and TBC Rolls"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="RMEntryArea" class="form-check-label">
+                    Check to make sure rolls are turning.
+                  </label>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#RMEntryNotes"
+              >
+                Toggle RM Entry Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="RM Entry Notes"
+                  id="RMEntryNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- RM Area Lighting -->
+            <div>
+              <h5 class="mt-4" id="RM-Motor-Room">RM Area Lighting</h5>
+
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="RMAreaLighting"
+                    name="TM Area Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="RMAreaLighting" class="form-check-label">
+                    Check that overhead lighting is working.
+                  </label>
+                </div>
+              </div>
+
+              <button
+                class="mb-4 btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#RMAreaLightingNotes"
+              >
+                Toggle RM Entry Note
+              </button>
+              <div class="align-items-center justify-content-center d-flex">
+                <textarea
+                  class="collapse form-control w-50"
+                  name="RM Area Lighting Notes"
+                  id="RMAreaLightingNotes"
+                  rows="3"
+                  oninput="saveToLocalStorage(electricalWalkthrough)"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- TF1 -->
+          <h4 class="mt-4" id="TF1">TF1</h4>
+          <div>
+            <div class="container border my-4">
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF1LightBarriers"
+                    name="TF1 Light Barriers"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1LightBarriers" class="form-check-label">
+                    Check for any disabled light barriers and replace/repair.
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF1Burners"
+                    name="TF1 Burners"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1Burners" class="form-check-label">
+                    Check burners and fix or replace if possible.
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF1Thermocouples"
+                    name="TF1 Thermocouples"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1Thermocouples" class="form-check-label">
+                    Check for disabled thermocouples. Replace if necessary.
+                  </label>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF1Camber"
+                    name="TF1 Camber Lasers"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1Camber" class="form-check-label">
+                    Make sure camber laser is clean and operating.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#TF1Notes"
+            >
+              Toggle TF1 Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="TF1 Notes"
+                id="TF1Notes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- TF1 CEMS Unit -->
+          <h4 class="mt-4" id="TF1-CEMS">TF1 CEMS Unit</h4>
+          <div>
+            <div class="container border my-4 pt-3">
+              <div class="row">
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF1 CEMS Cem-cal Zero, daily"
+                    id="TF1CEMSZeroDaily"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1CEMSZeroDaily" class="col-lg col-form-label"
+                    >TF1 CEMS Cem-cal Zero (99% N2), daily</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF1 CEMS 180PPM NO, daily"
+                    id="TF1CEMS180Daily"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1CEMS180Daily" class="col-lg col-form-label"
+                    >TF1 CEMS (180PPM NO), daily</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF1 CEMS 50PPM NO, monthly"
+                    id="TF1CEMS50Monthly"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1CEMS50Monthly" class="col-lg col-form-label"
+                    >TF1 CEMS (50PPM NO), monthly</label
+                  >
+                </div>
+                <div class="form-floating pb-3 col-lg">
+                  <input
+                    type="number"
+                    step="any"
+                    class="form-control"
+                    placeholder=""
+                    name="TF1 CEMS 110PPM NO, monthly"
+                    id="TF1CEMS110Monthly"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1CEMS110Monthly" class="col-lg col-form-label"
+                    >TF1 CEMS (110PPM NO), monthly</label
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  class="d-flex align-items-center justify-content-center m-4"
+                >
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      onclick="handleCheckboxClick.call(this)"
+                      class="form-check-input"
+                      value="false"
+                      id="TF1CCEMSCal"
+                      name="TF1 CEMS Passed Cal"
+                      oninput="saveToLocalStorage(electricalWalkthrough)"
+                    />
+                    <label for="TF1CCEMSCal" class="form-check-label">
+                      Did the unit pass calibration today?
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#TF1CEMSNotes"
+            >
+              Toggle TF1 CEMS Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="TF1 CEMS Notes"
+                id="TF1CEMSNotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- TF1 Basement -->
+          <h4 class="mt-4" id="TF1-Basement">TF1 Basement</h4>
+          <div>
+            <div class="container border my-4">
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF1Basement"
+                    name="TF1 Basement Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF1Basement" class="form-check-label">
+                    Check that basement lighting is working.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#TF1BasementNotes"
+            >
+              Toggle TF1 Basement Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="TF1 Basement Notes"
+                id="TF1BasementNotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- TF2 Basement -->
+          <h4 class="mt-4">TF2 Basement</h4>
+          <div>
+            <div class="container border my-4">
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="TF2Basement"
+                    name="TF2 Basement Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="TF2Basement" class="form-check-label">
+                    Check that basement lighting is working.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#TF2BasementNotes"
+            >
+              Toggle TF2 Basement Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="TF2 Basement Notes"
+                id="TF2BasementNotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <h1 id="DC">Down Coiler</h1>
+          <!-- Laminar and ROT -->
+          <h4 class="mt-4">Laminar and ROT</h4>
+          <div>
+            <div class="container border my-4">
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="ROTRolls"
+                    name="ROT Rolls"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="ROTRolls" class="form-check-label">
+                    Check if rolls are spinning.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#ROTRollsNotes"
+            >
+              Toggle ROT Rolls Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="ROT Rolls Notes"
+                id="ROTRollsNotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- DC Lighting -->
+          <h4 class="mt-4">DC Lighting</h4>
+          <div>
+            <div class="container border my-4">
+              <div class="d-flex align-items-center justify-content-center m-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    onclick="handleCheckboxClick.call(this)"
+                    class="form-check-input"
+                    value="false"
+                    id="DCLighting"
+                    name="DC Lighting"
+                    oninput="saveToLocalStorage(electricalWalkthrough)"
+                  />
+                  <label for="DCLighting" class="form-check-label">
+                    Check overhead lighting.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="mb-4 btn btn-primary"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#DCLightingNotes"
+            >
+              Toggle DC Lighting Notes
+            </button>
+            <div class="align-items-center justify-content-center d-flex">
+              <textarea
+                class="collapse form-control w-50"
+                name="DC Lighting Notes"
+                id="DCLightingNotes"
+                rows="3"
+                oninput="saveToLocalStorage(electricalWalkthrough)"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- DC Basement -->
+          <h4 class="mt-4">DC Basement</h4>
+          <div>
+            <div class="container border my-4 p-4">
               <div class="row">
                 <div
                   class="col d-flex align-items-center justify-content-center"
@@ -1121,12 +2238,12 @@
                       onclick="handleCheckboxClick.call(this)"
                       class="form-check-input"
                       value="false"
-                      id="FMBasementLighting"
-                      name="FM Basement Lighting"
+                      id="DCBasementLighting"
+                      name="DC Basement Lighting"
                       oninput="saveToLocalStorage(electricalWalkthrough)"
                     />
-                    <label for="FMBasementLighting" class="form-check-label">
-                      Check basement lighting and check for flooding.
+                    <label for="DCBasementLighting" class="form-check-label">
+                      Check basement lighting.
                     </label>
                   </div>
                 </div>
@@ -1141,11 +2258,11 @@
                       onclick="handleCheckboxClick.call(this)"
                       class="form-check-input"
                       value="false"
-                      id="FMBasementAlarm"
-                      name="FM Basement Flood Alarm"
+                      id="DCBasementFlood"
+                      name="DC Basement Flood Alarm"
                       oninput="saveToLocalStorage(electricalWalkthrough)"
                     />
-                    <label for="FMBasementAlarm" class="form-check-label">
+                    <label for="DCBasementFlood" class="form-check-label">
                       Check for proper operation of flood alarm.
                     </label>
                   </div>
@@ -1157,1080 +2274,54 @@
               class="mb-4 btn btn-primary"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#FMBasementNotes"
+              data-bs-target="#DCBasementNotes"
             >
-              Toggle FM Basement Note
+              Toggle DC Basement Notes
             </button>
             <div class="align-items-center justify-content-center d-flex">
               <textarea
                 class="collapse form-control w-50"
-                name="FM Basement Notes"
-                id="FMBasementNotes"
+                name="DC Basement Notes"
+                id="DCBasementNotes"
                 rows="3"
                 oninput="saveToLocalStorage(electricalWalkthrough)"
               ></textarea>
             </div>
           </div>
 
-          <!-- FM Entry Area -->
-          <div>
-            <h5 class="mt-4" id="FM-Entry-Area">FM Entry Area</h5>
-
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="FMEntryArea"
-                  name="FM Entry Area Rolls"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="FMEntryArea" class="form-check-label">
-                  Check to make sure rolls are turning.
-                </label>
-              </div>
-            </div>
-
-            <button
-              class="mb-4 btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#FMEntryNotes"
-            >
-              Toggle FM Entry Note
-            </button>
-            <div class="align-items-center justify-content-center d-flex">
-              <textarea
-                class="collapse form-control w-50"
-                name="FM Entry Notes"
-                id="FMEntryNotes"
-                rows="3"
-                oninput="saveToLocalStorage(electricalWalkthrough)"
-              ></textarea>
-            </div>
-          </div>
-
-          <!-- FM Area Lighting -->
-          <div>
-            <h5 class="mt-4" id="FM-Motor-Room">FM Area Lighting</h5>
-
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="FMAreaLighting"
-                  name="FM Area Lighting"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="FMAreaLighting" class="form-check-label">
-                  Check that overhead lighting is working.
-                </label>
-              </div>
-            </div>
-
-            <button
-              class="mb-4 btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#FMAreaLightingNotes"
-            >
-              Toggle FM Entry Note
-            </button>
-            <div class="align-items-center justify-content-center d-flex">
-              <textarea
-                class="collapse form-control w-50"
-                name="FM Area Lighting Notes"
-                id="FMAreaLightingNotes"
-                rows="3"
-                oninput="saveToLocalStorage(electricalWalkthrough)"
-              ></textarea>
-            </div>
+          <div class="mb-4 pb-4">
+            <button type="submit" class="m-4 btn btn-primary">Submit</button>
           </div>
         </div>
-
-        <!-- TF2 -->
-        <h4 class="mt-4" id="TF2">TF2</h4>
-        <div>
-          <div class="container border my-4">
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF2LightBarriers"
-                  name="TF2 Light Barriers"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2LightBarriers" class="form-check-label">
-                  Check for any disabled light barriers and replace/repair.
-                </label>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF2Burners"
-                  name="TF2 Burners"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2Burners" class="form-check-label">
-                  Check burners and fix or replace if possible.
-                </label>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF2Thermocouples"
-                  name="TF2 Thermocouples"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2Thermocouples" class="form-check-label">
-                  Check for disabled thermocouples. Replace if necessary.
-                </label>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF2Camber"
-                  name="TF2 Camber Lasers"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2Camber" class="form-check-label">
-                  Make sure camber lasers are clean and operating.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#TF2Notes"
-          >
-            Toggle TF2 Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="TF2 Notes"
-              id="TF2Notes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- RM Drive DI Skids -->
-        <h1 id="RM">Roughing Mill</h1>
-        <h4 class="mt-4" id="RM-Drive-DI-Skids">RM Drive DI Skids</h4>
-        <div>
-          <div class="container border my-4 pt-3">
-            <!-- R1 -->
-            <div class="row">
-              <h5 class="form-label">R1</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="R1 Drive DI Water Temp"
-                  id="R1DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R1DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R1 Drive Cooling Water Flow"
-                  id="R1DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R1DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R1 Drive DI Water Flow"
-                  id="R1DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R1DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R1 Drive Water Conductivity"
-                  id="R1DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R1DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R1 Drive Water Pump"
-                  id="R1DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R1DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-            <!-- R2 -->
-            <div class="row">
-              <h5 class="form-label">R2</h5>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder="Water Temp"
-                  name="R2 Drive DI Water Temp"
-                  id="R2DrvWtrTemp"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R2DrvWtrTemp" class="col-md col-form-label"
-                  >Water Temp</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R2 Drive Cooling Water Flow"
-                  id="R2DrvCooWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R2DrvCooWtrFlow" class="col-md col-form-label"
-                  >Cooling Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R2 Drive DI Water Flow"
-                  id="R2DrvDiWtrFlow"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R2DrvDiWtrFlow" class="col-md col-form-label"
-                  >DI Water Flow</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R2 Drive Water Conductivity"
-                  id="R2DrvWtrCond"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R2DrvWtrCond" class="col-md col-form-label"
-                  >Conductivity</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-md">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="R2 Drive Water Pump"
-                  id="R2DrvWtrPump"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="R2DrvWtrPump" class="col-md col-form-label"
-                  >Pump in operation</label
-                >
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#RMDriveDINotes"
-          >
-            Toggle RM Drive DI Note
-          </button>
-          <div class="align-items-center d-flex justify-content-center">
-            <textarea
-              class="collapse form-control w-50"
-              name="RM Drive DI Notes"
-              id="RMDriveDINotes"
-              rows="3"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- TF2 CEMS Unit -->
-        <h4 class="mt-4" id="TF2-CEMS">TF2 CEMS Unit</h4>
-        <div>
-          <div class="container border my-4 pt-3">
-            <div class="row">
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF2 CEMS Cem-cal Zero, daily"
-                  id="TF2CEMSZeroDaily"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2CEMSZeroDaily" class="col-lg col-form-label"
-                  >TF2 CEMS Cem-cal Zero (99% N2), daily</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF2 CEMS 180PPM NO, daily"
-                  id="TF2CEMS180Daily"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2CEMS180Daily" class="col-lg col-form-label"
-                  >TF2 CEMS (180PPM NO), daily</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF2 CEMS 50PPM NO, monthly"
-                  id="TF2CEMS50Monthly"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2CEMS50Monthly" class="col-lg col-form-label"
-                  >TF2 CEMS (50PPM NO), monthly</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF2 CEMS 110PPM NO, monthly"
-                  id="TF2CEMS110Monthly"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2CEMS110Monthly" class="col-lg col-form-label"
-                  >TF2 CEMS (110PPM NO), monthly</label
-                >
-              </div>
-            </div>
-            <div class="row">
-              <div class="d-flex align-items-center justify-content-center m-4">
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    onclick="handleCheckboxClick.call(this)"
-                    class="form-check-input"
-                    value="false"
-                    id="TF2CCEMSCal"
-                    name="TF2 CEMS Cal Passed"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="TF2CCEMSCal" class="form-check-label">
-                    Did the unit pass calibration today?
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#TF2CEMSNotes"
-          >
-            Toggle TF2 CEMS Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="TF2 CEMS Notes"
-              id="TF2CEMSNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- RM Miscellaneous -->
-        <h4 class="mt-4" id="RM-Misc">RM Miscellaneous</h4>
-        <div class="container border mt-4">
-          <!-- RM Motor Room -->
-          <div>
-            <h5 class="mt-4" id="RM-Motor-Room">RM Motor Room</h5>
-
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="RMMotorRoomLighting"
-                  name="RM Motor Room Lighting"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="RMMotorRoomLighting" class="form-check-label">
-                  Check overhead lighting is working.
-                </label>
-              </div>
-            </div>
-
-            <button
-              class="mb-4 btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#RMMotorRoomNotes"
-            >
-              Toggle RM Motor Room Note
-            </button>
-            <div class="align-items-center justify-content-center d-flex">
-              <textarea
-                class="collapse form-control w-50"
-                name="RM Motor Room Notes"
-                id="RMMotorRoomNotes"
-                rows="3"
-                oninput="saveToLocalStorage(electricalWalkthrough)"
-              ></textarea>
-            </div>
-          </div>
-
-          <!-- RM Basement -->
-          <div>
-            <h5 class="mt-4" id="RM-Basement">
-              RM Basement and Roll Change Alley
-            </h5>
-
-            <div class="container m-4">
-              <div class="row">
-                <div
-                  class="col d-flex align-items-center justify-content-center"
-                >
-                  <div class="form-check">
-                    <input
-                      type="checkbox"
-                      onclick="handleCheckboxClick.call(this)"
-                      class="form-check-input"
-                      value="false"
-                      id="RMBasementLighting"
-                      name="RM Basement Lighting"
-                      oninput="saveToLocalStorage(electricalWalkthrough)"
-                    />
-                    <label for="RMBasementLighting" class="form-check-label">
-                      Check basement lighting and check for flooding.
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div
-                  class="col d-flex align-items-center justify-content-center"
-                >
-                  <div class="form-check">
-                    <input
-                      type="checkbox"
-                      onclick="handleCheckboxClick.call(this)"
-                      class="form-check-input"
-                      value="false"
-                      id="RMBasementAlarm"
-                      name="RM Basement Flood Alarm"
-                      oninput="saveToLocalStorage(electricalWalkthrough)"
-                    />
-                    <label for="RMBasementAlarm" class="form-check-label">
-                      Check for proper operation of flood alarm.
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <button
-              class="mb-4 btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#RMBasementNotes"
-            >
-              Toggle RM Basement Note
-            </button>
-            <div class="align-items-center justify-content-center d-flex">
-              <textarea
-                class="collapse form-control w-50"
-                name="RM Basement Notes"
-                id="RMBasementNotes"
-                rows="3"
-                oninput="saveToLocalStorage(electricalWalkthrough)"
-              ></textarea>
-            </div>
-          </div>
-
-          <!-- RM Entry Area -->
-          <div>
-            <h5 class="mt-4" id="RM-Entry-Area">RM Entry Area and TBC Rolls</h5>
-
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="RMEntryArea"
-                  name="RM Entry and TBC Rolls"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="RMEntryArea" class="form-check-label">
-                  Check to make sure rolls are turning.
-                </label>
-              </div>
-            </div>
-
-            <button
-              class="mb-4 btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#RMEntryNotes"
-            >
-              Toggle RM Entry Note
-            </button>
-            <div class="align-items-center justify-content-center d-flex">
-              <textarea
-                class="collapse form-control w-50"
-                name="RM Entry Notes"
-                id="RMEntryNotes"
-                rows="3"
-                oninput="saveToLocalStorage(electricalWalkthrough)"
-              ></textarea>
-            </div>
-          </div>
-
-          <!-- RM Area Lighting -->
-          <div>
-            <h5 class="mt-4" id="RM-Motor-Room">RM Area Lighting</h5>
-
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="RMAreaLighting"
-                  name="TM Area Lighting"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="RMAreaLighting" class="form-check-label">
-                  Check that overhead lighting is working.
-                </label>
-              </div>
-            </div>
-
-            <button
-              class="mb-4 btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#RMAreaLightingNotes"
-            >
-              Toggle RM Entry Note
-            </button>
-            <div class="align-items-center justify-content-center d-flex">
-              <textarea
-                class="collapse form-control w-50"
-                name="RM Area Lighting Notes"
-                id="RMAreaLightingNotes"
-                rows="3"
-                oninput="saveToLocalStorage(electricalWalkthrough)"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-
-        <!-- TF1 -->
-        <h4 class="mt-4" id="TF1">TF1</h4>
-        <div>
-          <div class="container border my-4">
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF1LightBarriers"
-                  name="TF1 Light Barriers"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1LightBarriers" class="form-check-label">
-                  Check for any disabled light barriers and replace/repair.
-                </label>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF1Burners"
-                  name="TF1 Burners"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1Burners" class="form-check-label">
-                  Check burners and fix or replace if possible.
-                </label>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF1Thermocouples"
-                  name="TF1 Thermocouples"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1Thermocouples" class="form-check-label">
-                  Check for disabled thermocouples. Replace if necessary.
-                </label>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF1Camber"
-                  name="TF1 Camber Lasers"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1Camber" class="form-check-label">
-                  Make sure camber laser is clean and operating.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#TF1Notes"
-          >
-            Toggle TF1 Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="TF1 Notes"
-              id="TF1Notes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- TF1 CEMS Unit -->
-        <h4 class="mt-4" id="TF1-CEMS">TF1 CEMS Unit</h4>
-        <div>
-          <div class="container border my-4 pt-3">
-            <div class="row">
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF1 CEMS Cem-cal Zero, daily"
-                  id="TF1CEMSZeroDaily"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1CEMSZeroDaily" class="col-lg col-form-label"
-                  >TF1 CEMS Cem-cal Zero (99% N2), daily</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF1 CEMS 180PPM NO, daily"
-                  id="TF1CEMS180Daily"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1CEMS180Daily" class="col-lg col-form-label"
-                  >TF1 CEMS (180PPM NO), daily</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF1 CEMS 50PPM NO, monthly"
-                  id="TF1CEMS50Monthly"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1CEMS50Monthly" class="col-lg col-form-label"
-                  >TF1 CEMS (50PPM NO), monthly</label
-                >
-              </div>
-              <div class="form-floating pb-3 col-lg">
-                <input
-                  type="number"
-                  step="any"
-                  class="form-control"
-                  placeholder=""
-                  name="TF1 CEMS 110PPM NO, monthly"
-                  id="TF1CEMS110Monthly"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1CEMS110Monthly" class="col-lg col-form-label"
-                  >TF1 CEMS (110PPM NO), monthly</label
-                >
-              </div>
-            </div>
-            <div class="row">
-              <div class="d-flex align-items-center justify-content-center m-4">
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    onclick="handleCheckboxClick.call(this)"
-                    class="form-check-input"
-                    value="false"
-                    id="TF1CCEMSCal"
-                    name="TF1 CEMS Passed Cal"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="TF1CCEMSCal" class="form-check-label">
-                    Did the unit pass calibration today?
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#TF1CEMSNotes"
-          >
-            Toggle TF1 CEMS Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="TF1 CEMS Notes"
-              id="TF1CEMSNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- TF1 Basement -->
-        <h4 class="mt-4" id="TF1-Basement">TF1 Basement</h4>
-        <div>
-          <div class="container border my-4">
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF1Basement"
-                  name="TF1 Basement Lighting"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF1Basement" class="form-check-label">
-                  Check that basement lighting is working.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#TF1BasementNotes"
-          >
-            Toggle TF1 Basement Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="TF1 Basement Notes"
-              id="TF1BasementNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- TF2 Basement -->
-        <h4 class="mt-4">TF2 Basement</h4>
-        <div>
-          <div class="container border my-4">
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="TF2Basement"
-                  name="TF2 Basement Lighting"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="TF2Basement" class="form-check-label">
-                  Check that basement lighting is working.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#TF2BasementNotes"
-          >
-            Toggle TF2 Basement Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="TF2 Basement Notes"
-              id="TF2BasementNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <h1 id="DC">Down Coiler</h1>
-        <!-- Laminar and ROT -->
-        <h4 class="mt-4">Laminar and ROT</h4>
-        <div>
-          <div class="container border my-4">
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="ROTRolls"
-                  name="ROT Rolls"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="ROTRolls" class="form-check-label">
-                  Check if rolls are spinning.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#ROTRollsNotes"
-          >
-            Toggle ROT Rolls Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="ROT Rolls Notes"
-              id="ROTRollsNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- DC Lighting -->
-        <h4 class="mt-4">DC Lighting</h4>
-        <div>
-          <div class="container border my-4">
-            <div class="d-flex align-items-center justify-content-center m-4">
-              <div class="form-check">
-                <input
-                  type="checkbox"
-                  onclick="handleCheckboxClick.call(this)"
-                  class="form-check-input"
-                  value="false"
-                  id="DCLighting"
-                  name="DC Lighting"
-                  oninput="saveToLocalStorage(electricalWalkthrough)"
-                />
-                <label for="DCLighting" class="form-check-label">
-                  Check overhead lighting.
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#DCLightingNotes"
-          >
-            Toggle DC Lighting Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="DC Lighting Notes"
-              id="DCLightingNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- DC Basement -->
-        <h4 class="mt-4">DC Basement</h4>
-        <div>
-          <div class="container border my-4 p-4">
-            <div class="row">
-              <div class="col d-flex align-items-center justify-content-center">
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    onclick="handleCheckboxClick.call(this)"
-                    class="form-check-input"
-                    value="false"
-                    id="DCBasementLighting"
-                    name="DC Basement Lighting"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="DCBasementLighting" class="form-check-label">
-                    Check basement lighting.
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col d-flex align-items-center justify-content-center">
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    onclick="handleCheckboxClick.call(this)"
-                    class="form-check-input"
-                    value="false"
-                    id="DCBasementFlood"
-                    name="DC Basement Flood Alarm"
-                    oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
-                  <label for="DCBasementFlood" class="form-check-label">
-                    Check for proper operation of flood alarm.
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button
-            class="mb-4 btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#DCBasementNotes"
-          >
-            Toggle DC Basement Notes
-          </button>
-          <div class="align-items-center justify-content-center d-flex">
-            <textarea
-              class="collapse form-control w-50"
-              name="DC Basement Notes"
-              id="DCBasementNotes"
-              rows="3"
-              oninput="saveToLocalStorage(electricalWalkthrough)"
-            ></textarea>
-          </div>
-        </div>
-
-        <div class="mb-4 pb-4">
-          <button type="submit" class="m-4 btn btn-primary">Submit</button>
-        </div>
-      </div>
+      </fieldset>
     </form>
   </div>
 </div>
 
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("isFormDisabled:", localStorage.getItem("isFormDisabled"));
+    const isFormDisabled = localStorage.getItem("isFormDisabled") === "true";
+    setFormDisabledState(isFormDisabled);
+
+    window.addEventListener('beforeunload', function (event) {
+      const datePicker = document.getElementById("logDate")
+      const form = document.getElementById("electricalWalkthrough")
+      const inputs = form.getElementsByTagName("input")
+      datePicker.value = ""
+      for (let i = 0; i < inputs.length; i++){
+        if (inputs.item(i).type == "checkbox") {
+          inputs.item(i).checked = false;
+        }
+      }
+    })
+  });
+
+  function setFormDisabledState(isFormDisabled) {
+    const element = document.getElementById("formFieldset");
+    element.disabled = isFormDisabled; // gets passed isFormEnabled
+  }
+
   function getFormIds(parent) {
     const form = document.getElementById(parent);
     const elementIds = [];
@@ -2259,14 +2350,14 @@
     const formDataString = localStorage.getItem("formData");
     const elementIds = getFormIds(parent.id);
     if (formDataString) {
-      const formData = {}
+      const formData = {};
       const keyedFormData = JSON.parse(formDataString); // JSON.parse outputs 1: {key: value}
-      for (let i = 0; i < keyedFormData.length; i++){
-        const obj = keyedFormData[i]
-        formData[Object.keys(obj)] = Object.values(obj)
+      for (let i = 0; i < keyedFormData.length; i++) {
+        const obj = keyedFormData[i];
+        formData[Object.keys(obj)] = Object.values(obj);
       }
       for (let i = 0; i < elementIds.length; i++) {
-        const id = elementIds[i]
+        const id = elementIds[i];
         document.getElementById(id).value = formData[id];
       }
     }
@@ -2276,5 +2367,6 @@
     localStorage.removeItem("formData");
   }
 
-  window.onload = loadFromLocalStorage(electricalWalkthrough)
+  window.onload = loadFromLocalStorage(electricalWalkthrough);
 </script>
+
