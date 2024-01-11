@@ -1,5 +1,10 @@
 async function fetchData(url) {
-  console.log("Sending:", url);
+  const elementLogID = document.getElementById("logID")
+  const elementSubmitButton = document.getElementById("formSubmitButton")
+
+  elementLogID.value = ""
+  elementSubmitButton.textContent = "Submit"
+  // console.log("Sending:", url);
   try {
     const response = await fetch(url);
 
@@ -9,20 +14,30 @@ async function fetchData(url) {
 
     const data = await response.json();
     for (const key in data) {
-      console.log(key);
+      // console.log(key);
       if (key === "returnDate") {
         const date = new Date(data[key]);
-        console.log(date);
+        // console.log(date);
         document.getElementById("logDate").value = date
           .toISOString()
           .split("T")[0];
       }
       if (key === "formEnabled") {
-        console.log("formEnabled:", data[key]);
+        // console.log("formEnabled:", data[key]);
         const isFormDisabled = data[key] === false;
-        console.log("isFormDisabled", isFormDisabled);
+        // console.log("isFormDisabled", isFormDisabled);
         setFormDisabledState(isFormDisabled); // if not log creator disable form
-        addFormDisableToLocal(isFormDisabled)
+        addFormDisableToLocal(isFormDisabled);
+
+        // see if Log ID passed and if so then put it in hidden input text
+        // also change text of submit button to update
+        if (data["logID"]) {
+          console.log("logID:",data["logID"])
+          elementLogID.value = data["logID"]
+          console.log("The document is ready:",document.readyState)
+          console.log("elementLogID:", elementLogID.value)
+          elementSubmitButton.textContent="Update"
+        }
       }
       if (key === "results") {
         for (const key in data["results"]) {
@@ -34,11 +49,12 @@ async function fetchData(url) {
             ) {
               inputElement.checked = true;
             }
+            if (inputElement.tagName == "TEXTAREA") {
+              inputElement.classList.remove("collapse");
+            }
             inputElement.value = data["results"][key];
           }
         }
-      }
-      if (data.hasOwnProperty(key)) {
       }
     }
   } catch (error) {
@@ -84,8 +100,8 @@ function setFormDisabledState(isFormDisabled) {
 
 function addFormDisableToLocal(isFormDisabled) {
   localStorage.setItem("isFormDisabled", isFormDisabled);
-  console.log(
-    "localStorage isFormDisabled changed to:",
-    localStorage.getItem("isFormDisabled")
-  );
+  // console.log(
+  //   "localStorage isFormDisabled changed to:",
+  //   localStorage.getItem("isFormDisabled")
+  // );
 }

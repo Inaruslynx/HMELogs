@@ -42,10 +42,10 @@
   <!-- Main body -->
   <div class="col-12 col-lg-10 pb-4">
     <!-- Log Picker -->
-    <div class="container text-center">
+    <div class="container text-center mb-4">
       <div class="row justify-content-center">
         <div class="col-4 justify-content-center">
-          <button type="button" class="btn btn-secondary" onclick="prevLog()">
+          <button type="button" class="btn btn-primary" onclick="prevLog()">
             Previous
           </button>
         </div>
@@ -59,7 +59,7 @@
               required
             /><button
               type="button"
-              class="btn mx-2 btn-secondary"
+              class="btn mx-2 btn-primary"
               onclick="submitDate()"
             >
               Load
@@ -67,7 +67,7 @@
           </form>
         </div>
         <div class="col-4 justify-content-end">
-          <button type="button" class="btn btn-secondary" onclick="nextLog()">
+          <button type="button" class="btn btn-primary" onclick="nextLog()">
             Next
           </button>
         </div>
@@ -81,6 +81,9 @@
     >
       <fieldset id="formFieldset" disabled="<%- !formEnabled %>">
         <div class="container text-center">
+          <div class="d-none">
+            <input id="logID" name="logID" type="hidden"/>
+          </div>
           <div>
             <h1 id="FM">Finish Mill</h1>
           </div>
@@ -1296,9 +1299,9 @@
                 data-bs-toggle="collapse"
                 data-bs-target="#FMAreaLightingNotes"
               >
-                Toggle FM Entry Note
+                Toggle FM Area Lighting Note
               </button>
-              <div class="align-items-center justify-content-center d-flex">
+              <div class="align-items-center justify-content-center d-flex mb-4">
                 <textarea
                   class="collapse form-control w-50"
                   name="FM Area Lighting Notes"
@@ -1388,7 +1391,7 @@
             >
               Toggle TF2 Notes
             </button>
-            <div class="align-items-center justify-content-center d-flex">
+            <div class="align-items-center justify-content-center d-flex mb-4">
               <textarea
                 class="collapse form-control w-50"
                 name="TF2 Notes"
@@ -1854,9 +1857,9 @@
                 data-bs-toggle="collapse"
                 data-bs-target="#RMAreaLightingNotes"
               >
-                Toggle RM Entry Note
+                Toggle RM Area Lighting Note
               </button>
-              <div class="align-items-center justify-content-center d-flex">
+              <div class="align-items-center justify-content-center d-flex mb-4">
                 <textarea
                   class="collapse form-control w-50"
                   name="RM Area Lighting Notes"
@@ -2130,7 +2133,7 @@
             >
               Toggle TF2 Basement Notes
             </button>
-            <div class="align-items-center justify-content-center d-flex">
+            <div class="align-items-center justify-content-center d-flex mb-4">
               <textarea
                 class="collapse form-control w-50"
                 name="TF2 Basement Notes"
@@ -2290,7 +2293,7 @@
           </div>
 
           <div class="mb-4 pb-4">
-            <button type="submit" class="m-4 btn btn-primary">Submit</button>
+            <button id="formSubmitButton" type="submit" class="m-4 btn btn-primary">Submit</button>
           </div>
         </div>
       </fieldset>
