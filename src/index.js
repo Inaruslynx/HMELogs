@@ -14,7 +14,7 @@ const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 const User = require("./models/users");
-const Log = require("./models/logs");
+const Suggestion = require("./models/suggestions")
 
 const userRoutes = require("./routes/users");
 const walkthroughRoutes = require("./routes/walkthrough");
@@ -91,12 +91,35 @@ app.use("/", userRoutes);
 app.use("/walkthrough", walkthroughRoutes);
 
 // Got to home
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   // using a cookie named logged in to let the browser know if it should send a theme check or not
   if (!res.locals.currentUser) {
     res.cookie('isLoggedIn', 'false', { httpOnly: true })
   }
-  res.render("home");
+  const results = await Suggestion.find({}).populate("user")
+  res.render("home", { results });
+});
+
+app.post("/", async (req, res, next) => {
+  try {
+    const {suggestionTextBox} = req.body
+  console.log(suggestionTextBox)
+    if (!res.locals.currentUser) throw new Error("No current user.");
+    const { _id } = res.locals.currentUser;
+    const userData = await User.findById(_id);
+    if (!userData) {
+      throw new Error("Didn't find user by an id search");
+    }
+    if (suggestionTextBox) {
+      console.log("data:", suggestionTextBox, "userid:", userData._id)
+      const suggestion = new Suggestion({ user: userData._id, suggestion: suggestionTextBox })
+      const result = await suggestion.save()
+      console.log(result)
+    }
+  } catch (error) {
+    
+  }
+  res.redirect(`${process.env.DOMAIN}`)
 });
 
 // If route wasn't found above then return an error

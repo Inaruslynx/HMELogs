@@ -34,7 +34,7 @@ async function fetchData(url) {
         if (data["logID"]) {
           console.log("logID:",data["logID"])
           elementLogID.value = data["logID"]
-          console.log("The document is ready:",document.readyState)
+          console.log("The document status:",document.readyState)
           console.log("elementLogID:", elementLogID.value)
           elementSubmitButton.textContent="Update"
         }
@@ -96,6 +96,11 @@ function nextLog() {
 function setFormDisabledState(isFormDisabled) {
   const element = document.getElementById("formFieldset");
   element.disabled = isFormDisabled; // gets passed isFormEnabled
+  if (isFormDisabled) {
+    console.log("form is disabled")
+  } else {
+    console.log("form is enabled")
+  }
 }
 
 function addFormDisableToLocal(isFormDisabled) {

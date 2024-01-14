@@ -1,10 +1,44 @@
 <% layout('layouts/boilerplate') %>
 <h1>Welcome to HM Walkthrough</h1>
-<p>The walkthrough is up and running. I'll be checking data to verify everything is working smoothly. I'll be adding more to this app as time goes on to make the app more useful.</p>
+<p>
+  The walkthrough is up and running. I'll be checking data to verify everything
+  is working smoothly. I'll be adding more to this app as time goes on to make
+  the app more useful.
+</p>
+<div class="container-fluid"></div>
 <h4>TODO List:</h4>
 <ul>
-    <li><s>A way to look at previous logs</s></li>
-    <li><s>Add log updating for making corrections</s></li>
-    <li>Graph data</li>
-    <li>Change UI to React to streamline process</li>
+  <li><s>A way to look at previous logs</s></li>
+  <li><s>Add log updating for making corrections</s></li>
+  <li>Graph data</li>
+  <li>Change UI to React to streamline process</li>
 </ul>
+<h4>Suggestions:</h4>
+<% if (results.length > 0) { %>
+<div>
+  <ul id="suggestionList">
+    <% results.forEach(item => { %>
+    <li><%= item.suggestion %> - <%= item.user.username %></li>
+    <% }) %>
+  </ul>
+</div>
+<% } else { %>
+<div>No suggestions</div>
+<% } %>
+
+<div class="container d-flex m-4">
+<div class="row align-items-end flex-column w-50">
+    <h4>Add a suggestion:</h4>
+    <form action="<%- process.env.DOMAIN %>/"
+        method="post"
+        id="suggestions"">
+    <textarea type="text" class="w-50 align-self-stretch" placeholder="Suggestion"
+    name="suggestionTextBox"
+    id="suggestionTextBox"
+    rows="3"></textarea>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</div>
+
+</div>
