@@ -15,9 +15,11 @@ const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 const User = require("./models/users");
 const Suggestion = require("./models/suggestions")
+const {startTimeJobs} = require("./utils/dailyLogCheck")
 
 const userRoutes = require("./routes/users");
 const walkthroughRoutes = require("./routes/walkthrough");
+const graphRoutes = require("./routes/graph")
 
 const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
 const session_uri = `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
@@ -43,14 +45,14 @@ const path = require("path");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// This doesn't work
+app.use(cookieParser())
 app.use(
   session({
     saveUninitialized: true,
     rolling: true,
     resave: false,
     secret: process.env.SESSION_SECRET,
-    //                ms    s    m    h    d
+    //                                 ms    s    m    h    d
     cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 },
     store: MongoStore.create({
       mongoUrl: session_uri,
@@ -65,9 +67,8 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 app.use(mongoSanitize());
-app.use(flash());
 app.set('trust proxy', 'loopback, linklocal, uniquelocal')
-app.use(cookieParser())
+
 
 // Setup passport module
 app.use(passport.initialize());
@@ -76,6 +77,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+app.use(flash());
+startTimeJobs();
 
 // If there is a success or error message in res, add to req flash message
 app.use((req, res, next) => {
@@ -89,6 +92,7 @@ app.use((req, res, next) => {
 // Tell Express to use routes
 app.use("/", userRoutes);
 app.use("/walkthrough", walkthroughRoutes);
+app.use("/graph", graphRoutes)
 
 // Got to home
 app.get("/", async (req, res) => {
@@ -103,12 +107,12 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res, next) => {
   try {
     const {suggestionTextBox} = req.body
-  console.log(suggestionTextBox)
+    console.log(suggestionTextBox)
     if (!res.locals.currentUser) throw new Error("No current user.");
     const { _id } = res.locals.currentUser;
     const userData = await User.findById(_id);
     if (!userData) {
-      throw new Error("Didn't find user by an id search");
+      throw new Error("Didn't find user.");
     }
     if (suggestionTextBox) {
       console.log("data:", suggestionTextBox, "userid:", userData._id)
@@ -117,7 +121,7 @@ app.post("/", async (req, res, next) => {
       console.log(result)
     }
   } catch (error) {
-    
+    req.flash("error", error.message)
   }
   res.redirect(`${process.env.DOMAIN}`)
 });
