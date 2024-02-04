@@ -33,5 +33,6 @@ module.exports.sendEmail = async (htmlBody, to, subject) => {
     );
     return false;
   }
+  console.log("For some reason an email was not sent and reached end of sendEmail.js")
   return false;
 };

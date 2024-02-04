@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { parentPort } = require('worker_threads');
+const { parentPort } = require("worker_threads");
 const ejs = require("ejs");
 const path = require("path");
 const User = require("../models/users");
@@ -80,15 +80,18 @@ async function checkLog() {
       },
     }).exec();
     if (log.length > 0) {
-      cabin.info("Log found in last 24 hours. Exiting job.")
-      if (parentPort) parentPort.postMessage('done');
-  else process.exit(0);
+      console.log("Log found in last 24 hours. Exiting job.");
+      if (parentPort) parentPort.postMessage("done");
+      else process.exit(0);
     }
-  
-    cabin.info("No log found in the last 24 hours")
-    //const admins = await User.find({ admin: true });
+
+    console.log("No log found in the last 24 hours");
+    const admins = await User.find({ admin: true });
     // console.log(admins)
-    const admins = [{username: 'josh.edwards', email: 'josh.edwards@steeldynamics.com'}]
+    // const admins = [
+    //   { username: "josh.edwards", email: "josh.edwards@steeldynamics.com" },
+    // ];
+    const result = [];
     for (const admin of admins) {
       // I can just send an email as I go through the admins.
       // Check if username is an email and split
@@ -99,18 +102,24 @@ async function checkLog() {
       const htmlPayload = await ejs.renderFile(ejsTemplate, {
         userName: admin.username,
       });
-      cabin.info("Sending an email to", admin.username)
+      console.log("Sending an email to", admin.username);
       // console.log(htmlPayload);
       //return { email: admin.email, username: admin.username };
       // send email to email with htmlPayload and title of email
-      sendEmail(htmlPayload, admin.email, "No Log Data");
+      result.push(await sendEmail(htmlPayload, admin.email, "No Log Data"));
     }
-    cabin.info("Done sending emails. Exiting job.")
-    if (parentPort) parentPort.postMessage('done');
+    const hasFalse = result.some((element) => element === false);
+    if (hasFalse) {
+      console.log("An email wasn't sent successfully.");
+      if (parentPort) parentPort.postMessage("fail");
+      else process.exit(1);
+    }
+    console.log("Done sending emails. Exiting job.");
+    if (parentPort) parentPort.postMessage("done");
     else process.exit(0);
   } catch (error) {
-    cabin.error(new Error("Not able to successfully check daily log."))
-    process.exit(1)
+    console.log(new Error("Not able to successfully check daily log."), error);
+    process.exit(1);
   }
 }
 
