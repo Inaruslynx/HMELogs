@@ -32,10 +32,10 @@ async function fetchData(url) {
         // see if Log ID passed and if so then put it in hidden input text
         // also change text of submit button to update
         if (data["logID"]) {
-          console.log("logID:",data["logID"])
+          // console.log("logID:",data["logID"])
           elementLogID.value = data["logID"]
-          console.log("The document status:",document.readyState)
-          console.log("elementLogID:", elementLogID.value)
+          // console.log("The document status:",document.readyState)
+          // console.log("elementLogID:", elementLogID.value)
           elementSubmitButton.textContent="Update"
         }
       }
@@ -96,11 +96,11 @@ function nextLog() {
 function setFormDisabledState(isFormDisabled) {
   const element = document.getElementById("formFieldset");
   element.disabled = isFormDisabled; // gets passed isFormEnabled
-  if (isFormDisabled) {
-    console.log("form is disabled")
-  } else {
-    console.log("form is enabled")
-  }
+  // if (isFormDisabled) {
+  //   console.log("form is disabled")
+  // } else {
+  //   console.log("form is enabled")
+  // }
 }
 
 function addFormDisableToLocal(isFormDisabled) {

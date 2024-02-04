@@ -1,0 +1,38 @@
+<% layout('layouts/boilerplate') %>
+
+<h1>Coming Soon!&trade;</h1>
+
+<div class="container">
+  <form
+    class="row text-center justify-content-center align-items-center"
+    action="<%- process.env.DOMAIN %>/graph"
+    method="post"
+  >
+    <div class="col-3 justify-content-center form-floating">
+      <select class="form-select" name="dataSelector" id="dataSelector">
+        <option value="">--Please choose a data point--</option>
+        <% if (dataPoints && dataPoints.length > 0) { %> <%
+        dataPoints.forEach(element => { %>
+        <option value="<%- element %>"><%= element %></option>
+        <% }) %> <% } %>
+      </select>
+      <label for="dataSelector">Select data to graph</label>
+    </div>
+    <div class="col-3 align-items-center">
+      <label class="mx-1" for="fromDate">From:</label>
+      <input
+        type="date"
+        name="fromDate"
+        id="fromDate"
+        value="<%= fromDate %>"
+      />
+    </div>
+    <div class="col-3">
+      <label class="mx-1" for="toDate">To:</label>
+      <input type="date" name="toDate" id="toDate" value="<%= toDate %>" />
+    </div>
+    <div class="col-3">
+      <button class="btn btn-primary" type="submit">Graph Data</button>
+    </div>
+  </form>
+</div>

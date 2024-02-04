@@ -87,7 +87,7 @@ module.exports.forgotPassword = async (req, res, next) => {
     path.join(__dirname, "../utils/passwordResetEmail.ejs"),
     tempData
   );
-  if (sendEmail(htmlPayload, user.email, "Password Reset Request")) {
+  if (await sendEmail(htmlPayload, user.email, "Password Reset Request")) {
     req.flash("success", "Email sent to reset password");
     res.redirect(process.env.DOMAIN);
   } else {

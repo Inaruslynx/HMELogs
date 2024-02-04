@@ -91,14 +91,16 @@ module.exports.getWalkthrough = async (req, res) => {
   } else if (prev) {
     // if the user pressed previous with no log pulled up
     const currentDate = new Date();
-    // console.log("currentDate:",currentDate)
+    //console.log("currentDate:",currentDate)
     result = await Log.findOne({ createdAt: { $lt: currentDate } })
       .sort({ createdAt: -1 })
       .exec();
     if (result) {
       const originalTime = result.createdAt;
       // console.log("1st originalTime:", originalTime)
-      const eightAm = new Date(originalTime.setHours(8, 0, 0, 0));
+      const eightAm = new Date(originalTime);
+      // console.log("eightAm:", eightAm)
+      eightAm.setHours(8, 0, 0,0)
       // console.log("originalTime:", originalTime, "eightAm:", eightAm)
       // check if the log is before 8am
       if (originalTime.getTime() < eightAm.getTime()) {
@@ -158,18 +160,17 @@ module.exports.postWalkthrough = async (req, res, next) => {
     // Make sure to delete logID so it doesn't get saved in data
     if (data["logID"]) {
       // console.log("there was a logID:", data["logID"]);
-      const id = data["logID"];
-      const oldLog = await Log.findById(id);
-      const options = { new: true, useFindAndModify: false };
+      const id = data["logID"]
+      const options = { new: true };
       delete data["logID"];
-      const changedValues = findChangedValues(oldLog.data, data);
       const result = await Log.findByIdAndUpdate(
         id,
-        { data: { ...changedValues } },
+        { data },
         options
       );
       // console.log(result)
     } else {
+      delete data["logID"];
       const newLog = new Log({ user: userData._id, data: data });
       await newLog.save();
     }

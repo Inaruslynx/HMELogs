@@ -3,7 +3,7 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const mongoose = require("mongoose");
@@ -14,12 +14,66 @@ const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 const User = require("./models/users");
-const Suggestion = require("./models/suggestions")
-const {startTimeJobs} = require("./utils/dailyLogCheck")
+const Suggestion = require("./models/suggestions");
+const { startTimeJobs } = require("./utils/dailyLogCheck");
+
+// For logging purposes
+// Going to send logs to Papertrail
+const Axe = require("axe");
+const Cabin = require("cabin");
+const parseErr = require("parse-err");
+const safeStringify = require("fast-safe-stringify");
+const superagent = require("superagent");
+const { createId } = require("@paralleldrive/cuid2");
+const { Signale } = require("signale");
+const logger = new Axe({ logger: new Signale(), meta: {omittedFields: ['app']} });
+const PAPERTRAIL_TOKEN = process.env.PAPERTRAIL_TOKEN;
+
+// <https://github.com/cabinjs/axe/#send-logs-to-papertrail>
+async function hook(err, message, meta) {
+  //
+  // return early if we wish to ignore this
+  // (this prevents recursion; see end of this fn)
+  //
+  if (meta.ignore_hook) return;
+  if (!(err instanceof Error)) return;
+
+  try {
+    const request = superagent
+      .post("https://logs.collector.solarwinds.com/v1/log")
+      // if the meta object already contained a request ID then re-use it
+      // otherwise generate one that gets re-used in the API log request
+      // (which normalizes server/browser request id formatting)
+      .set(
+        "X-Request-Id",
+        meta && meta.request && meta.request.id ? meta.request.id : createId()
+      )
+      .set("X-Axe-Version", logger.config.version)
+      .timeout(5000);
+
+    request.auth("", PAPERTRAIL_TOKEN);
+
+    const response = await request
+      .type("application/json")
+      .retry(3)
+      .send(safeStringify({ err: parseErr(err), message, meta }));
+
+    logger.info("log sent over HTTP", { response, ignore_hook: true });
+  } catch (err) {
+    logger.fatal(err, { ignore_hook: true });
+  }
+}
+
+for (const level of logger.config.levels) {
+  logger.post(level, hook);
+}
+
+const cabin = new Cabin({ logger });
+module.exports = cabin
 
 const userRoutes = require("./routes/users");
 const walkthroughRoutes = require("./routes/walkthrough");
-const graphRoutes = require("./routes/graph")
+const graphRoutes = require("./routes/graph");
 
 const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
 const session_uri = `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
@@ -29,7 +83,7 @@ mongoose.connect(uri, options);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-  console.log("Database connected");
+  cabin.info("Database connected");
 });
 
 // const sessionConnection = mongoose.createConnection(session_uri, options)
@@ -45,7 +99,8 @@ const path = require("path");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(cookieParser())
+app.use(cookieParser());
+app.use(cabin.middleware);
 app.use(
   session({
     saveUninitialized: true,
@@ -67,8 +122,7 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 app.use(mongoSanitize());
-app.set('trust proxy', 'loopback, linklocal, uniquelocal')
-
+app.set("trust proxy", "loopback, linklocal, uniquelocal");
 
 // Setup passport module
 app.use(passport.initialize());
@@ -92,22 +146,22 @@ app.use((req, res, next) => {
 // Tell Express to use routes
 app.use("/", userRoutes);
 app.use("/walkthrough", walkthroughRoutes);
-app.use("/graph", graphRoutes)
+app.use("/graph", graphRoutes);
 
 // Got to home
 app.get("/", async (req, res) => {
   // using a cookie named logged in to let the browser know if it should send a theme check or not
   if (!res.locals.currentUser) {
-    res.cookie('isLoggedIn', 'false', { httpOnly: true })
+    res.cookie("isLoggedIn", "false", { httpOnly: true });
   }
-  const results = await Suggestion.find({}).populate("user")
+  const results = await Suggestion.find({}).populate("user");
   res.render("home", { results });
 });
 
 app.post("/", async (req, res, next) => {
   try {
-    const {suggestionTextBox} = req.body
-    console.log(suggestionTextBox)
+    const { suggestionTextBox } = req.body;
+    //console.log(suggestionTextBox)
     if (!res.locals.currentUser) throw new Error("No current user.");
     const { _id } = res.locals.currentUser;
     const userData = await User.findById(_id);
@@ -115,15 +169,18 @@ app.post("/", async (req, res, next) => {
       throw new Error("Didn't find user.");
     }
     if (suggestionTextBox) {
-      console.log("data:", suggestionTextBox, "userid:", userData._id)
-      const suggestion = new Suggestion({ user: userData._id, suggestion: suggestionTextBox })
-      const result = await suggestion.save()
-      console.log(result)
+      //console.log("data:", suggestionTextBox, "userid:", userData._id)
+      const suggestion = new Suggestion({
+        user: userData._id,
+        suggestion: suggestionTextBox,
+      });
+      const result = await suggestion.save();
+      //console.log(result)
     }
   } catch (error) {
-    req.flash("error", error.message)
+    req.flash("error", error.message);
   }
-  res.redirect(`${process.env.DOMAIN}`)
+  res.redirect(`${process.env.DOMAIN}`);
 });
 
 // If route wasn't found above then return an error
@@ -139,5 +196,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Express server listening on port ${port}`);
+  cabin.info(`Express server listening on port ${port}`);
 });
