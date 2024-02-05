@@ -170,6 +170,7 @@ module.exports.postWalkthrough = async (req, res, next) => {
       );
       // console.log(result)
     } else {
+      // TODO this is where I need to handle a date
       delete data["logID"];
       const newLog = new Log({ user: userData._id, data: data });
       await newLog.save();
@@ -184,15 +185,15 @@ module.exports.postWalkthrough = async (req, res, next) => {
   }
 };
 
-function findChangedValues(existingObject, updatedObject) {
-  const changedValues = {};
+// function findChangedValues(existingObject, updatedObject) {
+//   const changedValues = {};
 
-  // Iterate through the keys of the existingObject
-  for (const key in existingObject) {
-    // Check if the key exists in the updatedObject and the values are different
-    if (key in updatedObject && existingObject[key] !== updatedObject[key]) {
-      changedValues[key] = updatedObject[key];
-    }
-  }
-  return changedValues;
-}
+//   // Iterate through the keys of the existingObject
+//   for (const key in existingObject) {
+//     // Check if the key exists in the updatedObject and the values are different
+//     if (key in updatedObject && existingObject[key] !== updatedObject[key]) {
+//       changedValues[key] = updatedObject[key];
+//     }
+//   }
+//   return changedValues;
+// }
