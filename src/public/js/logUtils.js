@@ -63,6 +63,7 @@ async function fetchData(url) {
 }
 
 function submitDate() {
+  document.getElementById("pickedDate").value = ""
   const selectedDate = document.getElementById("logDate").value;
   const url = `/HM_Walkthrough/walkthrough?date=${selectedDate}`;
 
@@ -70,6 +71,7 @@ function submitDate() {
 }
 
 function prevLog() {
+  document.getElementById("pickedDate").value = ""
   let url = "";
   const selectedDate = document.getElementById("logDate").value;
   if (selectedDate) {
@@ -82,6 +84,7 @@ function prevLog() {
 }
 
 function nextLog() {
+  document.getElementById("pickedDate").value = ""
   let url = "";
   const selectedDate = document.getElementById("logDate").value;
   if (selectedDate) {
@@ -109,4 +112,10 @@ function addFormDisableToLocal(isFormDisabled) {
   //   "localStorage isFormDisabled changed to:",
   //   localStorage.getItem("isFormDisabled")
   // );
+}
+
+function onDateChange() {
+  const selectedDate = document.getElementById("logDate").value;
+  const pickedDateElement = document.getElementById("pickedDate")
+  pickedDateElement.value = selectedDate
 }

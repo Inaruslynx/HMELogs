@@ -56,6 +56,7 @@
               name="logDate"
               id="logDate"
               min="2023-12-19"
+              onchange="onDateChange()"
               required
             /><button
               type="button"
@@ -83,6 +84,9 @@
         <div class="container text-center">
           <div class="d-none">
             <input id="logID" name="logID" type="hidden"/>
+          </div>
+          <div class="d-none">
+            <input id="pickedDate" name="pickedDate" type="hidden"/>
           </div>
           <div>
             <h1 id="FM">Finish Mill</h1>

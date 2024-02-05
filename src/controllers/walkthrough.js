@@ -1,5 +1,6 @@
 const Log = require("../models/logs");
 const User = require("../models/users");
+const isDst = require("../utils/isDst");
 
 /*
 Mongoose saves times using zulu time (GMT). 
@@ -100,7 +101,7 @@ module.exports.getWalkthrough = async (req, res) => {
       // console.log("1st originalTime:", originalTime)
       const eightAm = new Date(originalTime);
       // console.log("eightAm:", eightAm)
-      eightAm.setHours(8, 0, 0,0)
+      eightAm.setHours(8, 0, 0, 0);
       // console.log("originalTime:", originalTime, "eightAm:", eightAm)
       // check if the log is before 8am
       if (originalTime.getTime() < eightAm.getTime()) {
@@ -156,25 +157,36 @@ module.exports.postWalkthrough = async (req, res, next) => {
     if (!userData) {
       throw new Error("Didn't find user by an id search");
     }
+
     // Check if logID was submitted and if so find existing log and update instead
     // Make sure to delete logID so it doesn't get saved in data
     if (data["logID"]) {
+      if (data["pickedDate"]) delete data["pickedDate"];
       // console.log("there was a logID:", data["logID"]);
-      const id = data["logID"]
+      const id = data["logID"];
       const options = { new: true };
       delete data["logID"];
-      const result = await Log.findByIdAndUpdate(
-        id,
-        { data },
-        options
-      );
+      await Log.findByIdAndUpdate(id, { data }, options);
       // console.log(result)
     } else {
-      // TODO this is where I need to handle a date
+      // Check if there is a pickedDate
+      // If true then submit log for given date
+      if (data["pickedDate"] === "") delete data["pickedDate"];
       delete data["logID"];
-      const newLog = new Log({ user: userData._id, data: data });
-      await newLog.save();
+      if (data["pickedDate"]) {
+        const date = new Date(data["pickedDate"]);
+        delete data["pickedDate"];
+        const cstOffsetInMinutes = isDst(date) ? -5 * 60 : -6 * 60;
+        date.setUTCHours(8, 1, 0, 0);
+        date.setUTCMinutes(date.getUTCMinutes() - cstOffsetInMinutes);
+        const newLog = new Log({ user: userData._id, data, date });
+        await newLog.save();
+      } else {
+        const newLog = new Log({ user: userData._id, data });
+        await newLog.save();
+      }
     }
+
     req.flash("success", "Log submitted successfully");
     res.send(
       `<script>window.localStorage.removeItem("formData"); window.location.href = "${process.env.DOMAIN}"</script>`

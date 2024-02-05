@@ -11,6 +11,10 @@ const Log = new Schema(
         data: {
             type: Schema.Types.Mixed,
             require: true
+        },
+        date: {
+            type: Date,
+            default: Date.now
         }
     }, {
         timestamps: true
