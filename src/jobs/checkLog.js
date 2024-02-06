@@ -6,57 +6,6 @@ const User = require("../models/users");
 const Log = require("../models/logs");
 const { sendEmail } = require("../utils/sendEmail");
 
-// const Axe = require("axe");
-// const Cabin = require("cabin");
-// const parseErr = require("parse-err");
-// const safeStringify = require("fast-safe-stringify");
-// const superagent = require("superagent");
-// const { createId } = require("@paralleldrive/cuid2");
-// const { Signale } = require("signale");
-// const logger = new Axe({ logger: new Signale() });
-// const PAPERTRAIL_TOKEN = process.env.PAPERTRAIL_TOKEN;
-
-// // <https://github.com/cabinjs/axe/#send-logs-to-papertrail>
-// async function hook(err, message, meta) {
-//   //
-//   // return early if we wish to ignore this
-//   // (this prevents recursion; see end of this fn)
-//   //
-//   if (meta.ignore_hook) return;
-//   if (!(err instanceof Error)) return;
-
-//   try {
-//     const request = superagent
-//       .post("https://logs.collector.solarwinds.com/v1/log")
-//       // if the meta object already contained a request ID then re-use it
-//       // otherwise generate one that gets re-used in the API log request
-//       // (which normalizes server/browser request id formatting)
-//       .set(
-//         "X-Request-Id",
-//         meta && meta.request && meta.request.id ? meta.request.id : createId()
-//       )
-//       .set("X-Axe-Version", logger.config.version)
-//       .timeout(5000);
-
-//     request.auth("", PAPERTRAIL_TOKEN);
-
-//     const response = await request
-//       .type("application/json")
-//       .retry(3)
-//       .send(safeStringify({ err: parseErr(err), message, meta }));
-
-//     logger.info("log sent over HTTP", { response, ignore_hook: true });
-//   } catch (err) {
-//     logger.fatal(err, { ignore_hook: true });
-//   }
-// }
-
-// for (const level of logger.config.levels) {
-//   logger.post(level, hook);
-// }
-
-// const cabin = new Cabin({ logger });
-
 const ejsTemplate = path.join(__dirname, "../utils/noLogEmail.ejs");
 
 const mongoose = require("mongoose");
@@ -118,8 +67,9 @@ async function checkLog() {
     if (parentPort) parentPort.postMessage("done");
     else process.exit(0);
   } catch (error) {
-    console.log(new Error("Not able to successfully check daily log."), error);
-    process.exit(1);
+    console.log("Not able to successfully check daily log.");
+    if (parentPort) parentPort.postMessage("fail");
+    else process.exit(1);
   }
 }
 
