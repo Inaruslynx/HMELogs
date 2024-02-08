@@ -139,6 +139,7 @@ module.exports.getWalkthrough = async (req, res) => {
     res.json({ formEnabled: false, returnDate, results: result.data });
   } else {
     // if no results were generated then render a blank walkthrough making sure form is enabled
+    // TODO Get data then show average and last
     res.render("walkthrough/fill", { formEnabled: true }, function (err, html) {
       let package = `${html} 
       <script>window.localStorage.setItem("isFormDisabled", "false");</script>
