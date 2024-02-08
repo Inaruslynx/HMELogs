@@ -43,7 +43,7 @@ module.exports.getWalkthrough = async (req, res) => {
         // console.log("originalTime:", originalTime, "eightAm:", eightAm)
         // if a log is before 8am set the date to the day before
         if (originalTime.getTime() < eightAm.getTime()) {
-          returnDate = eightAm.setHours(eightAm.getHours() - 24);
+          returnDate = eightAm.setUTCHours(eightAm.getUTCHours() - 24);
           // console.log("returnDate:", returnDate)
         } else {
           returnDate = result.createdAt;
@@ -55,7 +55,7 @@ module.exports.getWalkthrough = async (req, res) => {
       startDate.setUTCHours(14, 0, 0, 0);
       // console.log("The date after 8:",startDate)
       // console.log("The getHours after 8:",startDate.getHours())
-      startDate.setHours(startDate.getHours() + 24);
+      startDate.setUTCHours(startDate.getUTCHours() + 24);
       // console.log("The date being searched for after 24:", startDate)
       // query log
       result = await Log.findOne({
@@ -72,7 +72,7 @@ module.exports.getWalkthrough = async (req, res) => {
         // console.log("Now originalTime:", originalTime, "eightAm:", eightAm)
         // if the time on the log is less than 8am set it back a day
         if (originalTime.getTime() < eightAm.getTime()) {
-          returnDate = eightAm.setHours(eightAm.getHours() - 24);
+          returnDate = eightAm.setUTCHours(eightAm.getUTCHours() - 24);
           // console.log("returnDate:", returnDate)
         } else {
           returnDate = result.createdAt;
@@ -80,9 +80,9 @@ module.exports.getWalkthrough = async (req, res) => {
       }
     } else {
       // user wants a specific date
-      startDate.setHours(8, 0, 0, 0);
+      startDate.setUTCHours(14, 0, 0, 0);
       const endDate = new Date(startDate);
-      endDate.setHours(endDate.getHours() + 24);
+      endDate.setUTCHours(endDate.getUTCHours() + 24);
       //find a log between start and end date
       result = await Log.findOne({
         createdAt: { $gte: startDate, $lt: endDate },
@@ -101,11 +101,11 @@ module.exports.getWalkthrough = async (req, res) => {
       // console.log("1st originalTime:", originalTime)
       const eightAm = new Date(originalTime);
       // console.log("eightAm:", eightAm)
-      eightAm.setHours(8, 0, 0, 0);
+      eightAm.setUTCHours(14, 0, 0, 0);
       // console.log("originalTime:", originalTime, "eightAm:", eightAm)
       // check if the log is before 8am
       if (originalTime.getTime() < eightAm.getTime()) {
-        returnDate = eightAm.setHours(eightAm.getHours() - 24);
+        returnDate = eightAm.setUTCHours(eightAm.getUTCHours() - 24);
       } else {
         returnDate = result.createdAt;
       }
