@@ -15,6 +15,7 @@ function toggleMode() {
   var element = document.body;
   element.dataset.bsTheme =
     element.dataset.bsTheme == "light" ? "dark" : "light";
+    document.body.dispatchEvent(new Event('theme-change'));
 
   const isLoggedIn = getCookie("isLoggedIn");
   if (isLoggedIn) {
