@@ -1,9 +1,9 @@
 async function fetchData(url) {
-  const elementLogID = document.getElementById("logID")
-  const elementSubmitButton = document.getElementById("formSubmitButton")
+  const elementLogID = document.getElementById("logID");
+  const elementSubmitButton = document.getElementById("formSubmitButton");
 
-  elementLogID.value = ""
-  elementSubmitButton.textContent = "Submit"
+  elementLogID.value = "";
+  elementSubmitButton.textContent = "Submit";
   // console.log("Sending:", url);
   try {
     const response = await fetch(url);
@@ -33,28 +33,14 @@ async function fetchData(url) {
         // also change text of submit button to update
         if (data["logID"]) {
           // console.log("logID:",data["logID"])
-          elementLogID.value = data["logID"]
+          elementLogID.value = data["logID"];
           // console.log("The document status:",document.readyState)
           // console.log("elementLogID:", elementLogID.value)
-          elementSubmitButton.textContent="Update"
+          elementSubmitButton.textContent = "Update";
         }
       }
       if (key === "results") {
-        for (const key in data["results"]) {
-          const inputElement = document.getElementsByName(key)[0];
-          if (inputElement) {
-            if (
-              inputElement.type == "checkbox" &&
-              data["results"][key] === "true"
-            ) {
-              inputElement.checked = true;
-            }
-            if (inputElement.tagName == "TEXTAREA") {
-              inputElement.classList.remove("collapse");
-            }
-            inputElement.value = data["results"][key];
-          }
-        }
+        fillForm(data["results"]);
       }
     }
   } catch (error) {
@@ -63,7 +49,7 @@ async function fetchData(url) {
 }
 
 function submitDate() {
-  document.getElementById("pickedDate").value = ""
+  document.getElementById("pickedDate").value = "";
   const selectedDate = document.getElementById("logDate").value;
   const url = `/HM_Walkthrough/walkthrough?date=${selectedDate}`;
 
@@ -71,7 +57,7 @@ function submitDate() {
 }
 
 function prevLog() {
-  document.getElementById("pickedDate").value = ""
+  document.getElementById("pickedDate").value = "";
   let url = "";
   const selectedDate = document.getElementById("logDate").value;
   if (selectedDate) {
@@ -84,7 +70,7 @@ function prevLog() {
 }
 
 function nextLog() {
-  document.getElementById("pickedDate").value = ""
+  document.getElementById("pickedDate").value = "";
   let url = "";
   const selectedDate = document.getElementById("logDate").value;
   if (selectedDate) {
@@ -116,6 +102,21 @@ function addFormDisableToLocal(isFormDisabled) {
 
 function onDateChange() {
   const selectedDate = document.getElementById("logDate").value;
-  const pickedDateElement = document.getElementById("pickedDate")
-  pickedDateElement.value = selectedDate
+  const pickedDateElement = document.getElementById("pickedDate");
+  pickedDateElement.value = selectedDate;
+}
+
+function fillForm(data) {
+  for (const key in data) {
+    const inputElement = document.getElementsByName(key)[0];
+    if (inputElement) {
+      if (inputElement.type == "checkbox" && data[key] === "true") {
+        inputElement.checked = true;
+      }
+      if (inputElement.tagName == "TEXTAREA") {
+        inputElement.classList.remove("collapse");
+      }
+      inputElement.value = data[key];
+    }
+  }
 }

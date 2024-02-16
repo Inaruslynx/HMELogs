@@ -30,12 +30,12 @@ module.exports.getWalkthrough = async (req, res) => {
       // console.log("Searching for a log less than:", startDate)
       // query log
       result = await Log.findOne({
-        createdAt: { $lt: startDate },
+        date: { $lt: startDate },
       })
-        .sort({ createdAt: -1 })
+        .sort({ date: -1 })
         .exec();
       if (result) {
-        const originalTime = result.createdAt;
+        const originalTime = result.date;
         // console.log("originalTime:", originalTime)
         // get 8am on day of log
         const eightAm = new Date(originalTime);
@@ -46,7 +46,7 @@ module.exports.getWalkthrough = async (req, res) => {
           returnDate = eightAm.setUTCHours(eightAm.getUTCHours() - 24);
           // console.log("returnDate:", returnDate)
         } else {
-          returnDate = result.createdAt;
+          returnDate = result.date;
         }
       }
     } else if (next) {
@@ -59,10 +59,10 @@ module.exports.getWalkthrough = async (req, res) => {
       // console.log("The date being searched for after 24:", startDate)
       // query log
       result = await Log.findOne({
-        createdAt: { $gte: startDate },
+        date: { $gte: startDate },
       }).exec();
       if (result) {
-        const originalTime = result.createdAt;
+        const originalTime = result.date;
         // I need another time I can manipulate because setHours is messing with the original time
         // console.log("The time log was created:", originalTime)
         // console.log("startDate.getHours():", (startDate.getHours()))
@@ -75,7 +75,7 @@ module.exports.getWalkthrough = async (req, res) => {
           returnDate = eightAm.setUTCHours(eightAm.getUTCHours() - 24);
           // console.log("returnDate:", returnDate)
         } else {
-          returnDate = result.createdAt;
+          returnDate = result.date;
         }
       }
     } else {
@@ -85,7 +85,7 @@ module.exports.getWalkthrough = async (req, res) => {
       endDate.setUTCHours(endDate.getUTCHours() + 24);
       //find a log between start and end date
       result = await Log.findOne({
-        createdAt: { $gte: startDate, $lt: endDate },
+        date: { $gte: startDate, $lt: endDate },
       }).exec();
       returnDate = startDate;
     }
@@ -93,11 +93,11 @@ module.exports.getWalkthrough = async (req, res) => {
     // if the user pressed previous with no log pulled up
     const currentDate = new Date();
     //console.log("currentDate:",currentDate)
-    result = await Log.findOne({ createdAt: { $lt: currentDate } })
-      .sort({ createdAt: -1 })
+    result = await Log.findOne({ date: { $lt: currentDate } })
+      .sort({ date: -1 })
       .exec();
     if (result) {
-      const originalTime = result.createdAt;
+      const originalTime = result.date;
       // console.log("1st originalTime:", originalTime)
       const eightAm = new Date(originalTime);
       // console.log("eightAm:", eightAm)
@@ -107,7 +107,7 @@ module.exports.getWalkthrough = async (req, res) => {
       if (originalTime.getTime() < eightAm.getTime()) {
         returnDate = eightAm.setUTCHours(eightAm.getUTCHours() - 24);
       } else {
-        returnDate = result.createdAt;
+        returnDate = result.date;
       }
       // console.log("returnDate:", returnDate)
     }
@@ -139,7 +139,7 @@ module.exports.getWalkthrough = async (req, res) => {
     res.json({ formEnabled: false, returnDate, results: result.data });
   } else {
     // if no results were generated then render a blank walkthrough making sure form is enabled
-    // TODO Get data then show average and last
+    // TODO Get data then show average and last. This will probably be too difficult without React.
     res.render("walkthrough/fill", { formEnabled: true }, function (err, html) {
       let package = `${html} 
       <script>window.localStorage.setItem("isFormDisabled", "false");</script>
@@ -160,7 +160,7 @@ module.exports.postWalkthrough = async (req, res, next) => {
     }
 
     // Check if logID was submitted and if so find existing log and update instead
-    // Make sure to delete logID so it doesn't get saved in data
+    // Make sure to delete logID and pickedDate so it doesn't get saved in data
     if (data["logID"]) {
       if (data["pickedDate"]) delete data["pickedDate"];
       // console.log("there was a logID:", data["logID"]);
@@ -170,10 +170,12 @@ module.exports.postWalkthrough = async (req, res, next) => {
       await Log.findByIdAndUpdate(id, { data }, options);
       // console.log(result)
     } else {
+      // If pickedDate is blank, delete
+      if (data["pickedDate"] === "") delete data["pickedDate"];
+      // make sure there's no blank logID being sent
+      delete data["logID"];
       // Check if there is a pickedDate
       // If true then submit log for given date
-      if (data["pickedDate"] === "") delete data["pickedDate"];
-      delete data["logID"];
       if (data["pickedDate"]) {
         const date = new Date(data["pickedDate"]);
         delete data["pickedDate"];
@@ -198,15 +200,3 @@ module.exports.postWalkthrough = async (req, res, next) => {
   }
 };
 
-// function findChangedValues(existingObject, updatedObject) {
-//   const changedValues = {};
-
-//   // Iterate through the keys of the existingObject
-//   for (const key in existingObject) {
-//     // Check if the key exists in the updatedObject and the values are different
-//     if (key in updatedObject && existingObject[key] !== updatedObject[key]) {
-//       changedValues[key] = updatedObject[key];
-//     }
-//   }
-//   return changedValues;
-// }
