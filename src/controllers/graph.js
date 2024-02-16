@@ -66,9 +66,14 @@ module.exports.processGraph = async (req, res, next) => {
   ]).exec();
   // console.log(result);
   const justSelectedData = result.map((item) => ({
-    value: item.data[dataSelection],
+    value:
+      item.data[dataSelection] === "true"
+        ? 1
+        : item.data[dataSelection] === "false"
+        ? 0
+        : item.data[dataSelection],
     date: item.date.toLocaleDateString("en-US", options),
   }));
-  console.log(justSelectedData);
-  res.json(justSelectedData)
+  // console.log(justSelectedData);
+  res.json(justSelectedData);
 };
