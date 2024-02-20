@@ -54,17 +54,25 @@ module.exports.getPage = async (req, res, next) => {
 
 module.exports.processGraph = async (req, res, next) => {
   const { dataSelection, fromDate, toDate } = req.body;
+  console.log(dataSelection, fromDate, toDate);
+  // Create new Date objects based on extracted values
+  const fromDateObject = new Date(fromDate);
+  const toDateObject = new Date(toDate);
+
+  // Set UTC hours for the new objects
+  fromDateObject.setUTCHours(14, 0, 0, 0);
+  toDateObject.setUTCHours(14, 0, 0, 0);
   const options = {
     year: "numeric",
     month: "short",
     day: "numeric",
   };
-  // console.log(dataSelection, fromDate, toDate);
-  const result = await Log.find({ date: { $gte: fromDate, $lt: toDate } }, [
+  console.log(dataSelection, fromDateObject, toDateObject);
+  const result = await Log.find({ date: { $gte: fromDateObject, $lte: toDateObject } }, [
     "data",
     "date",
   ]).exec();
-  // console.log(result);
+  console.log(result);
   const justSelectedData = result.map((item) => ({
     value:
       item.data[dataSelection] === "true"
@@ -74,6 +82,6 @@ module.exports.processGraph = async (req, res, next) => {
         : item.data[dataSelection],
     date: item.date.toLocaleDateString("en-US", options),
   }));
-  // console.log(justSelectedData);
+  console.log(justSelectedData);
   res.json(justSelectedData);
 };

@@ -162,7 +162,7 @@ module.exports.postWalkthrough = async (req, res, next) => {
     // Check if logID was submitted and if so find existing log and update instead
     // Make sure to delete logID and pickedDate so it doesn't get saved in data
     if (data["logID"]) {
-      if (data["pickedDate"]) delete data["pickedDate"];
+      if (data["pickedDate"] || data["pickedDate"] === "") delete data["pickedDate"];
       // console.log("there was a logID:", data["logID"]);
       const id = data["logID"];
       const options = { new: true };
