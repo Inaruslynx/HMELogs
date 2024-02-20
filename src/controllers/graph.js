@@ -67,12 +67,12 @@ module.exports.processGraph = async (req, res, next) => {
     month: "short",
     day: "numeric",
   };
-  console.log(dataSelection, fromDateObject, toDateObject);
+  // console.log(dataSelection, fromDateObject, toDateObject);
   const result = await Log.find({ date: { $gte: fromDateObject, $lte: toDateObject } }, [
     "data",
     "date",
   ]).exec();
-  console.log(result);
+  // console.log(result);
   const justSelectedData = result.map((item) => ({
     value:
       item.data[dataSelection] === "true"
@@ -82,6 +82,6 @@ module.exports.processGraph = async (req, res, next) => {
         : item.data[dataSelection],
     date: item.date.toLocaleDateString("en-US", options),
   }));
-  console.log(justSelectedData);
+  // console.log(justSelectedData);
   res.json(justSelectedData);
 };
