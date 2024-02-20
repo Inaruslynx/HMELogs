@@ -5,14 +5,14 @@ module.exports.getPage = async (req, res, next) => {
   let data = [];
 
   const nowDate = new Date();
-  console.log("This is nowDate before locale:", nowDate);
+  // console.log("This is nowDate before locale:", nowDate);
   let intermToDate = nowDate.toLocaleDateString("en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
     timeZone: "America/Chicago",
   });
-  console.log("After:", intermToDate);
+  // console.log("After:", intermToDate);
   intermToDate = intermToDate.split("/");
   intermToDate = [
     intermToDate[2],
@@ -23,14 +23,14 @@ module.exports.getPage = async (req, res, next) => {
   const toDate = intermToDate.join("-");
 
   let intermFromDate = new Date(nowDate.getTime() - 7 * 24 * 60 * 60 * 1000);
-  console.log("This is intermFromDate before locale", intermFromDate);
+  // console.log("This is intermFromDate before locale", intermFromDate);
   intermFromDate = intermFromDate.toLocaleDateString("en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
     timeZone: "America/Chicago",
   });
-  console.log("After:", intermFromDate);
+  // console.log("After:", intermFromDate);
   intermFromDate = intermFromDate.split("/");
   intermFromDate = [
     intermFromDate[2],
@@ -54,7 +54,7 @@ module.exports.getPage = async (req, res, next) => {
 
 module.exports.processGraph = async (req, res, next) => {
   const { dataSelection, fromDate, toDate } = req.body;
-  console.log(dataSelection, fromDate, toDate);
+  // console.log(dataSelection, fromDate, toDate);
   // Create new Date objects based on extracted values
   const fromDateObject = new Date(fromDate);
   const toDateObject = new Date(toDate);
@@ -68,10 +68,10 @@ module.exports.processGraph = async (req, res, next) => {
     day: "numeric",
   };
   // console.log(dataSelection, fromDateObject, toDateObject);
-  const result = await Log.find({ date: { $gte: fromDateObject, $lte: toDateObject } }, [
-    "data",
-    "date",
-  ]).exec();
+  const result = await Log.find(
+    { date: { $gte: fromDateObject, $lte: toDateObject } },
+    ["data", "date"]
+  ).exec();
   // console.log(result);
   const justSelectedData = result.map((item) => ({
     value:
