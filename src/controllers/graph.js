@@ -73,15 +73,39 @@ module.exports.processGraph = async (req, res, next) => {
     ["data", "date"]
   ).exec();
   // console.log(result);
-  const justSelectedData = result.map((item) => ({
-    value:
-      item.data[dataSelection] === "true"
-        ? 1
-        : item.data[dataSelection] === "false"
-        ? 0
-        : item.data[dataSelection],
-    date: item.date.toLocaleDateString("en-US", options),
-  }));
+  const justSelectedData = result.map((item) => {
+    const itemDate = item.date;
+    const itemTimeUTC = itemDate.getUTCHours() * 60 + itemDate.getUTCMinutes(); // Convert time to minutes
+
+    // Check if the time is before UTC 14:00
+    if (itemTimeUTC < 14 * 60) {
+      // If before UTC 14:00, set the time to 14:01 the day before
+      const adjustedDate = new Date(itemDate);
+      adjustedDate.setUTCDate(itemDate.getUTCDate() - 1);
+      adjustedDate.setUTCHours(14, 1, 0, 0); // Set time to 14:01:00.000 UTC
+      return {
+        value:
+          item.data[dataSelection] === "true"
+            ? 1
+            : item.data[dataSelection] === "false"
+            ? 0
+            : item.data[dataSelection],
+        date: adjustedDate.toLocaleDateString("en-US", options),
+      };
+    } else {
+      // If after or at UTC 14:00, keep the original date
+      return {
+        value:
+          item.data[dataSelection] === "true"
+            ? 1
+            : item.data[dataSelection] === "false"
+            ? 0
+            : item.data[dataSelection],
+        date: itemDate.toLocaleDateString("en-US", options),
+      };
+    }
+  });
+
   // console.log(justSelectedData);
   res.json(justSelectedData);
 };
