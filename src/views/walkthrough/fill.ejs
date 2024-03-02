@@ -83,10 +83,10 @@
       <fieldset id="formFieldset" disabled="<%- !formEnabled %>">
         <div class="container text-center">
           <div class="d-none">
-            <input id="logID" name="logID" type="hidden"/>
+            <input id="logID" name="logID" type="hidden" />
           </div>
           <div class="d-none">
-            <input id="pickedDate" name="pickedDate" type="hidden"/>
+            <input id="pickedDate" name="pickedDate" type="hidden" />
           </div>
           <div>
             <h1 id="FM">Finish Mill</h1>
@@ -720,15 +720,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="F1 Drive Water Pump"
                     id="F1DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="F1DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -794,15 +794,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="F2 Drive Water Pump"
                     id="F2DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="F2DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -868,15 +868,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="F3 Drive Water Pump"
                     id="F3DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="F3DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -942,15 +942,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="F4 Drive Water Pump"
                     id="F4DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="F4DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -1016,15 +1016,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="F5 Drive Water Pump"
                     id="F5DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="F5DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -1090,15 +1090,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="F6 Drive Water Pump"
                     id="F6DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="F6DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -1305,7 +1305,9 @@
               >
                 Toggle FM Area Lighting Note
               </button>
-              <div class="align-items-center justify-content-center d-flex mb-4">
+              <div
+                class="align-items-center justify-content-center d-flex mb-4"
+              >
                 <textarea
                   class="collapse form-control w-50"
                   name="FM Area Lighting Notes"
@@ -1471,15 +1473,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="R1 Drive Water Pump"
                     id="R1DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="R1DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -1545,15 +1547,15 @@
                   >
                 </div>
                 <div class="form-floating pb-3 col-md">
-                  <input
-                    type="number"
-                    step="any"
+                  <select
                     class="form-control"
-                    placeholder=""
                     name="R2 Drive Water Pump"
                     id="R2DrvWtrPump"
                     oninput="saveToLocalStorage(electricalWalkthrough)"
-                  />
+                  >
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
                   <label for="R2DrvWtrPump" class="col-md col-form-label"
                     >Pump in operation</label
                   >
@@ -1863,7 +1865,9 @@
               >
                 Toggle RM Area Lighting Note
               </button>
-              <div class="align-items-center justify-content-center d-flex mb-4">
+              <div
+                class="align-items-center justify-content-center d-flex mb-4"
+              >
                 <textarea
                   class="collapse form-control w-50"
                   name="RM Area Lighting Notes"
@@ -2297,7 +2301,13 @@
           </div>
 
           <div class="mb-4 pb-4">
-            <button id="formSubmitButton" type="submit" class="m-4 btn btn-primary">Submit</button>
+            <button
+              id="formSubmitButton"
+              type="submit"
+              class="m-4 btn btn-primary"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </fieldset>
@@ -2311,17 +2321,17 @@
     const isFormDisabled = localStorage.getItem("isFormDisabled") === "true";
     setFormDisabledState(isFormDisabled);
 
-    window.addEventListener('beforeunload', function (event) {
-      const datePicker = document.getElementById("logDate")
-      const form = document.getElementById("electricalWalkthrough")
-      const inputs = form.getElementsByTagName("input")
-      datePicker.value = ""
-      for (let i = 0; i < inputs.length; i++){
+    window.addEventListener("beforeunload", function (event) {
+      const datePicker = document.getElementById("logDate");
+      const form = document.getElementById("electricalWalkthrough");
+      const inputs = form.getElementsByTagName("input");
+      datePicker.value = "";
+      for (let i = 0; i < inputs.length; i++) {
         if (inputs.item(i).type == "checkbox") {
           inputs.item(i).checked = false;
         }
       }
-    })
+    });
   });
 
   function setFormDisabledState(isFormDisabled) {
@@ -2376,4 +2386,3 @@
 
   window.onload = loadFromLocalStorage(electricalWalkthrough);
 </script>
-
