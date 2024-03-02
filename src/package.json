@@ -18,6 +18,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "fast-safe-stringify": "^2.1.1",
     "jquery": "^3.7.1",
+    "mathjs": "^12.4.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
     "nodemailer": "^6.9.7",

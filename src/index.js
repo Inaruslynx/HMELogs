@@ -71,9 +71,11 @@ for (const level of logger.config.levels) {
 const cabin = new Cabin({ logger });
 module.exports = cabin
 
+// Routes
 const userRoutes = require("./routes/users");
 const walkthroughRoutes = require("./routes/walkthrough");
 const graphRoutes = require("./routes/graph");
+const reportsRoutes = require("./routes/report");
 
 const uri = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
 const session_uri = `mongodb://${process.env.SESSION_USERNAME}:${process.env.SESSION_PASSWORD}@127.0.0.1:27017/?authMechanism=DEFAULT`;
@@ -147,6 +149,7 @@ app.use((req, res, next) => {
 app.use("/", userRoutes);
 app.use("/walkthrough", walkthroughRoutes);
 app.use("/graph", graphRoutes);
+app.use("/report", reportsRoutes);
 
 // Got to home
 app.get("/", async (req, res) => {

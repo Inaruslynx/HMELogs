@@ -192,7 +192,10 @@ module.exports.postWalkthrough = async (req, res, next) => {
 
     req.flash("success", "Log submitted successfully");
     res.send(
-      `<script>window.localStorage.removeItem("formData"); window.location.href = "${process.env.DOMAIN}"</script>`
+      `<script>
+        window.localStorage.removeItem("formData");
+        window.location.href = "${process.env.DOMAIN}/report";
+      </script>`
     );
   } catch (e) {
     req.flash("error", e.message);
