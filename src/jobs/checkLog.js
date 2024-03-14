@@ -35,27 +35,27 @@ async function checkLog() {
     }
 
     console.log("No log found in the last 24 hours");
-    const admins = await User.find({ admin: true });
-    // console.log(admins)
-    // const admins = [
+    const users = await User.find();
+    // console.log(users)
+    // const users = [
     //   { username: "josh.edwards", email: "josh.edwards@steeldynamics.com" },
     // ];
     const result = [];
-    for (const admin of admins) {
-      // I can just send an email as I go through the admins.
+    for (const user of users) {
+      // I can just send an email as I go through the users.
       // Check if username is an email and split
-      if (admin.username.includes("@")) {
-        admin.username = admin.username.split("@")[0];
+      if (user.username.includes("@")) {
+        user.username = user.username.split("@")[0];
       }
       // Construct htmlPayload for email
       const htmlPayload = await ejs.renderFile(ejsTemplate, {
-        userName: admin.username,
+        userName: user.username,
       });
-      console.log("Sending an email to", admin.username);
+      console.log("Sending an email to", user.username);
       // console.log(htmlPayload);
-      //return { email: admin.email, username: admin.username };
+      //return { email: user.email, username: user.username };
       // send email to email with htmlPayload and title of email
-      result.push(await sendEmail(htmlPayload, admin.email, "No Log Data"));
+      result.push(await sendEmail(htmlPayload, user.email, "No Log Data in Last 24 Hours"));
     }
     const hasFalse = result.some((element) => element === false);
     if (hasFalse) {
