@@ -2,6 +2,48 @@
 <div class="container justify-content-center">
   <h1 class="text-center">Report</h1>
 </div>
+<div class="container justify-content-center">
+  <h3 class="text-center m-2">Items of Concern</h3>
+</div>
+<div class="m-4 table-responsive">
+  <table class="table table-bordered table-hover table-striped border-primary">
+    <thead>
+      <tr>
+        <th scope="col" colspan="4"></th>
+        <th class="text-center" scope="col" colspan="4">Statistics</th>
+      </tr>
+      <tr>
+        <th class="text-center" scope="col">Data point</th>
+        <th class="text-center" scope="col">Last Log</th>
+        <th class="text-center" scope="col">Before Last Log</th>
+        <th class="text-center" scope="col">Difference</th>
+        <th class="text-center" scope="col">Mean</th>
+        <th class="text-center" scope="col">StdDev</th>
+        <th class="text-center" scope="col">Min</th>
+        <th class="text-center" scope="col">Max</th>
+      </tr>
+    </thead>
+
+    <tbody class="table-group-divider">
+      <% for( const key in itemsOfConcern ) { %>
+      <tr>
+        <th class="text-center" scope="row"><%= key %></th>
+        <td class="text-center <%= (itemsOfConcern[key].belowMin || itemsOfConcern[key].aboveMax) ? "text-danger" :"" %>"><%= lastLog[key] %></td>
+        <td class="text-center"><%= beforeLastLog[key] %></td>
+        <td class="text-center <%= itemsOfConcern[key].aboveStdDev ? "text-danger" :"" %>"><%= resultsOfRecentLogs[key] %></td>
+        <td class="text-center"><%= results[key].Mean %></td>
+        <td class="text-center <%= itemsOfConcern[key].aboveStdDev ? "text-danger" :"" %>"><%= results[key].stdDev %></td>
+        <td class="text-center <%= itemsOfConcern[key].belowMin ? "text-danger" :"" %>"><%= results[key].Min %></td>
+        <td class="text-center <%= itemsOfConcern[key].aboveMax ? "text-danger" :"" %>"><%= results[key].Max %></td>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+
+<div class="container justify-content-center">
+  <h3 class="text-center">Full report</h3>
+</div>
+
 <div class="m-4 table-responsive pb-4">
   <table class="table table-bordered table-hover table-striped border-primary">
     <thead>
@@ -24,13 +66,13 @@
       <% for( const key in results ) { %>
       <tr>
         <th class="text-center" scope="row"><%= key %></th>
-        <td class="text-center"><%= lastLog[key] %></td>
+        <td class="text-center <%= (itemsOfConcern[key]?.belowMin || itemsOfConcern[key]?.aboveMax) ? "text-danger" :"" %>"><%= lastLog[key] %></td>
         <td class="text-center"><%= beforeLastLog[key] %></td>
-        <td class="text-center"><%= resultsOfRecentLogs[key] %></td>
+        <td class="text-center <%= itemsOfConcern[key]?.aboveStdDev ? "text-danger" :"" %>"><%= resultsOfRecentLogs[key] %></td>
         <td class="text-center"><%= results[key].Mean %></td>
-        <td class="text-center"><%= results[key].stdDev %></td>
-        <td class="text-center"><%= results[key].Min %></td>
-        <td class="text-center"><%= results[key].Max %></td>
+        <td class="text-center <%= itemsOfConcern[key]?.aboveStdDev ? "text-danger" :"" %>"><%= results[key].stdDev %></td>
+        <td class="text-center <%= itemsOfConcern[key]?.belowMin ? "text-danger" :"" %>"><%= results[key].Min %></td>
+        <td class="text-center <%= itemsOfConcern[key]?.aboveMax ? "text-danger" :"" %>"><%= results[key].Max %></td>
       </tr>
       <% } %>
       <tr></tr>
